@@ -1,0 +1,300 @@
+:root {
+  --color-red: #c0392b;
+  --color-green: #5db85c;
+  --color-dark-blue: #2c3e50;
+  --color-purple: #8e44ad;
+  --color-yellow: #f1c40f;
+  --color-blue: #5bc0de;
+  --color-grey: #555;
+  --color-orange: #e87c24;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Lato", sans-serif;
+  font-family: "Open Sans", sans-serif;
+  color: var(--color-grey);
+}
+
+body {
+  background: url("https://raw.githubusercontent.com/WebToLearn/personal-page-css-workshop/master/img/background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+}
+
+.header {
+  margin-top: 30px;
+}
+
+.header .title {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  font-size: 38px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.header .subtitle {
+  color: #999;
+  margin-bottom: 1em;
+  font-family: "Lato", sans-serif;
+  font-size: 1.5em;
+  line-height: 1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.resume-container {
+  background: white;
+  width: 990px;
+  margin: 0 auto 30px auto;
+  padding: 30px 20px;
+  border: 1px solid #f1f1f1;
+  box-shadow: 0px 6px var(--color-red);
+  border-radius: 0px 0px 4px 4px;
+  display: flex;
+}
+
+.menu {
+  width: 990px;
+  margin: 80px auto 0 auto;
+  text-align: center;
+}
+
+.menu .menu-item {
+  display: inline-block;
+  margin: 0 10px 0 20px;
+  padding: 10px 40px 10px 40px;
+  background-color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  color: #999;
+  vertical-align: bottom;
+  border-bottom-color: #fff;
+}
+
+.menu-item i {
+  margin: 0 5px;
+}
+
+.menu .menu-item:active {
+  position: relative;
+  bottom: -1px;
+  color: #c0392b;
+  padding: 15px 40px 15px 40px;
+  margin-top: 0;
+}
+
+.menu .menu-item:hover {
+  position: relative;
+  bottom: -1px;
+  color: #c0392b;
+  border-top: 4px solid #fff;
+  margin-top: 0;
+}
+
+hr {
+  margin: 25px 0;
+  border: 1px solid #f1f1f1;
+}
+
+.resume-title {
+  margin-top: 60px;
+  margin-bottom: 25px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.resume-content {
+  padding: 0 10px;
+}
+
+.resume-info,
+p {
+  margin-bottom: 25px;
+  margin-top: 0;
+}
+.resume-info h3 {
+  margin: 0;
+}
+.resume-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resume-info .resume-subtitle {
+  font-family: "Open Sans", sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.resume-info p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+}
+
+.resume-info .resume-date {
+  font-family: "Lato", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 2px;
+  background-color: var(--color-blue);
+  color: #fff;
+  padding: 3px;
+}
+
+.resume-info:last-of-type .resume-date {
+  background-color: var(--color-red);
+}
+
+.resume-info .resume-date--green {
+  background-color: var(--color-green);
+}
+
+.resume-info:last-of-type .resume-date.resume-date--green {
+  background-color: var(--color-yellow);
+}
+
+.vertical-separator {
+  width: 1px;
+  display: inline-block;
+  margin: 0 25px;
+  height: 90vh;
+  margin-top: 60px;
+}
+
+.resume-aside .resume-subtitle {
+  margin: 25px 0;
+}
+.resume-aside ul {
+  list-style-type: none;
+  padding: 0;
+}
+.resume-aside ul li {
+  margin: 15px 0;
+}
+
+.skills {
+}
+.skills-item {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  padding: 1px;
+}
+.skills-bg {
+  display: block;
+  padding: 5px;
+  border-radius: 5px;
+  color: #fff;
+  position: relative;
+  min-width: fit-content;
+}
+.skills-bg:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 5rem 5rem;
+  z-index: 1;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  overflow: hidden;
+}
+
+.skills .skills-item:nth-child(1) .skills-bg {
+  background-color: var(--color-green);
+}
+
+.skills .skills-item:nth-child(2) .skills-bg {
+  background-color: var(--color-orange);
+}
+
+.skills .skills-item:nth-child(3) .skills-bg {
+  background-color: var(--color-purple);
+}
+
+.skills .skills-item:nth-child(4) .skills-bg {
+  background-color: var(--color-yellow);
+}
+
+.skills .skills-item:nth-child(5) .skills-bg {
+  background-color: var(--color-dark-blue);
+}
+
+.skills .skills-item:nth-child(6) .skills-bg {
+  background-color: var(--color-red);
+}
+.skills .skills-item:nth-child(7) .skills-bg {
+  background-color: var(--color-grey);
+}
+
+.photoshop {
+  width: 30%;
+}
+.ilustrator {
+  width: 85%;
+}
+.indesign {
+  width: 60%;
+}
+.sketch {
+  width: 40%;
+}
+.office {
+  width: 68%;
+}
+.linux {
+  width: 72%;
+}
+
+.user {
+  width: 30%;
+}
+.web {
+  width: 95%;
+}
+.typography {
+  width: 65%;
+}
+
+.html {
+  width: 60%;
+}
+.php {
+  width: 80%;
+}
+.javascript {
+  width: 95%;
+}
+.ruby {
+  width: 70%;
+}
+.python {
+  width: 76%;
+}

@@ -1,0 +1,56 @@
+@import url("./style-general.css");
+
+.aside,
+.main {
+  height: 100%;
+}
+.aside {
+  background-color: var(--color-green);
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main {
+  width: 50%;
+}
+.aside__img {
+  width: 250px;
+  height: 250px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.container-data {
+  height: 100%;
+}
+.main__container {
+  width: 100%;
+  max-width: 350px;
+}
+
+.main__container h1 {
+  text-align: left;
+  width: 100%;
+}
+
+.form {
+  width: 100%;
+}
+
+.form p {
+  text-align: right;
+}
+.input-simple {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input-simple i {
+  font-size: 27px;
+}
+
+.form .btn-login {
+  width: 100%;
+}

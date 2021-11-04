@@ -1,0 +1,7 @@
+.menu .menu-item-active {
+  position: relative;
+  bottom: -1px;
+  color: #c0392b;
+  padding: 15px 40px 15px 40px;
+  margin-top: 0;
+}

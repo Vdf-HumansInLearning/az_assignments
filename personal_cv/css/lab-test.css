@@ -1,0 +1,67 @@
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  color: black;
+  text-transform: uppercase;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: cornsilk;
+  height: 100vh;
+}
+
+.header-wrapper {
+  width: 70%;
+  height: 100%;
+  position: relative;
+}
+
+.title {
+  text-align: right;
+}
+.subtitle {
+  color: crimson;
+  position: absolute;
+  top: 205px;
+  right: -106px;
+  transform: rotate(90deg);
+}
+
+.follow-links {
+  width: 173px;
+  border-bottom: 10px solid crimson;
+  color: black;
+  position: absolute;
+  top: 290px;
+}
+
+.follow-links a {
+  font-weight: bold;
+}
+.demo-list {
+  position: absolute;
+  top: 385px;
+}
+
+.demo-list ul li {
+  border-bottom: 5px solid black;
+}
+
+.demo-list ul li:first-of-type,
+.workshop-link {
+  border-top: 5px solid black;
+}
+
+.workshop-link {
+  position: absolute;
+  top: 716px;
+  width: 100%;
+}
