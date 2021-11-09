@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link type="text/css" rel="stylesheet" href="./style.css" />
+
+    <title>Document</title>
+  </head>
+
+  <body>
+    <nav class="nav-bar">
+      <div class="filter-container">
+        <div id="brandFilters" class="card">
+          <p>Choose phone brand</p>
+        </div>
+        <div id="priceFilters" class="card">
+          <p>Choose price range</p>
+          <label for="minPrice">
+            Enter minimum price
+            <input type="number" id="minPrice" name="minPrice" />
+          </label>
+          <br />
+          <label for="maxPrice">
+            Enter maximum price
+            <input type="number" id="maxPrice" name="maxPrice" />
+          </label>
+        </div>
+        <div id="priceFilters" class="card">
+          <p>
+            Select property to sort by
+            <select name="cars" id="sortProperties"></select>
+          </p>
+
+          <button id="btnAsc" type="button" class="btn btn-outline-primary">
+            Sort ascending
+          </button>
+          <button id="btnDesc" type="button" class="btn btn-outline-primary">
+            Sort descending
+          </button>
+        </div>
+        <div id="availabilityFilters" class="card">
+          <p>Choose availability</p>
+        </div>
+        <div>
+          <button id="btnSearch" type="button" class="btn btn-outline-primary">
+            Search
+          </button>
+          <button id="btnReset" type="button" class="btn btn-outline-primary">
+            Reset filters
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <label for="quickSearch">
+          Quick search
+          <input
+            id="inputQuickSearch"
+            type="text"
+            class="search-input"
+            name="quickSearch"
+            placeholder="Search brand..."
+          />
+        </label>
+        <button
+          id="btnAll"
+          type="button"
+          class="btn btn-outline-primary search-button--hidden"
+        >
+          Clear
+        </button>
+      </div>
+    </nav>
+
+    <div id="container"></div>
+    <script type="text/javascript" src="./script.js"></script>
+  </body>
+</html>

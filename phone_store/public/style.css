@@ -1,0 +1,29 @@
+.search-button {
+  padding: 10px;
+}
+
+.search-input {
+  width: 300px;
+  height: 20px;
+}
+
+.discounted {
+  text-decoration: line-through;
+}
+
+.filter-container {
+  display: grid;
+  grid-gap: 2em;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.card {
+  padding: 1em;
+  border-radius: 0.3em;
+  border: 1px solid #969494;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card .search-button--hidden {
+  display: none;
+}
