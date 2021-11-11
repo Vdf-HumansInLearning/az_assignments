@@ -1,0 +1,213 @@
+@import url(./style-variables.css);
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title {
+  color: var(--dark-gray-cyan);
+  width: 160px;
+  word-wrap: break-word;
+  letter-spacing: 10px;
+}
+
+.calculator-container {
+  background-color: var(--white);
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  padding: 20px 30px;
+}
+
+.input-container {
+  position: relative;
+}
+
+input,
+.btn-reset {
+  width: 100%;
+  border: 3px solid transparent;
+  border-radius: 7px;
+  line-height: 26px;
+  padding: 15px 10px;
+  margin-top: 10px;
+  font-size: var(--font-size);
+  background-color: var(--light-cyan);
+  color: var(--x-dark-cyan);
+  font-weight: 700;
+  text-align: right;
+  font-family: "Space Mono", monospace;
+}
+
+label {
+  font-size: var(--font-size-subtitle);
+}
+
+input:focus {
+  outline-width: 0;
+  border-radius: 5px;
+  border: 3px solid var(--primary);
+}
+
+input:focus-visible {
+  outline-width: 0;
+  border-radius: 5px;
+}
+
+.input-container .input__img {
+  position: absolute;
+  bottom: 21px;
+  left: 16px;
+  height: 20px;
+  text-indent: 10px;
+}
+
+.amount-container {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-gap: 10px;
+  grid-column-gap: 20px;
+  color: var(--white);
+}
+
+.amount-container input {
+  background-color: var(--x-dark-cyan);
+}
+
+.amount-container input:hover {
+  background-color: var(--cyan-hover);
+  color: var(--x-dark-cyan);
+}
+
+.amount-container input:hover::placeholder {
+  color: var(--x-dark-cyan);
+}
+
+.amount-container input:focus {
+  background-color: var(--primary);
+  color: var(--x-dark-cyan);
+}
+
+.amount-container input:focus::placeholder {
+  color: var(--x-dark-cyan);
+}
+
+.amount-container input::placeholder {
+  color: var(--white);
+  text-align: center;
+}
+.amount-container input.custom {
+  background-color: var(--light-cyan);
+}
+.amount-container input.custom::placeholder {
+  color: var(--dark-gray-cyan);
+  text-align: right;
+}
+
+.display-container {
+  background-color: var(--x-dark-cyan);
+  color: var(--white);
+  border-radius: 15px;
+  padding: 20px 25px;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.item__text p {
+  font-size: var(--font-size-subtitle);
+  margin-bottom: 0;
+  font-size: 20px;
+}
+.item__text .subtitle {
+  font-size: 18px;
+  margin-top: 0;
+  color: var(--dark-cyan);
+}
+
+.item__numbers {
+  font-size: 36px;
+}
+.item__numbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  color: var(--primary);
+}
+.item__img {
+  height: 20px;
+}
+.item__img {
+  filter: brightness(0) saturate(100%) invert(68%) sepia(67%) saturate(5644%)
+    hue-rotate(138deg) brightness(116%) contrast(70%);
+}
+.btn-reset {
+  background-color: var(--primary);
+  text-align: center;
+  margin-top: 30px;
+  padding: 10px;
+}
+.btn-reset:hover {
+  background-color: var(--cyan-hover);
+}
+
+.error__input {
+  outline-width: 0;
+  border-radius: 5px;
+  border: 3px solid var(--danger);
+}
+
+.error__text {
+  display: inherit;
+  color: var(--danger);
+  float: right;
+}
+@media (min-width: 990px) {
+  .calculator-container {
+    max-width: 65%;
+    height: 50%;
+    display: flex;
+    padding: 30px 20px;
+  }
+
+  .actions-container {
+    width: 50%;
+    height: 100%;
+    margin-right: 30px;
+  }
+
+  .amount-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-column-gap: 20px;
+    color: var(--white);
+  }
+  .display-container {
+    width: 50%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .actions-container .tip-container {
+    white-space: nowrap;
+  }
+  .amount-container input.custom::placeholder {
+    text-align: center;
+  }
+}

@@ -1,0 +1,33 @@
+:root {
+  --primary: hsl(172, 67%, 45%);
+  --x-dark-cyan: hsl(183, 100%, 15%);
+  --dark-gray-cyan: hsl(186, 14%, 43%);
+  --dark-cyan: hsl(184, 14%, 56%);
+  --cyan-hover: #9cecdc;
+  --light-gray-cyan: hsl(185, 41%, 84%);
+  --light-cyan: hsl(189, 41%, 97%);
+  --white: hsl(0, 0%, 100%);
+  --danger: #b48474;
+  --font-size: 24px;
+  --font-size-subtitle: 22px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: var(--light-gray-cyan);
+  color: var(--dark-gray-cyan);
+  font-weight: 700;
+  font-family: "Space Mono", monospace;
+  font-size: var(--font-size);
+}
+
+.mb-3 {
+  margin-bottom: 30px;
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Frontend Mentor | Tip calculator app</title>
+  </head>
+  <body>
+    <main class="main-container">
+      <h1 class="title">SPLITTER</h1>
+      <div class="calculator-container">
+        <div class="actions-container">
+          <div class="input-container mb-3">
+            <label for="bill"
+              >Bill
+              <img class="input__img" src="./images/icon-dollar.svg" />
+              <input class="money" type="text" id="bill" name="bill" />
+            </label>
+          </div>
+
+          <div class="tip-container mb-3">
+            <label> Select Tip % </label>
+            <div class="amount-container">
+              <input placeholder="5%" readonly type="text" name="tip" />
+              <input placeholder="10%" readonly type="text" name="tip" />
+              <input placeholder="15%" readonly type="text" name="tip" />
+              <input placeholder="25%" readonly type="text" name="tip" />
+              <input placeholder="50%" readonly type="text" name="tip" />
+              <input
+                placeholder="Custom"
+                class="custom"
+                type="text"
+                name="tip"
+              />
+            </div>
+          </div>
+          <div class="input-container mb-3">
+            <label for="people">
+              <span>Number of people</span>
+              <span class="error__text">Can't be 0.</span>
+              <img class="input__img" src="./images/icon-person.svg" />
+              <input
+                class="money error__input"
+                type="text"
+                id="people"
+                name="people"
+              />
+            </label>
+          </div>
+        </div>
+
+        <div class="display-container">
+          <div class="item__container">
+            <div class="item">
+              <div class="item__text">
+                <p>Tip Amount</p>
+                <p class="subtitle">/ person</p>
+              </div>
+              <div class="item__numbers">
+                <img class="item__img" src="./images/icon-dollar.svg" />
+                4.27
+              </div>
+            </div>
+            <div class="item">
+              <div class="item__text">
+                <p>Total</p>
+                <p class="subtitle">/ person</p>
+              </div>
+              <div class="item__numbers">
+                <img class="item__img" src="./images/icon-dollar.svg" />
+                32.79
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-reset">RESET</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Adela Maria Zamfirescu</a>.
+    </footer>
+  </body>
+</html>
