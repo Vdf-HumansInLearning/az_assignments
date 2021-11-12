@@ -1,1 +1,16 @@
 @import url(./style-variables.css);
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.main {
+  flex: 1;
+}
+.aside {
+  width: 222px;
+}
+.filter-container {
+  width: 30%;
+}
