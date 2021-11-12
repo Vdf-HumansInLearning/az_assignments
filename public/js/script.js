@@ -1,98 +1,3 @@
-let myJson = {
-  products: [
-    {
-      name: "Galaxy A12",
-      brand: "Samsung",
-      operating_system: "Android",
-      price: 899,
-      discount: 0,
-      quantity: 2000,
-      availability_date: "2020-11-24",
-      rating: 4,
-    },
-    {
-      name: "Galaxy a52s 5G",
-      brand: "Samsung",
-      operating_system: "Android",
-      price: 1849,
-      discount: 0,
-      quantity: 2500,
-      availability_date: "2021-08-17",
-      rating: 5,
-    },
-    {
-      name: "Galaxy s21",
-      brand: "Samsung",
-      operating_system: "Android",
-      price: 3899,
-      discount: 50,
-      quantity: 800,
-      availability_date: "2021-01-29",
-      rating: 4,
-    },
-    {
-      name: "Moto G30",
-      brand: "Motorola",
-      operating_system: "Android",
-      price: 799,
-      discount: 100,
-      quantity: 1000,
-      availability_date: "2021-03-17",
-      rating: 4.5,
-    },
-    {
-      name: "iPhone 13",
-      brand: "Apple",
-      operating_system: "iOS",
-      price: 4449,
-      discount: 0,
-      quantity: 3500,
-      availability_date: "2021-09-14",
-      rating: 5,
-    },
-    {
-      name: "iPhone 13 Pro",
-      brand: "Apple",
-      operating_system: "iOS",
-      price: 5699,
-      discount: 0,
-      quantity: 3000,
-      availability_date: "2021-09-14",
-      rating: 5,
-    },
-    {
-      name: "Mi 11 Lite 5G",
-      brand: "Xiaomi",
-      operating_system: "Android",
-      price: 1449,
-      discount: 0,
-      quantity: 1500,
-      availability_date: "2021-03-29",
-      rating: -1,
-    },
-    {
-      name: "Pixel 6",
-      brand: "Google",
-      operating_system: "Android",
-      price: 649,
-      discount: 0,
-      quantity: 0,
-      availability_date: "2999-10-25",
-      rating: -1,
-    },
-  ],
-  standard_delivery_fee: 35,
-  free_delivery_min_price: 500,
-};
-
-const brands = [...new Set(myJson.products.map((product) => product.brand))];
-const os = [
-  ...new Set(
-    myJson.products.map((product) =>
-      product.operating_system ? product.operating_system : "N/A"
-    )
-  ),
-];
 //-----------CUSTOMER ACTIONS-----------
 // filter by brand
 function filterByBrand(phoneBrand) {
@@ -236,14 +141,14 @@ function displayProducts(filterFunction) {
   }
   products.forEach((product) => {
     html += `
-              <li class="phone">
-              <h2><a href="details.html?phone=${product.name}" target="_blank">${product.brand} ${product.name}</a>
-              </h2>`;
+                <li class="phone">
+                <h2><a href="details.html?phone=${product.name}" target="_blank">${product.brand} ${product.name}</a>
+                </h2>`;
     if (product.discount > 0) {
       let finalPrice = product.price - product.discount;
       html += `<p> 
-              <span class="discounted"> ${product.price}</span>&nbsp; ${finalPrice} 
-              lei</p>`;
+                <span class="discounted"> ${product.price}</span>&nbsp; ${finalPrice} 
+                lei</p>`;
     } else {
       html += `<p>${product.price}</p>`;
     }
@@ -280,9 +185,9 @@ let brandFilters = document.querySelector("#brandFilters");
 function generateCheckboxesBrands() {
   brands.forEach((item) => {
     brandFilters.innerHTML += `<label for="${item.toLowerCase()}">
-        <input type="checkbox" name="${item.toLowerCase()}" onclick="getCheckedBrands()">
-        ${item}
-        </label>`;
+          <input type="checkbox" name="${item.toLowerCase()}" onclick="getCheckedBrands()">
+          ${item}
+          </label>`;
   });
 }
 generateCheckboxesBrands();
@@ -314,8 +219,8 @@ function generateRadiosAvailability() {
   availability.forEach((item) => {
     let label = item.replace("_", " ");
     availabilityFilters.innerHTML += `<label for="${item.toLowerCase()}">
-        <input type="radio" name="availability" value="${item.toLowerCase()}" >
-        ${label}</label>`;
+          <input type="radio" name="availability" value="${item.toLowerCase()}" >
+          ${label}</label>`;
   });
 }
 generateRadiosAvailability();
@@ -421,3 +326,23 @@ btnDesc.addEventListener("click", function () {
   let products = sortDesc(myJson.products, selectedProperty);
   displayProducts(products);
 });
+
+function getProductList() {
+  console.log("function was caled");
+  axios
+    .get("http://localhost:3000/shop/api/products")
+    .then((response) => {
+      let productList = response.data;
+      const brands = [...new Set(productList.map((product) => product.brand))];
+      const os = [
+        ...new Set(
+          productList.map((product) =>
+            product.operating_system ? product.operating_system : "N/A"
+          )
+        ),
+      ];
+    })
+    .catch((err) => console.log(err));
+}
+
+getProductList();

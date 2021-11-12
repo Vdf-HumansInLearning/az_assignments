@@ -5,28 +5,51 @@
     <%- include('./partials/_navbar'); %>
     <div class="main-container">
       <aside id="filtersContainer" class="aside p-2">
-        <label for="quickSearch">
-          Quick search
-          <input
-            id="inputQuickSearch"
-            type="text"
-            class="search-input"
-            name="quickSearch"
-            placeholder="Search brand..."
-          />
-        </label>
-        <button
-          id="btnAll"
-          type="button"
-          class="btn btn-outline-primary search-button--hidden"
-        >
-          Clear
-        </button>
+        <div class="search">
+          <label for="quickSearch">
+            Quick search
+            <input
+              id="inputQuickSearch"
+              type="text"
+              class="search-input"
+              name="quickSearch"
+              placeholder="Search brand..."
+            />
+          </label>
+          <button
+            id="btnAll"
+            type="button"
+            class="btn btn-outline-primary search-button--hidden"
+          >
+            Clear
+          </button>
+        </div>
       </aside>
       <main class="main p-2">
         <h1><%= title %></h1>
+        <ol class="list-group list-group-numbered">
+          <% for(var i=0; i < productList.length; i++) {%>
+
+          <li
+            class="
+              list-group-item
+              d-flex
+              justify-content-between
+              align-items-start
+            "
+          >
+            <div class="ms-2 me-auto">
+              <div class="fw-bold"><%= productList[i].name %></div>
+              <%= productList[i].brand %>
+            </div>
+          </li>
+
+          <% } %>
+        </ol>
       </main>
     </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>
