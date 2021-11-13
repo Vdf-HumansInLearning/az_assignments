@@ -5,7 +5,7 @@
     <%- include('./partials/_navbar'); %>
     <div class="main-container">
       <aside id="filtersContainer" class="aside p-2">
-        <div class="search">
+        <div class="search card">
           <label for="quickSearch">
             Quick search
             <input
@@ -23,6 +23,36 @@
           >
             Clear
           </button>
+        </div>
+        <div id="brandFilters" class="card">
+          <p>Choose phone brand</p>
+        </div>
+        <div id="priceFilters" class="card">
+          <label for="minPrice">
+            Enter minimum price
+            <input type="number" id="minPrice" name="minPrice" />
+          </label>
+          <br />
+          <label for="maxPrice">
+            Enter maximum price
+            <input type="number" id="maxPrice" name="maxPrice" />
+          </label>
+        </div>
+        <div class="card">
+          <p>
+            Select property to sort by
+            <select name="cars" id="sortProperties"></select>
+          </p>
+
+          <button id="btnAsc" type="button" class="btn btn-outline-primary">
+            Sort ascending
+          </button>
+          <button id="btnDesc" type="button" class="btn btn-outline-primary">
+            Sort descending
+          </button>
+        </div>
+        <div id="availabilityFilters" class="card">
+          <p>Choose availability</p>
         </div>
       </aside>
       <main class="main p-2">
