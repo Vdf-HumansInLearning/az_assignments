@@ -57,7 +57,53 @@
       </aside>
       <main class="main p-2">
         <h1><%= title %></h1>
-        <div id="productList"></div>
+        <div id="productList">
+          <ol class="list-group list-group-numbered">
+            <% for(var i=0; i < productList.length; i++) {%>
+            <li
+              class="
+                list-group-item
+                d-flex
+                justify-content-between
+                align-items-start
+              "
+            >
+              <div class="ms-2 me-auto">
+                <div class="fw-bold d-flex justify-content-between">
+                  <%= productList[i].name %>
+                  <button
+                    type="button"
+                    onclick="addProductToCart(i)"
+                    class="btn btn-outline-primary btn-add-cart"
+                  >
+                    Add to cart
+                  </button>
+                </div>
+                <a
+                  href="details.html?phone=<%= productList[i].name %>"
+                  target="_blank"
+                >
+                  <%= productList[i].brand %>
+                </a>
+                <% if(productList[i].discount > 0){ %> <% var finalPrice =
+                productList[i].price - productList[i].discount; %>
+                <p>
+                  <span class="discounted"> <%= productList[i].price %></span
+                  >&nbsp; <%= finalPrice %> lei
+                </p>
+                <% } else{ %>
+                <p><%=productList[i].price%></p>
+                <% } %> <% if(productList[i].rating > 0){ %>
+                <p>-</p>
+                <% } else{ %>
+                <p>-</p>
+                <% } %>
+              </div>
+            </li>
+
+            <% } %>
+          </ol>
+        </div>
       </main>
     </div>
 
