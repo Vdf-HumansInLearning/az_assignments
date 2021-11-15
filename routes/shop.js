@@ -26,11 +26,51 @@ const propertiesSort = [
 
 const availability = ["all", "until_today"];
 
+//params: brand to look for, array of products
+//looks for a brand and returns average rating
+function getAverageRating(arr, brand) {
+  let myObj = {};
+  arr
+    .filter((item) => item.rating >= 0)
+    .forEach((item) => {
+      if (item.brand in myObj) myObj[item.brand].push(item.rating);
+      else myObj[item.brand] = [item.rating];
+    });
+  for (key in myObj) {
+    let sum = 0;
+    myObj[key].forEach((item) => (sum += item));
+    myObj[key] = parseFloat((sum / myObj[key].length).toFixed(2));
+  }
+  for (key in myObj) {
+    console.log(key);
+    console.log(brand);
+
+    if (key === brand) return myObj[key];
+    else return "-";
+  }
+}
+
+function generateAverageRating(arr) {
+  let newArr = [];
+  arr.forEach((item) => newArr.push(getAverageRating(productList, item.brand)));
+  return newArr;
+}
+let averageProdRatings = generateAverageRating(productList);
+console.log("avg prod rating");
+console.log(averageProdRatings);
+// get phones array
+// filter phones array by query params
+// get filter array
+// set selected filters from query
+// send phones and filters to render method
+
 /* GET home page. */
 router.get("/", function (req, res, next) {
+  console.log(req.query);
   res.render("shop", {
     title: "Shop",
     productList: productList,
+    avgRatings: averageProdRatings,
     brands: brands,
     os: os,
     propertiesSort: propertiesSort,
