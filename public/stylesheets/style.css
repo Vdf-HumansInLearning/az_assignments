@@ -37,3 +37,7 @@
 .list-group-item:hover {
   background-color: #cfe2ff;
 }
+
+.list__item {
+  width: 100%;
+}

@@ -24,8 +24,19 @@
             x
           </button>
         </div>
-        <div id="brandFilters" class="card">
+        <div class="card">
           <p class="fw-bolder">Choose phone brand</p>
+          <div id="brandsFilter">
+            <% for(var i=0; i < brands.length; i++) {%> <% var label =
+            brands[i].toLowerCase() %>
+            <label for="<%= brands[i] %>">
+              <input type="checkbox" name="<%= brands[i] %>" />
+              <%= brands[i] %>
+            </label>
+
+            <% } %>
+            <!--add onclick function for list item-->
+          </div>
         </div>
         <div id="priceFilters" class="card">
           <label for="minPrice" class="fw-bolder">
@@ -41,12 +52,31 @@
         <div class="card">
           <p class="fw-bolder">Select property to sort by</p>
           <div class="d-flex flex-column justify-content-between">
-            <select name="cars" id="sortProperties"></select>
+            <select name="cars" id="sortProperties">
+              <% for(var i=0; i < propertiesSort.length; i++) {%>
+              <option value="<%= propertiesSort[i].id  %>">
+                <%= propertiesSort[i].text %>
+              </option>
+              <% } %>
+            </select>
           </div>
-          <button id="btnCancelSort" class="btn btn-primary">cancel</button>
+          <button id="btnCancelSort" class="btn btn-primary mt-3">
+            cancel
+          </button>
         </div>
-        <div id="availabilityFilters" class="card">
+        <div class="card">
           <p class="fw-bolder">Choose availability</p>
+          <div id="availabilityFilters">
+            <% for(var i=0; i < propertiesAvailability.length; i++) {%> <% var
+            label = propertiesAvailability[i].replace("_", " ") %>
+            <label for="<%= propertiesAvailability[i] %>">
+              <input type="radio" name="availability" />
+              <%= label %>
+            </label>
+
+            <% } %>
+            <!--add onclick function for list item-->
+          </div>
         </div>
         <button id="btnSearch" type="button" class="btn btn-primary">
           Search
@@ -66,9 +96,10 @@
                 d-flex
                 justify-content-between
                 align-items-start
+                list-products
               "
             >
-              <div class="ms-2 me-auto">
+              <div class="ms-2 me-auto list__item">
                 <div class="fw-bold d-flex justify-content-between">
                   <%= productList[i].name %>
                   <button
