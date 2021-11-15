@@ -1,0 +1,39 @@
+@import url(./style-variables.css);
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.main {
+  flex: 1;
+}
+.aside {
+  width: 222px;
+}
+.filter-container {
+  width: 30%;
+}
+
+.search.card {
+  position: relative;
+}
+.btn-reset {
+  position: absolute;
+  top: 26px;
+  right: 16px;
+  color: #0d6efd;
+  height: 27px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-button--hidden {
+  display: none;
+}
+.discounted {
+  text-decoration: line-through;
+}
+.list-group-item:hover {
+  background-color: #cfe2ff;
+}
