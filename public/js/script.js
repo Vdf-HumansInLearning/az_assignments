@@ -1,3 +1,99 @@
+myJson = {
+  products: [
+    {
+      name: "Galaxy A12",
+      brand: "Samsung",
+      operating_system: "Android",
+      price: 899,
+      discount: 0,
+      quantity: 2000,
+      availability_date: "2020-11-24",
+      rating: 4,
+    },
+    {
+      name: "Galaxy a52s 5G",
+      brand: "Samsung",
+      operating_system: "Android",
+      price: 1849,
+      discount: 0,
+      quantity: 2500,
+      availability_date: "2021-08-17",
+      rating: 5,
+    },
+    {
+      name: "Galaxy s21",
+      brand: "Samsung",
+      operating_system: "Android",
+      price: 3899,
+      discount: 50,
+      quantity: 800,
+      availability_date: "2021-01-29",
+      rating: 4,
+    },
+    {
+      name: "Moto G30",
+      brand: "Motorola",
+      operating_system: "Android",
+      price: 799,
+      discount: 100,
+      quantity: 1000,
+      availability_date: "2021-03-17",
+      rating: 4.5,
+    },
+    {
+      name: "iPhone 13",
+      brand: "Apple",
+      operating_system: "iOS",
+      price: 4449,
+      discount: 0,
+      quantity: 3500,
+      availability_date: "2021-09-14",
+      rating: 5,
+    },
+    {
+      name: "iPhone 13 Pro",
+      brand: "Apple",
+      operating_system: "iOS",
+      price: 5699,
+      discount: 0,
+      quantity: 3000,
+      availability_date: "2021-09-14",
+      rating: 5,
+    },
+    {
+      name: "Mi 11 Lite 5G",
+      brand: "Xiaomi",
+      operating_system: "Android",
+      price: 1449,
+      discount: 0,
+      quantity: 1500,
+      availability_date: "2021-03-29",
+      rating: -1,
+    },
+    {
+      name: "Pixel 6",
+      brand: "Google",
+      operating_system: "Android",
+      price: 649,
+      discount: 0,
+      quantity: 0,
+      availability_date: "2999-10-25",
+      rating: -1,
+    },
+  ],
+  standard_delivery_fee: 35,
+  free_delivery_min_price: 500,
+};
+
+const brands = [...new Set(myJson.products.map((product) => product.brand))];
+const os = [
+  ...new Set(
+    myJson.products.map((product) =>
+      product.operating_system ? product.operating_system : "N/A"
+    )
+  ),
+];
+
 //-----------CUSTOMER ACTIONS-----------
 
 // filter by brand
@@ -120,6 +216,18 @@ function getMaxDiscount(phoneBrand) {
 function sortAsc(arr, property) {
   return arr.sort((a, b) => a[property] - b[property]);
 }
+function sortAscRating(item) {
+  return (item) => item.sort((a, b) => a.rating - b.rating);
+}
+function sortAscPrice(item) {
+  return (item) => item.sort((a, b) => a.price - b.price);
+}
+function sortDescRating(item) {
+  return (item) => item.sort((a, b) => b.rating - a.rating);
+}
+function sortDescPrice(item) {
+  return (item) => item.sort((a, b) => b.price - a.price);
+}
 function sortDesc(arr, property) {
   return arr.sort((a, b) => b[property] - a[property]);
 }
@@ -132,18 +240,71 @@ function filterByProperty(value, property) {
   else return filteredArr;
 }
 
-function displayProducts(filterFunction) {
-  let html = "<ol>";
-  let products = myJson.products;
+let selectPropertyContainer = document.querySelector("#sortProperties");
 
+const properties = [
+  { id: "d", text: "Choose option" },
+  { id: "a_r", text: "Sort ascending by rating" },
+  { id: "a_p", text: "Sort ascending by price" },
+  { id: "d_r", text: "Sort descending by rating" },
+  { id: "d_p", text: "Sort descending by price" },
+];
+function generateSelectOptions() {
+  properties.forEach((property) => {
+    let option = document.createElement("option");
+    option.value = property.id;
+    option.innerHTML = property.text;
+    selectPropertyContainer.appendChild(option);
+  });
+}
+generateSelectOptions();
+
+function displayProducts(filterFunction) {
+  let html = "<ol class='list-group list-group-numbered'>";
+  let products = myJson.products;
+  //select will return a value in any case
+  let selectedProperty =
+    selectPropertyContainer.options[selectPropertyContainer.selectedIndex]
+      .value;
+  console.log(filterFunction);
   if (filterFunction && filterFunction instanceof Function) {
+    console.log(filterFunction);
     products = products.filter(filterFunction);
   }
-  products.forEach((product) => {
+  console.log(products);
+  switch (selectedProperty) {
+    case "d":
+      products = products;
+      break;
+    case "a_r":
+      sortAsc(products, "rating");
+      break;
+    case "a_p":
+      sortAsc(products, "price");
+      break;
+    case "d_r":
+      sortDesc(products, "rating");
+      break;
+    case "d_p":
+      sortDesc(products, "price");
+      break;
+    default:
+      products = products;
+  }
+  products.forEach((product, index) => {
     html += `
-                <li class="phone">
-                <h2><a href="details.html?phone=${product.name}" target="_blank">${product.brand} ${product.name}</a>
-                </h2>`;
+                <li class="list-group-item
+                d-flex
+                justify-content-between
+                align-items-start">
+				<div class="ms-2 me-auto ">
+              <div class="fw-bold d-flex justify-content-between">${product.name}
+              <button type="button" onclick="addProductToCart(${index})" class="btn btn-outline-primary btn-add-cart">
+              Add to cart
+              </button>
+              </div>
+              <a href="details.html?phone=${product.name}" target="_blank">${product.brand}</a>`;
+
     if (product.discount > 0) {
       let finalPrice = product.price - product.discount;
       html += `<p> 
@@ -157,11 +318,12 @@ function displayProducts(filterFunction) {
     } else {
       html += `<p>-</p>`;
     }
-    html += `</li>`;
+    html += `</div></li>`;
   });
 
   html += "</ol>";
-  document.getElementById("container").innerHTML = html;
+
+  document.getElementById("productList").innerHTML = html;
 }
 displayProducts();
 
@@ -178,6 +340,12 @@ searchInput.addEventListener("input", function () {
       item.brand.toLowerCase().includes(searchValue.toLowerCase()) ||
       item.name.toLowerCase().includes(searchValue.toLowerCase())
   );
+});
+
+btnAll.addEventListener("click", function () {
+  searchInput.value = "";
+  btnAll.classList.add("search-button--hidden");
+  displayProducts();
 });
 
 let brandFilters = document.querySelector("#brandFilters");
@@ -227,11 +395,14 @@ generateRadiosAvailability();
 
 let btnSearch = document.querySelector("#btnSearch");
 let btnReset = document.querySelector("#btnReset");
+let btnCancelSort = document.querySelector("#btnCancelSort");
 let availabilityRadio = document.querySelector(
   "#availabilityFilters input[type='radio']:checked"
 );
 console.log(availabilityRadio);
 
+let isSortAsc = false;
+let isSortDesc = false;
 btnSearch.addEventListener("click", function () {
   //gather all inputs from the filters and initialize conditions array
   let availabilityRadio = document.querySelector(
@@ -275,9 +446,12 @@ btnSearch.addEventListener("click", function () {
       conditions.push((item) => item.price <= maxPrice);
     }
   }
+
   if (selectedAvailability) {
-    if (selectedAvailability === "until_today") {
+    if (selectedAvailability.value === "until_today") {
       conditions.push(filterByDate());
+    } else {
+      conditions.pop();
     }
   }
 
@@ -289,43 +463,79 @@ btnSearch.addEventListener("click", function () {
     );
   }
 });
+btnCancelSort.addEventListener("click", function () {
+  isSortAsc = false;
+  isSortDesc = false;
+  displayProducts();
+});
 btnReset.addEventListener("click", function () {
+  isSortAsc = false;
+  isSortDesc = false;
   displayProducts();
 });
-btnAll.addEventListener("click", function () {
-  searchInput.value = "";
-  displayProducts();
-});
+
+let btnAddProductCart = document.querySelector("#btnAddCart");
+let shoppingCart = [];
+
+// function addClickEvent() {
+//   let btnArr = document.querySelectorAll(".btn-add-cart");
+//   console.log(btnArr);
+//   btnArr.forEach((btn) =>
+//     btn.addEventListener("click", addProductToCart(this))
+//   );
+// }
+
+// addClickEvent();
+let body = document.getElementsByTagName("body")[0];
+function addProductToCart(index) {
+  let product = myJson.products[index];
+  let id = product.name + product.brand;
+  shoppingCart.push({ id: id, ...product });
+  let element = document.getElementById("myToast");
+  let myToast = new bootstrap.Toast(element);
+  myToast.show();
+  console.log(shoppingCart);
+}
+function showCart() {
+  let html = "<ol class='list-group list-group-numbered'>";
+  let products = shoppingCart;
+
+  products.forEach((product, index) => {
+    html += `
+                <li class="list-group-item
+                d-flex
+                justify-content-between
+                align-items-start">
+				<div class="ms-2 me-auto ">
+              <div class="fw-bold d-flex justify-content-between">${product.name}
+              <button type="button" onclick="addProductToCart(${index})" class="btn btn-outline-primary btn-add-cart">
+              Add to cart
+              </button>
+              </div>
+              <a href="details.html?phone=${product.name}" target="_blank">${product.brand}</a>`;
+
+    if (product.discount > 0) {
+      let finalPrice = product.price - product.discount;
+      html += `<p> 
+                <span class="discounted"> ${product.price}</span>&nbsp; ${finalPrice} 
+                lei</p>`;
+    } else {
+      html += `<p>${product.price}</p>`;
+    }
+    if (product.rating > 0) {
+      html += `<p> ${product.rating} ${getAverageRating(product.brand)}</p>`;
+    } else {
+      html += `<p>-</p>`;
+    }
+    html += `</div></li>`;
+  });
+
+  html += "</ol>";
+
+  document.getElementById("cartList").innerHTML = html;
+}
 
 //-------------------------------------------------------------------
-
-let btnAsc = document.querySelector("#btnAsc");
-let btnDesc = document.querySelector("#btnDesc");
-let selectPropertyContainer = document.querySelector("#sortProperties");
-
-const properties = ["rating", "price"];
-function generateSelectOptions() {
-  properties.forEach((property) => {
-    let option = document.createElement("option");
-    option.value = property;
-    option.innerHTML = property;
-    selectPropertyContainer.appendChild(option);
-  });
-}
-generateSelectOptions();
-
-btnAsc.addEventListener("click", function () {
-  let selectedProperty =
-    selectPropertyContainer.options[selectPropertyContainer.selectedIndex].text;
-  let products = sortAsc(myJson.products, selectedProperty);
-  displayProducts(products);
-});
-btnDesc.addEventListener("click", function () {
-  let selectedProperty =
-    selectPropertyContainer.options[selectPropertyContainer.selectedIndex].text;
-  let products = sortDesc(myJson.products, selectedProperty);
-  displayProducts(products);
-});
 
 function getProductList() {
   console.log("function was caled");
