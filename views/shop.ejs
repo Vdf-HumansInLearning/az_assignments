@@ -51,18 +51,18 @@
           <div id="priceFilters" class="card">
             <label for="minPrice" class="fw-bolder">
               Enter minimum price
-              <input type="number" id="minPrice" name="minPrice" value="0" />
+              <input type="number" id="minPrice" name="minPrice" />
             </label>
             <br />
             <label for="maxPrice" class="fw-bolder">
               Enter maximum price
-              <input type="number" id="maxPrice" name="maxPrice" value="0" />
+              <input type="number" id="maxPrice" name="maxPrice" />
             </label>
           </div>
           <div class="card">
             <p class="fw-bolder">Select property to sort by</p>
             <div class="d-flex flex-column justify-content-between">
-              <select name="cars" id="sortProperties">
+              <select name="sortProp" id="sortProperties">
                 <% for(var i=0; i < propertiesSort.length; i++) {%>
                 <option value="<%= propertiesSort[i].id  %>">
                   <%= propertiesSort[i].text %>

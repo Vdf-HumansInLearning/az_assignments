@@ -26,9 +26,9 @@ const propertiesSort = [
 
 const availability = ["all", "until_today"];
 
-//params: brand to look for, array of products
-//looks for a brand and returns average rating
-function getAverageRating(arr, brand) {
+//params: array of products
+//returns: object with key-value brand-average rating
+function getAvgRatingList(arr) {
   let myObj = {};
   arr
     .filter((item) => item.rating >= 0)
@@ -41,32 +41,88 @@ function getAverageRating(arr, brand) {
     myObj[key].forEach((item) => (sum += item));
     myObj[key] = parseFloat((sum / myObj[key].length).toFixed(2));
   }
-  for (key in myObj) {
-    console.log(key);
-    console.log(brand);
+  return myObj;
+}
 
-    if (key === brand) return myObj[key];
+//params: an object representing averag ratings, brand to look for
+//returns: the average rating (number) for that brand
+function getAvgRatingBrand(listObj, brand) {
+  for (key in listObj) {
+    if (key === brand) return listObj[key];
     else return "-";
   }
 }
 
+//make a new array corelated with the product list to show in
+//front end
 function generateAverageRating(arr) {
   let newArr = [];
-  arr.forEach((item) => newArr.push(getAverageRating(productList, item.brand)));
+  arr.forEach((item) =>
+    newArr.push(getAvgRatingBrand(avgRatingObj, item.brand))
+  );
   return newArr;
 }
+
+let avgRatingObj = getAvgRatingList(productList);
 let averageProdRatings = generateAverageRating(productList);
-console.log("avg prod rating");
-console.log(averageProdRatings);
-// get phones array
-// filter phones array by query params
-// get filter array
-// set selected filters from query
-// send phones and filters to render method
+
+//today date for filterByDate
+let today = new Date();
+let dd = String(today.getDate()).padStart(2, "0");
+let mm = String(today.getMonth() + 1).padStart(2, "0");
+let yyyy = today.getFullYear();
+
+today = yyyy + "-" + mm + "-" + dd;
+
+//create validation method for number inputs
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  console.log(req.query);
+  productList = productList
+    .filter((product) => {
+      if (req.query.brand) {
+        return product.brand === req.query.brand;
+      }
+      return true;
+    })
+    .filter((product) => {
+      if (req.query.minPrice) return product.price > req.query.minPrice;
+      else if (req.query.maxPrice) return product.price < req.query.maxPrice;
+      else if (req.query.minPrice && req.query.maxPrice)
+        return (
+          product.price > req.query.minPrice &&
+          product.price >= req.query.maxPrice
+        );
+      return true;
+    })
+    .filter((product) => {
+      if (req.query.availability) {
+        if (req.query.availability === "until_today") {
+          return new Date(product.availability_date) <= new Date(today);
+        }
+      }
+      return true;
+    })
+    .sort((a, b) => {
+      if (req.query.sortProp) {
+        switch (req.query.sortProp) {
+          case "d":
+            break;
+          case "a_r":
+            return a.rating - b.rating;
+          case "a_p":
+            return a.price - b.price;
+          case "d_r":
+            return b.rating - a.rating;
+          case "d_p":
+            return a.price - b.price;
+          default:
+            break;
+        }
+      }
+      return true;
+    });
+
   res.render("shop", {
     title: "Shop",
     productList: productList,
