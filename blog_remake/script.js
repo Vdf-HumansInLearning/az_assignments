@@ -7,10 +7,11 @@ const blogPosts = [
       src: "img/bike.jpg",
       alt: "Bike",
     },
-    content: [
+    frontContent: [
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
     ],
+    fullContent: [],
     linkReadMore: "./details.html",
   },
 ];
@@ -22,7 +23,39 @@ const navItems = [
 ];
 
 const actionButtons = ["Edit", "Delete"];
-
+const footerButtons = ["previous", "next"];
+const modalInputs = [
+  {
+    cssClass: "input",
+    type: "text",
+    placehoder: "Please enter title",
+  },
+  {
+    cssClass: "input",
+    type: "text",
+    placehoder: "Please enter tag",
+  },
+  {
+    cssClass: "input",
+    type: "text",
+    placehoder: "Please enter author",
+  },
+  {
+    cssClass: "input",
+    type: "text",
+    placehoder: "Please enter date",
+  },
+  {
+    cssClass: "input",
+    type: "text",
+    placehoder: "Please enter image url",
+  },
+  {
+    cssClass: "input",
+    type: "text",
+    placehoder: "Please enter quote",
+  },
+];
 //point of entry for the application
 let app = document.getElementById("app");
 
@@ -59,7 +92,6 @@ function generateNavbarWhole() {
   navTag.appendChild(navContainer);
 
   return navTag;
-  app.prepend(navTag);
 }
 
 generateNavbarWhole();
@@ -124,7 +156,7 @@ function generateArticle(item) {
   let contentContainer = document.createElement("div");
   contentContainer.classList.add("content__container");
 
-  item.content.forEach((text) => {
+  item.frontContent.forEach((text) => {
     let paragraph = document.createElement("p");
     let paragraphText = document.createTextNode(text);
     paragraph.appendChild(paragraphText);
@@ -155,8 +187,96 @@ function generateArticle(item) {
   article.appendChild(contentContainer);
   article.appendChild(readContainer);
 
-  console.log(article);
   return article;
+}
+
+function generateFooter() {
+  let footer = document.createElement("footer");
+  footer.classList.add("footer");
+
+  footerButtons.forEach((item) => {
+    let button = document.createElement("button");
+    button.type = "button";
+    button.classList.add("footer__link");
+    if (item === "next") button.classList.add("footer__link--next");
+    let btnText = document.createTextNode(item);
+    button.appendChild(btnText);
+    footer.appendChild(button);
+  });
+  return footer;
+}
+
+function generateInput(classCSS, type, placehoder) {
+  let input = document.createElement("input");
+  input.classList.add(classCSS);
+  input.type = type;
+  input.placeholder = placehoder;
+  return input;
+}
+
+function generateModal() {
+  //create modal div
+  let modalOverlay = document.createElement("div");
+  modalOverlay.id = "addModal";
+  modalOverlay.classList.add("modal__overlay");
+  let modal = document.createElement("div");
+  modal.classList.add("modal");
+  let modalContent = document.createElement("div");
+  modalContent.classList.add("modal__content");
+
+  //create modal title
+  let modalTitle = document.createElement("h2");
+  modalTitle.classList.add("title");
+  let modalTitleText = document.createTextNode("Add/Edit article");
+  modalTitle.appendChild(modalTitleText);
+
+  //create inputs
+  let inputsContainer = document.createElement("div");
+  inputsContainer.classList.add("inputs__container");
+
+  //create text area
+  let textarea = document.createElement("textarea");
+  textarea.classList.add("textarea");
+  textarea.name = "content";
+  textarea.placeholder = "Please enter content";
+  textarea.style.maxHeight = "252px";
+
+  //create modal action buttons
+  let modalButtons = document.createElement("div");
+  modalButtons.classList.add("modal__buttons");
+
+  let btnCancel = document.createElement("button");
+  btnCancel.type = "button";
+  btnCancel.id = "cancelBtn";
+  btnCancel.classList.add("button");
+  let btnTextCancel = document.createTextNode("Cancel");
+  btnCancel.appendChild(btnTextCancel);
+
+  let btnSave = document.createElement("button");
+  btnSave.type = "button";
+  btnSave.id = "saveBtn";
+  btnSave.classList.add("button");
+  btnSave.classList.add("button--pink");
+  let btnTextSave = document.createTextNode("Save");
+  btnSave.appendChild(btnTextSave);
+
+  modalButtons.appendChild(btnCancel);
+  modalButtons.appendChild(btnSave);
+
+  //add all the elements to the modal
+  modalInputs.forEach((item) =>
+    inputsContainer.appendChild(
+      generateInput(item.cssClass, item.type, item.placehoder)
+    )
+  );
+  modalContent.appendChild(modalTitle);
+  modalContent.appendChild(inputsContainer);
+  modalContent.appendChild(textarea);
+  modalContent.appendChild(modalButtons);
+  modal.appendChild(modalContent);
+  modalOverlay.appendChild(modal);
+
+  return modalOverlay;
 }
 
 function init() {
@@ -164,13 +284,37 @@ function init() {
   app.prepend(navbar);
 
   let main = document.createElement("main");
-
   //link all article children to parent main
   blogPosts.forEach((blogPost) => {
     let newBlogPost = generateArticle(blogPost);
     main.appendChild(newBlogPost);
   });
   app.appendChild(main);
+
+  let footer = generateFooter();
+  app.appendChild(footer);
+
+  let modal = generateModal();
+  app.appendChild(modal);
 }
 
 init();
+
+//modal control
+let actionBtn = document.querySelector("#addBtn");
+let saveBtn = document.querySelector("#saveBtn");
+let cancelBtn = document.querySelector("#cancelBtn");
+let modal = document.querySelector("#addModal");
+
+actionBtn.addEventListener("click", toggleClass);
+cancelBtn.addEventListener("click", toggleClass);
+saveBtn.addEventListener("click", saveArticle);
+
+function toggleClass() {
+  modal.classList.toggle("show-modal");
+}
+
+function saveArticle() {
+  console.log("article saved");
+  modal.classList.toggle("show-modal");
+}
