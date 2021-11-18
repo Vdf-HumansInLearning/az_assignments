@@ -406,7 +406,11 @@ function initDetails() {
 }
 
 let currentPage = "/index.html";
-if (window.location.pathname === currentPage) {
+
+if (
+  window.location.pathname === currentPage ||
+  window.location.pathname === "/"
+) {
   init();
 
   //modal control
@@ -415,19 +419,19 @@ if (window.location.pathname === currentPage) {
   let cancelBtn = document.querySelector("#cancelBtn");
   let modal = document.querySelector("#addModal");
 
+  //modal control
+  function toggleClass() {
+    modal.classList.toggle("show-modal");
+  }
+
+  function saveArticle() {
+    console.log("article saved");
+    modal.classList.toggle("show-modal");
+  }
+
   actionBtn.addEventListener("click", toggleClass);
   cancelBtn.addEventListener("click", toggleClass);
   saveBtn.addEventListener("click", saveArticle);
 } else {
   initDetails();
-}
-
-//modal control
-function toggleClass() {
-  modal.classList.toggle("show-modal");
-}
-
-function saveArticle() {
-  console.log("article saved");
-  modal.classList.toggle("show-modal");
 }
