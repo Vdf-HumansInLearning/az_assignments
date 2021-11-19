@@ -11,6 +11,8 @@
     <div class="main-container">
       <aside id="filtersContainer" class="aside p-2">
         <form action="/shop">
+          <h5>Filters</h5>
+
           <div class="search card">
             <label for="quickSearch" class="fw-bolder">
               Quick search
@@ -70,9 +72,6 @@
                 <% } %>
               </select>
             </div>
-            <button id="btnCancelSort" class="btn btn-primary mt-3">
-              cancel
-            </button>
           </div>
           <div class="card">
             <p class="fw-bolder">Choose availability</p>
@@ -92,16 +91,17 @@
               <!--add onclick function for list item-->
             </div>
           </div>
-          <button id="btnSearch" type="submit" class="btn btn-primary">
-            Search
-          </button>
-          <button id="btnReset" type="button" class="btn btn-outline-primary">
-            Reset filters
-          </button>
+          <div class="d-flex justify-content-between align-items-center my-3">
+            <button id="btnSearch" type="submit" class="btn btn-primary">
+              Search
+            </button>
+            <button id="btnReset" type="button" class="btn btn-link">
+              Reset filters
+            </button>
+          </div>
         </form>
       </aside>
       <main class="main p-2">
-        <h1><%= title %></h1>
         <div id="productList">
           <ol class="list-group list-group-numbered">
             <% for(var i=0; i < productList.length; i++) {%>

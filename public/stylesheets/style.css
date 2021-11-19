@@ -41,3 +41,8 @@
 .list__item {
   width: 100%;
 }
+.card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+}

@@ -81,7 +81,8 @@ router.get("/", function (req, res, next) {
   productList = productList
     .filter((product) => {
       if (req.query.brand) {
-        return product.brand === req.query.brand;
+        let selectedBrands = req.query.brand;
+        return selectedBrands.includes(product.brand);
       }
       return true;
     })
