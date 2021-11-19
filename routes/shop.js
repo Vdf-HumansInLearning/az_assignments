@@ -74,6 +74,38 @@ let yyyy = today.getFullYear();
 
 today = yyyy + "-" + mm + "-" + dd;
 
+maxPriceAvailable = Math.max(...productList.map((product) => product.price));
+let message = "";
+
+function vaidatePrice(minPrice, maxPrice) {
+  let isValid = false;
+  if (minPrice) {
+    let minPrice = minPrice ? parseFloat(minPrice) : 0;
+
+    if (minPrice < 0) {
+      message = "Minimum price must be above 0.";
+    } else if (isNaN(minPrice)) {
+      message = "Minimum price must be a number.";
+    } else {
+      isValid = true;
+    }
+  } else if (maxPrice) {
+    let maxPrice = maxPrice ? parseFloat(maxPrice) : maxPriceAvailable;
+    if (isNaN(maxPrice)) {
+      message = "Maximum price must be a number.";
+    } else {
+      isValid = true;
+    }
+  } else if (minPrice && maxPrice) {
+    if (maxPrice < minPrice) {
+      message = "Minimum price must be lower than maximum price.";
+    } else {
+      isValid = true;
+    }
+  }
+  return isValid;
+}
+
 //create validation method for number inputs
 
 /* GET home page. */
@@ -132,6 +164,7 @@ router.get("/", function (req, res, next) {
     os: os,
     propertiesSort: propertiesSort,
     propertiesAvailability: availability,
+    message: message,
   });
 });
 
