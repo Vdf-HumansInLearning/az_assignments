@@ -1,16 +1,14 @@
-{
-  "adminUsers": [
-    {
-      "id": 1,
-      "username": "admin",
-      "password": "admin"
-    }
-  ],
-  "regularUsers": [
-    {
-      "id": 1,
-      "username": "maria",
-      "password": "maria"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "password": "admin",
+    "isAdmin": true
+  },
+  {
+    "id": 2,
+    "username": "maria",
+    "password": "maria",
+    "isAdmin": false
+  }
+]
