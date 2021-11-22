@@ -10,9 +10,9 @@ let result = JSON.parse(rawdata);
 let adminList = result.adminUsers;
 let regularList = result.regularUsers;
 
-/* GET home page. */
+/* GET login page. */
 router.get("/", function (req, res, next) {
-  res.render("index", { title: "Homepage" });
+  res.render("register", { title: "Login" });
 });
 
 router.post("/", function (req, res, next) {

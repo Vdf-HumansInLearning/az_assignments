@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <%- include('./partials/_head'); %>
+  <body>
+    <main class="main d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center flex-column main__container">
+        <h1 class="mb-2">Register a new account</h1>
+        <hr />
+        <div class="form mt-2">
+          <div class="mb-3">
+            <label class="me-3" for="inputUsername"> Username </label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputUsername"
+              placeholder="username"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="me-3" for="inputEmail"> Email address </label>
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmail"
+              placeholder="email"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="me-3" for="inputPassword"> Password </label>
+            <input
+              type="password"
+              class="form-control"
+              id="inputPassword"
+              placeholder="Password"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="me-3" for="inputPasswordConfirm"
+              >Confirm Password
+            </label>
+            <input
+              type="password"
+              class="form-control"
+              id="inputPasswordConfirm"
+              placeholder="Confirm password"
+            />
+          </div>
+          <a
+            href="/login"
+            class="btn btn-primary mb-1 mt-3 btn-login"
+            role="button"
+            >Register</a
+          >
+          <p>Already have an account? <a href="/login">Login</a></p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
