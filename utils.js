@@ -7,7 +7,7 @@ module.exports = {
     let isValid = false;
     let message = "";
     let regexEmail =
-      /^(([^<>()[]\\.,;:s@"]+(.[^<>()[]\\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
+      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     if (user.email && user.password && user.username) {
       if (regexEmail.test(user.email)) {
         isValid = true;
@@ -25,7 +25,6 @@ module.exports = {
   },
   validateExistingUser: function (user) {
     //email adress, password
-    //username, email adress, password
     let isValid = false;
     let message = "";
     let regexEmail =

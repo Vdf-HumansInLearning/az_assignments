@@ -46,3 +46,11 @@
   margin-bottom: 10px;
   padding: 5px;
 }
+
+/* styles for form validation */
+.username,
+.password,
+.confirm-password,
+.email {
+  display: none;
+}

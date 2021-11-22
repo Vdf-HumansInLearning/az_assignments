@@ -6,7 +6,7 @@
       <div class="d-flex align-items-center flex-column main__container">
         <h1 class="mb-2">Register a new account</h1>
         <hr />
-        <div class="form mt-2">
+        <form id="registerForm" class="form needs-validation mt-2">
           <div class="mb-3">
             <label class="me-3" for="inputUsername"> Username </label>
             <input
@@ -14,7 +14,9 @@
               class="form-control"
               id="inputUsername"
               placeholder="username"
+              value="adela"
             />
+            <div class="username invalid-feedback"></div>
           </div>
           <div class="mb-3">
             <label class="me-3" for="inputEmail"> Email address </label>
@@ -23,7 +25,9 @@
               class="form-control"
               id="inputEmail"
               placeholder="email"
+              value="adela@adela.com"
             />
+            <div class="email invalid-feedback"></div>
           </div>
           <div class="mb-3">
             <label class="me-3" for="inputPassword"> Password </label>
@@ -32,7 +36,9 @@
               class="form-control"
               id="inputPassword"
               placeholder="Password"
+              value="adela"
             />
+            <div class="password invalid-feedback"></div>
           </div>
           <div class="mb-3">
             <label class="me-3" for="inputPasswordConfirm"
@@ -43,17 +49,19 @@
               class="form-control"
               id="inputPasswordConfirm"
               placeholder="Confirm password"
+              value="adela"
             />
+            <div class="confirm-password invalid-feedback"></div>
           </div>
-          <a
-            href="/login"
-            class="btn btn-primary mb-1 mt-3 btn-login"
-            role="button"
-            >Register</a
-          >
-          <p>Already have an account? <a href="/login">Login</a></p>
-        </div>
+
+          <button type="submit" class="btn btn-primary mb-1 mt-3 btn-login">
+            Register
+          </button>
+
+          <p>Already have an account? <a href="/auth/login">Login</a></p>
+        </form>
       </div>
     </main>
+    <script src="javascripts/script.js"></script>
   </body>
 </html>

@@ -1,14 +1,16 @@
-[
-  {
-    "id": 1,
-    "username": "admin",
-    "password": "admin",
-    "isAdmin": true
-  },
-  {
-    "id": 2,
-    "username": "maria",
-    "password": "maria",
-    "isAdmin": false
-  }
-]
+{
+  "userList": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin",
+      "isAdmin": true
+    },
+    {
+      "id": 2,
+      "username": "maria",
+      "password": "maria",
+      "isAdmin": false
+    }
+  ]
+}

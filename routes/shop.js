@@ -165,6 +165,7 @@ router.get("/", function (req, res, next) {
     propertiesSort: propertiesSort,
     propertiesAvailability: availability,
     message: message,
+    isAdmin: false,
   });
 });
 
