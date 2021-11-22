@@ -67,14 +67,19 @@ router.post("/register", function (req, res, next) {
   console.log(result);
   if (result.isValid) {
     userList.push(user);
-    console.log("hhhhhh");
+    console.log("users after the push");
     console.log(users);
     let json = JSON.stringify(users, null, 2);
+    console.log("users after stringify");
     console.log(json);
-    fs.writeFileSync("../users.json", json, (err) => {
+    fs.writeFile("users.json", json, function (err) {
       if (err) throw err;
-      console.log("Data written to file");
+      console.log('The "data to append" was appended to file!');
     });
+    // fs.writeFileSync("../users.json", json, (err) => {
+    //   if (err) throw err;
+    //   console.log("Data written to file");
+    // });
     console.log("ppppppppppppp");
 
     let newData = fs.readFileSync(path.resolve(__dirname, filePath));

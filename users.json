@@ -11,6 +11,13 @@
       "username": "maria",
       "password": "maria",
       "isAdmin": false
+    },
+    {
+      "id": 3,
+      "email": "adela@adela.com",
+      "password": "adela",
+      "username": "adela",
+      "isAdmin": false
     }
   ]
 }
