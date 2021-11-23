@@ -49,7 +49,11 @@ registerForm.addEventListener("submit", function (event) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Success:", data);
+      let user = data;
+      localStorage.setItem("isLoggedIn", true);
+      localStorage.setItem("isAdmin", user.isAdmin);
+
+      window.location.replace("/auth/login");
     })
     .catch((error) => {
       console.error("Error:", error);

@@ -18,6 +18,27 @@
       "password": "adela",
       "username": "adela",
       "isAdmin": false
+    },
+    {
+      "id": 4,
+      "email": "adela@adela.com",
+      "password": "adela",
+      "username": "adela",
+      "isAdmin": false
+    },
+    {
+      "id": 5,
+      "email": "adela@adela.com",
+      "password": "adela",
+      "username": "adela",
+      "isAdmin": false
+    },
+    {
+      "id": 6,
+      "email": "adela@adela.com",
+      "password": "adela",
+      "username": "adela",
+      "isAdmin": false
     }
   ]
 }

@@ -27,67 +27,62 @@ router.get("/register", function (req, res, next) {
 /* POST login page. */
 router.post("/login", function (req, res, next) {
   if (req.body.username && req.body.password) {
-    let foundEl = userList.find(
-      (item) =>
-        item.username === req.body.username &&
-        item.password === req.body.password
-    );
-    if (foundEl) {
-      isLoggedIn = true;
-      isAdmin = foundEl.isAdmin;
-      //redirect
-      res.render("index", { title: "Homepage", isAdmin: isAdmin });
+    let user = {
+      email: req.body.email,
+      password: req.body.password,
+      isAdmin: false,
+    };
+
+    let result = utils.validateExistingUser(user);
+    if (result.isValid) {
+      let foundEl = userList.find(
+        (item) =>
+          item.username === req.body.username &&
+          item.password === req.body.password
+      );
+      if (foundEl) {
+        user.isAdmin = foundEl.isAdmin;
+        res.status(200).send(user);
+      } else {
+        res.status(403).send({ message: "No user found" });
+      }
     } else {
-      res.send({ message: "No user found" });
+      res.status(403).send({ message: result.message });
     }
-  } else if (req.query.username) {
-    res.send({ message: "No password provided" });
-  } else if (req.query.password) {
-    res.send({ message: "No username provided" });
   } else {
-    res.send({ message: "Please provide username or password" });
+    res.status(403).send({ message: "Please provide username or password" });
   }
 });
 
 /* POST login page. */
 //create user
 router.post("/register", function (req, res, next) {
-  let user = {
-    id: userList[userList.length - 1].id + 1,
-    email: req.body.email,
-    password: req.body.password,
-    username: req.body.username,
-    isAdmin: false,
-  };
-  console.log(user);
-  //validate user data from front end
-  //write the user to file
+  //verify if necessary fields are present
+  if (req.body.email && req.body.password && req.body.username) {
+    let user = {
+      id: userList[userList.length - 1].id + 1,
+      email: req.body.email,
+      password: req.body.password,
+      username: req.body.username,
+      isAdmin: false,
+    };
 
-  let result = utils.validateNewUser(user);
-  console.log(result);
-  if (result.isValid) {
-    userList.push(user);
-    console.log("users after the push");
-    console.log(users);
-    let json = JSON.stringify(users, null, 2);
-    console.log("users after stringify");
-    console.log(json);
-    fs.writeFile("users.json", json, function (err) {
-      if (err) throw err;
-      console.log('The "data to append" was appended to file!');
-    });
-    // fs.writeFileSync("../users.json", json, (err) => {
-    //   if (err) throw err;
-    //   console.log("Data written to file");
-    // });
-    console.log("ppppppppppppp");
+    //validate user data from front end
+    //write the user to file
+    let result = utils.validateNewUser(user);
 
-    let newData = fs.readFileSync(path.resolve(__dirname, filePath));
-    let newData2 = JSON.parse(newData);
-
-    console.log(newData2);
+    if (result.isValid) {
+      userList.push(user);
+      let json = JSON.stringify(users, null, 2);
+      fs.writeFile("users.json", json, function (err) {
+        if (err) throw err;
+        res.status(201).send(user);
+      });
+    } else {
+      res.status(406).send({ message: result.message });
+    }
   } else {
-    res.status(406).send({ message: result.message });
+    res.status(400).send({ message: "Please complete all fields" });
   }
 });
 
