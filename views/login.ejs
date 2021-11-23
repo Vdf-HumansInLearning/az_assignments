@@ -6,19 +6,20 @@
       <div class="d-flex align-items-center flex-column main__container">
         <h1 class="mb-2">Log in to your account</h1>
         <hr />
-        <form action="/login" method="post" class="form mt-2">
+        <form id="loginForm" class="form mt-2">
           <div class="input-simple mb-3">
-            <label class="me-3" for="inputUsername">
+            <label class="me-3" for="inputEmail">
               <i class="fas fa-user"></i>
             </label>
             <input
               type="text"
               name="username"
               class="form-control"
-              id="inputUsername"
-              placeholder="username"
-              value=""
+              id="inputEmail"
+              placeholder="email"
+              value="maria@maria.com"
             />
+            <div class="email invalid-feedback"></div>
           </div>
           <div class="input-simple mb-3">
             <label class="me-3" for="inputPassword">
@@ -30,8 +31,9 @@
               class="form-control"
               id="inputPassword"
               placeholder="password"
-              value=""
+              value="maria"
             />
+            <div class="password invalid-feedback"></div>
           </div>
           <button type="submit" class="btn btn-primary mb-1 mt-3 btn-login">
             Login
@@ -63,5 +65,6 @@
     </div>
 
     <%- include('./partials/_scripts'); %>
+    <script src="javascripts/login.js"></script>
   </body>
 </html>

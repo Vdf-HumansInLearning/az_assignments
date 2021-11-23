@@ -2,12 +2,14 @@
   "userList": [
     {
       "id": 1,
+      "email": "admin@admin.com",
       "username": "admin",
       "password": "admin",
       "isAdmin": true
     },
     {
       "id": 2,
+      "email": "maria@maria.com",
       "username": "maria",
       "password": "maria",
       "isAdmin": false
@@ -21,20 +23,6 @@
     },
     {
       "id": 4,
-      "email": "adela@adela.com",
-      "password": "adela",
-      "username": "adela",
-      "isAdmin": false
-    },
-    {
-      "id": 5,
-      "email": "adela@adela.com",
-      "password": "adela",
-      "username": "adela",
-      "isAdmin": false
-    },
-    {
-      "id": 6,
       "email": "adela@adela.com",
       "password": "adela",
       "username": "adela",

@@ -19,46 +19,38 @@ registerForm.addEventListener("submit", function (event) {
     let errorContainer = document.querySelector(".confirm-password");
     errorContainer.style.display = "inherit";
     errorContainer.innerText = "Passwords don't match.";
-  }
-  if (!regexEmail.test(email)) {
+  } else if (!regexEmail.test(email)) {
     let errorContainer = document.querySelector(".email");
     errorContainer.style.display = "inherit";
     errorContainer.innerText = "Email not correct.";
-  }
-  console.log(regexUsername.test(username));
-  if (!regexUsername.test(username)) {
+  } else if (!regexUsername.test(username)) {
     let errorContainer = document.querySelector(".username");
     errorContainer.style.display = "inherit";
     errorContainer.innerText =
       "Username can contain only lowercase letters or underscore character.";
-  }
+  } else {
+    let user = {
+      email: email,
+      password: password,
+      username: username,
+    };
 
-  let user = {
-    email: email,
-    password: password,
-    username: username,
-  };
-
-  let postUrl = url + "/auth/register";
-  fetch(postUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      let user = data;
-      localStorage.setItem("isLoggedIn", true);
-      localStorage.setItem("isAdmin", user.isAdmin);
-
-      window.location.replace("/auth/login");
+    let postUrl = url + "/auth/register";
+    fetch(postUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
     })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-  //fetch
+      .then((response) => response.json())
+      .then((data) => {
+        window.location.replace("/auth/login");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
 });
 
 function addProductToCart(product) {

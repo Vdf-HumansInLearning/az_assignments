@@ -12,7 +12,6 @@ let isLoggedIn = false;
 let rawdata = fs.readFileSync(path.resolve(__dirname, filePath));
 let users = JSON.parse(rawdata);
 let userList = users.userList;
-console.log(userList);
 
 /* GET login page. */
 router.get("/login", function (req, res, next) {
@@ -26,20 +25,19 @@ router.get("/register", function (req, res, next) {
 
 /* POST login page. */
 router.post("/login", function (req, res, next) {
-  if (req.body.username && req.body.password) {
+  if (req.body.email && req.body.password) {
     let user = {
       email: req.body.email,
       password: req.body.password,
       isAdmin: false,
     };
-
     let result = utils.validateExistingUser(user);
     if (result.isValid) {
       let foundEl = userList.find(
         (item) =>
-          item.username === req.body.username &&
-          item.password === req.body.password
+          item.email === req.body.email && item.password === req.body.password
       );
+      console.log(foundEl);
       if (foundEl) {
         user.isAdmin = foundEl.isAdmin;
         res.status(200).send(user);
