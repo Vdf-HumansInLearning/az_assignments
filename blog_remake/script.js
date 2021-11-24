@@ -24,14 +24,99 @@ const blogPosts = [
     ],
     quote:
       "Life is like riding a bicycle, to keep your balance you must keep moving",
+    linkReadMore: "#details",
+  },
+  {
+    id: "7/9",
+    title: "Bucegi: Places you must visit before you die",
+    infoList: ["Destination Europe", "Jonnathan Mercadina", "June 30, 2018"],
+    blogImg: {
+      src: "img/bucegi.jpg",
+      alt: "Bucegi",
+    },
+    frontContent: [
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
+    ],
+    fullContent: [
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus blanditiis, a dolorum repudiandae quam sunt consequuntur. Distinctio, exercitationem aperiam? Doloremque alias id inventore quia ut voluptatibus accusantium maiores ipsam mollitia asperiores in ad vero consequatur exercitationem debitis, officiis laudantium perferendis eos quisquam cum repellendus neque rem dolores. Non, reiciendis asperiores architecto sapiente est accusamus repellat? Similique quas eos earum aliquam! Nam fugiat, odio dicta ex a repellat obcaecati numquam! Blanditiis distinctio eligendi aut laboriosam quia. Nesciunt fugiat explicabo ipsum dolorum ad odit harum ipsa nobis, incidunt cum, sint doloribus. Consequatur doloremque ea illum voluptate maxime magni doloribus numquam, blanditiis laborum tenetur beatae hic odio aliquam quaerat possimus accusantium saepe. Placeat, cupiditate autem non maiores esse ex assumenda quas? Quaerat minus facilis perspiciatis rerum, officia laborum debitis laboriosam officiis reprehenderit ullam veritatis enim. Odio, animi pariatur quidem doloribus voluptatem consequuntur dolor illo ullam harum optio debitis quos, dolores labore magni saepe!",
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio corporis quas ab, deleniti quod rerum, amet expedita harum at, esse maiores hic est consequatur et! Vero quasi a aperiam, rem modi quibusdam deleniti ab obcaecati sed dignissimos, quam omnis laudantium autem optio nostrum asperiores nihil aut natus voluptatibus earum qui hic accusamus. Dolore commodi velit temporibus! Quibusdam quidem mollitia eius, corrupti voluptatem voluptatibus consequatur voluptates deleniti aperiam excepturi officiis tempore vitae nisi blanditiis dolor enim debitis possimus explicabo? Quod libero in ex, accusamus temporibus porro officia ratione quam sed ipsam saepe expedita ullam ut ea non enim beatae explicabo consectetur exercitationem possimus nobis molestiae quaerat. Delectus ipsum, labore neque voluptate earum quas illo tenetur veritatis quisquam veniam molestias suscipit adipisci hic assumenda fugit ea fuga repudiandae et tempora eos non reprehenderit, rerum doloribus? Fugit provident ducimus nisi reiciendis omnis similique distinctio quaerat veniam, vero, voluptatum quasi consequatur eos ipsa sunt ipsum autem ipsam. Iste natus rem voluptatem tempore ipsam ab a dolorem, officiis consequuntur soluta eaque quidem quibusdam, esse veritatis veniam ratione doloremque. Sit beatae cum consequatur sequi placeat est corporis quidem eum nostrum libero id iure similique dignissimos illo voluptatem, perferendis veritatis quod aliquid hic excepturi optio magni eligendi?",
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis rerum ipsam, modi quas reprehenderit provident quaerat consequatur adipisci veniam? Labore consectetur nam blanditiis minus neque dolore illum dolor molestiae cupiditate molestias fugit mollitia ducimus, eos nisi alias laborum, sed quod aspernatur ab in. Quae enim eaque placeat natus aliquam numquam, quasi, maxime aperiam voluptatibus dolorum, dicta unde quaerat esse porro! Aperiam inventore qui placeat ratione velit magni dicta magnam ex ipsam amet architecto, ipsa quidem maxime eaque tempore culpa voluptate. Molestias amet mollitia aliquam praesentium laudantium porro quod. Doloribus amet aliquam saepe tenetur rerum est accusamus repellat libero vitae repellendus!",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia natus, sit aut tempore delectus earum numquam placeat tempora modi sed facere fuga perferendis aliquam quidem culpa praesentium? Ad vitae laborum cum tenetur doloremque soluta saepe explicabo, provident corporis, cumque a quae eligendi repudiandae quo facilis ducimus hic nesciunt voluptate neque corrupti. Qui provident ipsum beatae unde voluptatibus laudantium ipsa? Eaque!",
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae mollitia tempora reiciendis odio vero autem voluptatem quia sed! Maiores, voluptate ab corrupti sequi recusandae perspiciatis at tempora ut laudantium sint natus cupiditate accusantium aperiam deserunt officia laboriosam quae, eum repellat? Molestiae sint voluptate amet similique obcaecati animi at accusamus odio? Impedit cumque esse, voluptas at provident est. Suscipit praesentium consequatur impedit laborum veniam voluptatem, maiores nam dolorem quidem expedita nesciunt corrupti iusto ipsa eos asperiores assumenda maxime magnam libero iste. Debitis repudiandae sed necessitatibus reprehenderit quisquam illo sapiente doloremque unde, voluptatum commodi assumenda amet ab perspiciatis magnam dignissimos exercitationem ex blanditiis nemo, nihil at iste non. Autem cumque reiciendis itaque natus placeat soluta, laboriosam repellendus sapiente! Sint nisi aspernatur eaque?",
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe quaerat ratione quis impedit! Exercitationem, ipsa. Placeat quod voluptate hic nam incidunt temporibus quis blanditiis eos architecto iste commodi, est ex voluptatum veniam, ut nisi obcaecati impedit debitis! Fugiat consequatur dolorum, possimus quo magni aspernatur at quia repudiandae animi nam debitis.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut earum praesentium temporibus tempora? Magni, molestiae. Ab deleniti, totam a, amet pariatur doloremque iusto consequatur ducimus assumenda libero architecto id ullam dolor, ipsa voluptate laboriosam enim sunt magni magnam vitae molestiae! Soluta facilis repellendus explicabo id dolore ex nam quis nostrum.",
+    ],
+    quote:
+      "Life is like riding a bicycle, to keep your balance you must keep moving",
+    linkReadMore: "./details.html",
+  },
+  {
+    id: "6/9",
+    title: "Romania: The land of dreams",
+    infoList: ["Destination Europe", "Jonnathan Mercadina", "June 17, 2018"],
+    blogImg: {
+      src: "img/village.jpg",
+      alt: "Bucegi",
+    },
+    frontContent: [
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
+    ],
+    fullContent: [
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus blanditiis, a dolorum repudiandae quam sunt consequuntur. Distinctio, exercitationem aperiam? Doloremque alias id inventore quia ut voluptatibus accusantium maiores ipsam mollitia asperiores in ad vero consequatur exercitationem debitis, officiis laudantium perferendis eos quisquam cum repellendus neque rem dolores. Non, reiciendis asperiores architecto sapiente est accusamus repellat? Similique quas eos earum aliquam! Nam fugiat, odio dicta ex a repellat obcaecati numquam! Blanditiis distinctio eligendi aut laboriosam quia. Nesciunt fugiat explicabo ipsum dolorum ad odit harum ipsa nobis, incidunt cum, sint doloribus. Consequatur doloremque ea illum voluptate maxime magni doloribus numquam, blanditiis laborum tenetur beatae hic odio aliquam quaerat possimus accusantium saepe. Placeat, cupiditate autem non maiores esse ex assumenda quas? Quaerat minus facilis perspiciatis rerum, officia laborum debitis laboriosam officiis reprehenderit ullam veritatis enim. Odio, animi pariatur quidem doloribus voluptatem consequuntur dolor illo ullam harum optio debitis quos, dolores labore magni saepe!",
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio corporis quas ab, deleniti quod rerum, amet expedita harum at, esse maiores hic est consequatur et! Vero quasi a aperiam, rem modi quibusdam deleniti ab obcaecati sed dignissimos, quam omnis laudantium autem optio nostrum asperiores nihil aut natus voluptatibus earum qui hic accusamus. Dolore commodi velit temporibus! Quibusdam quidem mollitia eius, corrupti voluptatem voluptatibus consequatur voluptates deleniti aperiam excepturi officiis tempore vitae nisi blanditiis dolor enim debitis possimus explicabo? Quod libero in ex, accusamus temporibus porro officia ratione quam sed ipsam saepe expedita ullam ut ea non enim beatae explicabo consectetur exercitationem possimus nobis molestiae quaerat. Delectus ipsum, labore neque voluptate earum quas illo tenetur veritatis quisquam veniam molestias suscipit adipisci hic assumenda fugit ea fuga repudiandae et tempora eos non reprehenderit, rerum doloribus? Fugit provident ducimus nisi reiciendis omnis similique distinctio quaerat veniam, vero, voluptatum quasi consequatur eos ipsa sunt ipsum autem ipsam. Iste natus rem voluptatem tempore ipsam ab a dolorem, officiis consequuntur soluta eaque quidem quibusdam, esse veritatis veniam ratione doloremque. Sit beatae cum consequatur sequi placeat est corporis quidem eum nostrum libero id iure similique dignissimos illo voluptatem, perferendis veritatis quod aliquid hic excepturi optio magni eligendi?",
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis rerum ipsam, modi quas reprehenderit provident quaerat consequatur adipisci veniam? Labore consectetur nam blanditiis minus neque dolore illum dolor molestiae cupiditate molestias fugit mollitia ducimus, eos nisi alias laborum, sed quod aspernatur ab in. Quae enim eaque placeat natus aliquam numquam, quasi, maxime aperiam voluptatibus dolorum, dicta unde quaerat esse porro! Aperiam inventore qui placeat ratione velit magni dicta magnam ex ipsam amet architecto, ipsa quidem maxime eaque tempore culpa voluptate. Molestias amet mollitia aliquam praesentium laudantium porro quod. Doloribus amet aliquam saepe tenetur rerum est accusamus repellat libero vitae repellendus!",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia natus, sit aut tempore delectus earum numquam placeat tempora modi sed facere fuga perferendis aliquam quidem culpa praesentium? Ad vitae laborum cum tenetur doloremque soluta saepe explicabo, provident corporis, cumque a quae eligendi repudiandae quo facilis ducimus hic nesciunt voluptate neque corrupti. Qui provident ipsum beatae unde voluptatibus laudantium ipsa? Eaque!",
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae mollitia tempora reiciendis odio vero autem voluptatem quia sed! Maiores, voluptate ab corrupti sequi recusandae perspiciatis at tempora ut laudantium sint natus cupiditate accusantium aperiam deserunt officia laboriosam quae, eum repellat? Molestiae sint voluptate amet similique obcaecati animi at accusamus odio? Impedit cumque esse, voluptas at provident est. Suscipit praesentium consequatur impedit laborum veniam voluptatem, maiores nam dolorem quidem expedita nesciunt corrupti iusto ipsa eos asperiores assumenda maxime magnam libero iste. Debitis repudiandae sed necessitatibus reprehenderit quisquam illo sapiente doloremque unde, voluptatum commodi assumenda amet ab perspiciatis magnam dignissimos exercitationem ex blanditiis nemo, nihil at iste non. Autem cumque reiciendis itaque natus placeat soluta, laboriosam repellendus sapiente! Sint nisi aspernatur eaque?",
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe quaerat ratione quis impedit! Exercitationem, ipsa. Placeat quod voluptate hic nam incidunt temporibus quis blanditiis eos architecto iste commodi, est ex voluptatum veniam, ut nisi obcaecati impedit debitis! Fugiat consequatur dolorum, possimus quo magni aspernatur at quia repudiandae animi nam debitis.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut earum praesentium temporibus tempora? Magni, molestiae. Ab deleniti, totam a, amet pariatur doloremque iusto consequatur ducimus assumenda libero architecto id ullam dolor, ipsa voluptate laboriosam enim sunt magni magnam vitae molestiae! Soluta facilis repellendus explicabo id dolore ex nam quis nostrum.",
+    ],
+    quote:
+      "Life is like riding a bicycle, to keep your balance you must keep moving",
+    linkReadMore: "./details.html",
+  },
+  {
+    id: "6/9",
+    title: "Sarmale - stuffed cabbage rolls. Good or bad?",
+    infoList: [
+      "Destination Europe",
+      "Jonnathan Mercadina",
+      "December 29, 2017",
+    ],
+    blogImg: {
+      src: "img/sarmale.jpg",
+      alt: "Bucegi",
+    },
+    frontContent: [
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
+    ],
+    fullContent: [
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus blanditiis, a dolorum repudiandae quam sunt consequuntur. Distinctio, exercitationem aperiam? Doloremque alias id inventore quia ut voluptatibus accusantium maiores ipsam mollitia asperiores in ad vero consequatur exercitationem debitis, officiis laudantium perferendis eos quisquam cum repellendus neque rem dolores. Non, reiciendis asperiores architecto sapiente est accusamus repellat? Similique quas eos earum aliquam! Nam fugiat, odio dicta ex a repellat obcaecati numquam! Blanditiis distinctio eligendi aut laboriosam quia. Nesciunt fugiat explicabo ipsum dolorum ad odit harum ipsa nobis, incidunt cum, sint doloribus. Consequatur doloremque ea illum voluptate maxime magni doloribus numquam, blanditiis laborum tenetur beatae hic odio aliquam quaerat possimus accusantium saepe. Placeat, cupiditate autem non maiores esse ex assumenda quas? Quaerat minus facilis perspiciatis rerum, officia laborum debitis laboriosam officiis reprehenderit ullam veritatis enim. Odio, animi pariatur quidem doloribus voluptatem consequuntur dolor illo ullam harum optio debitis quos, dolores labore magni saepe!",
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio corporis quas ab, deleniti quod rerum, amet expedita harum at, esse maiores hic est consequatur et! Vero quasi a aperiam, rem modi quibusdam deleniti ab obcaecati sed dignissimos, quam omnis laudantium autem optio nostrum asperiores nihil aut natus voluptatibus earum qui hic accusamus. Dolore commodi velit temporibus! Quibusdam quidem mollitia eius, corrupti voluptatem voluptatibus consequatur voluptates deleniti aperiam excepturi officiis tempore vitae nisi blanditiis dolor enim debitis possimus explicabo? Quod libero in ex, accusamus temporibus porro officia ratione quam sed ipsam saepe expedita ullam ut ea non enim beatae explicabo consectetur exercitationem possimus nobis molestiae quaerat. Delectus ipsum, labore neque voluptate earum quas illo tenetur veritatis quisquam veniam molestias suscipit adipisci hic assumenda fugit ea fuga repudiandae et tempora eos non reprehenderit, rerum doloribus? Fugit provident ducimus nisi reiciendis omnis similique distinctio quaerat veniam, vero, voluptatum quasi consequatur eos ipsa sunt ipsum autem ipsam. Iste natus rem voluptatem tempore ipsam ab a dolorem, officiis consequuntur soluta eaque quidem quibusdam, esse veritatis veniam ratione doloremque. Sit beatae cum consequatur sequi placeat est corporis quidem eum nostrum libero id iure similique dignissimos illo voluptatem, perferendis veritatis quod aliquid hic excepturi optio magni eligendi?",
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis rerum ipsam, modi quas reprehenderit provident quaerat consequatur adipisci veniam? Labore consectetur nam blanditiis minus neque dolore illum dolor molestiae cupiditate molestias fugit mollitia ducimus, eos nisi alias laborum, sed quod aspernatur ab in. Quae enim eaque placeat natus aliquam numquam, quasi, maxime aperiam voluptatibus dolorum, dicta unde quaerat esse porro! Aperiam inventore qui placeat ratione velit magni dicta magnam ex ipsam amet architecto, ipsa quidem maxime eaque tempore culpa voluptate. Molestias amet mollitia aliquam praesentium laudantium porro quod. Doloribus amet aliquam saepe tenetur rerum est accusamus repellat libero vitae repellendus!",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia natus, sit aut tempore delectus earum numquam placeat tempora modi sed facere fuga perferendis aliquam quidem culpa praesentium? Ad vitae laborum cum tenetur doloremque soluta saepe explicabo, provident corporis, cumque a quae eligendi repudiandae quo facilis ducimus hic nesciunt voluptate neque corrupti. Qui provident ipsum beatae unde voluptatibus laudantium ipsa? Eaque!",
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae mollitia tempora reiciendis odio vero autem voluptatem quia sed! Maiores, voluptate ab corrupti sequi recusandae perspiciatis at tempora ut laudantium sint natus cupiditate accusantium aperiam deserunt officia laboriosam quae, eum repellat? Molestiae sint voluptate amet similique obcaecati animi at accusamus odio? Impedit cumque esse, voluptas at provident est. Suscipit praesentium consequatur impedit laborum veniam voluptatem, maiores nam dolorem quidem expedita nesciunt corrupti iusto ipsa eos asperiores assumenda maxime magnam libero iste. Debitis repudiandae sed necessitatibus reprehenderit quisquam illo sapiente doloremque unde, voluptatum commodi assumenda amet ab perspiciatis magnam dignissimos exercitationem ex blanditiis nemo, nihil at iste non. Autem cumque reiciendis itaque natus placeat soluta, laboriosam repellendus sapiente! Sint nisi aspernatur eaque?",
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe quaerat ratione quis impedit! Exercitationem, ipsa. Placeat quod voluptate hic nam incidunt temporibus quis blanditiis eos architecto iste commodi, est ex voluptatum veniam, ut nisi obcaecati impedit debitis! Fugiat consequatur dolorum, possimus quo magni aspernatur at quia repudiandae animi nam debitis.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut earum praesentium temporibus tempora? Magni, molestiae. Ab deleniti, totam a, amet pariatur doloremque iusto consequatur ducimus assumenda libero architecto id ullam dolor, ipsa voluptate laboriosam enim sunt magni magnam vitae molestiae! Soluta facilis repellendus explicabo id dolore ex nam quis nostrum.",
+    ],
+    quote:
+      "Life is like riding a bicycle, to keep your balance you must keep moving",
     linkReadMore: "./details.html",
   },
 ];
 const navItems = [
-  { link: "/", title: "Travel updates" },
-  { link: "/", title: "Reviews" },
-  { link: "/", title: "About" },
-  { link: "/", title: "Contact" },
+  { link: "#updates", title: "Travel updates" },
+  { link: "#reviews", title: "Reviews" },
+  { link: "#about", title: "About" },
+  { link: "#contact", title: "Contact" },
 ];
 
 const actionButtons = ["Edit", "Delete"];
@@ -70,7 +155,7 @@ const modalInputs = [
   },
 ];
 //point of entry for the application
-let app = document.getElementById("app");
+// let app = document.getElementById("app");
 
 function generateNavbarItems(item) {
   //create list item
@@ -114,7 +199,7 @@ function generateArticleContent(contentList, quote) {
   contentContainer.classList.add("content__container");
 
   let middle = Math.round((contentList.length - 1) / 2);
-  console.log(contentList);
+
   if (quote) {
     contentList.forEach((text, index) => {
       let paragraph = document.createElement("p");
@@ -205,6 +290,7 @@ function generateArticle(item) {
   readContainer.classList.add("readmore__container");
 
   let btnRead = document.createElement("button");
+  btnRead.route = "/details";
   btnRead.type = "button";
   btnRead.classList.add("button");
 
@@ -226,7 +312,7 @@ function generateArticle(item) {
   return article;
 }
 
-function generateOneArticle(item) {
+function generateArticleDetails(item) {
   let article = document.createElement("article");
 
   //article title
@@ -370,11 +456,36 @@ function generateModal() {
   return modalOverlay;
 }
 
-function init() {
+function generateModalSwitch() {
+  let modalSwitch = document.createElement("div");
+  modalSwitch.classList.add("add__container");
+
+  let switchBtn = document.createElement("button");
+  switchBtn.type = "button";
+  switchBtn.id = "addBtn";
+  switchBtn.classList.add("button");
+
+  let icon = document.createElement("span");
+  let iconText = document.createTextNode("+");
+  icon.appendChild(iconText);
+  let switchBtnText = document.createTextNode(" Add Article");
+
+  switchBtn.appendChild(icon);
+  switchBtn.appendChild(switchBtnText);
+  modalSwitch.appendChild(switchBtn);
+
+  return modalSwitch;
+}
+
+function generateIndexPage() {
   let navbar = generateNavbarWhole();
   app.prepend(navbar);
 
   let main = document.createElement("main");
+
+  let modalSwitch = generateModalSwitch();
+  main.appendChild(modalSwitch);
+
   //link all article children to parent main
   blogPosts.forEach((blogPost) => {
     let newBlogPost = generateArticle(blogPost);
@@ -389,49 +500,100 @@ function init() {
   app.appendChild(modal);
 }
 
-function initDetails() {
-  let details = document.getElementById("details");
+function generateDetailsPage() {
   let navbar = generateNavbarWhole();
-  details.appendChild(navbar);
+  app.appendChild(navbar);
   let main = document.createElement("main");
   //link all article children to parent main
 
-  let newBlogPost = generateOneArticle(blogPosts[0], blogPosts[0].quote);
-  details.appendChild(newBlogPost);
+  let newBlogPost = generateArticleDetails(blogPosts[0], blogPosts[0].quote);
+  app.appendChild(newBlogPost);
 
-  details.appendChild(main);
+  app.appendChild(main);
 
   let footer = generateFooter(articleFooterBtn);
-  details.appendChild(footer);
+  app.appendChild(footer);
+}
+
+function cleanup(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
 }
 
 let currentPage = "/index.html";
 
-if (
-  window.location.pathname === currentPage ||
-  window.location.pathname === "/"
-) {
-  init();
-
-  //modal control
-  let actionBtn = document.querySelector("#addBtn");
-  let saveBtn = document.querySelector("#saveBtn");
-  let cancelBtn = document.querySelector("#cancelBtn");
-  let modal = document.querySelector("#addModal");
-
-  //modal control
-  function toggleClass() {
-    modal.classList.toggle("show-modal");
+class MyHashRouter {
+  constructor() {
+    window.addEventListener("hashchange", (event) => this.onRouteChange(event));
+    this.app = document.getElementById("app");
+    console.log("inside constructor");
   }
+  onRouteChange(event) {
+    const hashLocation = window.location.hash.substring(1);
 
-  function saveArticle() {
-    console.log("article saved");
-    modal.classList.toggle("show-modal");
+    console.log("inside routechange");
+
+    console.log(hashLocation);
+    this.loadContent(hashLocation);
   }
+  //uri = partea de dupa /#
+  loadContent(uri) {
+    const contentUri = `${uri}`;
 
-  actionBtn.addEventListener("click", toggleClass);
-  cancelBtn.addEventListener("click", toggleClass);
-  saveBtn.addEventListener("click", saveArticle);
-} else {
-  initDetails();
+    console.log("inside loadContent");
+
+    console.log(uri);
+
+    cleanup(app);
+    switch (contentUri) {
+      case "home":
+        generateIndexPage();
+        console.log("actionBtn");
+        console.log(document.getElementById("app"));
+
+        //modal control
+        let actionBtn = document.querySelector("#addBtn");
+        console.log(actionBtn);
+        let saveBtn = document.querySelector("#saveBtn");
+        let cancelBtn = document.querySelector("#cancelBtn");
+        let modal = document.querySelector("#addModal");
+
+        //modal control
+        function toggleClass() {
+          modal.classList.toggle("show-modal");
+        }
+
+        function saveArticle() {
+          console.log("article saved");
+          modal.classList.toggle("show-modal");
+        }
+
+        actionBtn.addEventListener("click", toggleClass);
+        cancelBtn.addEventListener("click", toggleClass);
+        saveBtn.addEventListener("click", saveArticle);
+        break;
+
+      case "details":
+        console.log("inside details page");
+
+        console.log(uri);
+        generateDetailsPage();
+        break;
+      default:
+        let message = document.createElement("h1");
+        message.innerText = "Not found";
+        app.appendChild(message);
+        break;
+    }
+  }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("dom");
+
+  console.log(window.location.hash);
+  let myRouter = new MyHashRouter();
+
+  window.location.hash = "#home";
+});
