@@ -472,9 +472,37 @@ function generateModalSwitch() {
 
   switchBtn.appendChild(icon);
   switchBtn.appendChild(switchBtnText);
+
+  let switchTheme = generateThemeSwitch();
+  modalSwitch.appendChild(switchTheme);
+
   modalSwitch.appendChild(switchBtn);
 
   return modalSwitch;
+}
+
+function generateThemeSwitch() {
+  let themeSwitch = document.createElement("div");
+  themeSwitch.classList.add("theme-switch-wrapper");
+
+  let switchLabel = document.createElement("label");
+  switchLabel.classList.add("theme-switch");
+  switchLabel.for = "checkbox";
+
+  let switchInput = document.createElement("input");
+  switchInput.type = "checkbox";
+  switchInput.id = "checkbox";
+
+  let slider = document.createElement("div");
+  slider.classList.add("slider");
+  slider.classList.add("round");
+
+  switchLabel.appendChild(switchInput);
+  switchLabel.appendChild(slider);
+
+  themeSwitch.appendChild(switchLabel);
+
+  return themeSwitch;
 }
 
 function generateIndexPage() {
@@ -546,11 +574,25 @@ class MyHashRouter {
     console.log(uri);
 
     cleanup(app);
+    let message = document.createElement("h1");
+
     switch (contentUri) {
       case "home":
+        //generate homepage
         generateIndexPage();
-        console.log("actionBtn");
-        console.log(document.getElementById("app"));
+
+        //switch for night mode
+        const toggleSwitch = document.querySelector(
+          '.theme-switch input[type="checkbox"]'
+        );
+        toggleSwitch.addEventListener("change", switchTheme, false);
+        if (currentTheme) {
+          document.documentElement.setAttribute("data-theme", currentTheme);
+
+          if (currentTheme === "dark") {
+            toggleSwitch.checked = true;
+          }
+        }
 
         //modal control
         let actionBtn = document.querySelector("#addBtn");
@@ -575,13 +617,27 @@ class MyHashRouter {
         break;
 
       case "details":
-        console.log("inside details page");
-
-        console.log(uri);
+        //generate one article
         generateDetailsPage();
         break;
+
+      case "updates":
+        message.innerText = "Updates page";
+        app.appendChild(message);
+        break;
+      case "reviews":
+        message.innerText = "Reviews page";
+        app.appendChild(message);
+        break;
+      case "about":
+        message.innerText = "About page";
+        app.appendChild(message);
+        break;
+      case "contact":
+        message.innerText = "Contact page";
+        app.appendChild(message);
+        break;
       default:
-        let message = document.createElement("h1");
         message.innerText = "Not found";
         app.appendChild(message);
         break;
@@ -594,6 +650,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   console.log(window.location.hash);
   let myRouter = new MyHashRouter();
+  window.location.hash = "#";
 
   window.location.hash = "#home";
 });
+
+function switchTheme(e) {
+  if (e.target.checked) {
+    document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark"); //add this
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light"); //add this
+  }
+}
+
+const currentTheme = localStorage.getItem("theme")
+  ? localStorage.getItem("theme")
+  : null;
