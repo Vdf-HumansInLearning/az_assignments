@@ -15,7 +15,6 @@ registerForm.addEventListener("submit", function (event) {
   //validate input
 
   if (password !== confirmPassword) {
-    console.log("fff");
     let errorContainer = document.querySelector(".confirm-password");
     errorContainer.style.display = "inherit";
     errorContainer.innerText = "Passwords don't match.";

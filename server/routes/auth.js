@@ -7,9 +7,8 @@ const path = require("path");
 const utils = require("../utils");
 const filePath = "../users.json";
 
-let isAdmin = false;
-let isLoggedIn = false;
-let rawdata = fs.readFileSync(path.resolve(__dirname, filePath));
+let rawdata = fs.readFileSync(path.resolve(__dirname, filePath)); //....webshop/routes/../users.json
+
 let users = JSON.parse(rawdata);
 let userList = users.userList;
 
@@ -72,7 +71,7 @@ router.post("/register", function (req, res, next) {
     if (result.isValid) {
       userList.push(user);
       let json = JSON.stringify(users, null, 2);
-      fs.writeFile("users.json", json, function (err) {
+      fs.writeFile(path.resolve(__dirname, "users.json"), json, function (err) {
         if (err) throw err;
         res.status(201).send(user);
       });

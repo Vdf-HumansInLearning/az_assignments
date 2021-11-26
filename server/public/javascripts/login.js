@@ -36,8 +36,12 @@ loginForm.addEventListener("submit", function (event) {
       },
       body: JSON.stringify(user),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        response.json();
+      })
       .then((data) => {
+        console.log(data);
         let user = data;
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("isAdmin", user.isAdmin);

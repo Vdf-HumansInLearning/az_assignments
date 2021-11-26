@@ -27,6 +27,13 @@
       "password": "adela",
       "username": "adela",
       "isAdmin": false
+    },
+    {
+      "id": 5,
+      "email": "adela@adela.com",
+      "password": "adela",
+      "username": "adela",
+      "isAdmin": false
     }
   ]
 }
