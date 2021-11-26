@@ -19,7 +19,7 @@
       "email": "adela@adela.com",
       "username": "adela",
       "password": "adela",
-      "isAdmin": false
+      "isAdmin": true
     },
     {
       "id": 4,
