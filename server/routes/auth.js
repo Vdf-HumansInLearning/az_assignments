@@ -4,7 +4,7 @@ var router = express.Router();
 const fs = require("fs");
 const path = require("path");
 
-const utils = require("../utils");
+const utils = require("../../utils");
 const filePath = "../users.json";
 
 let rawdata = fs.readFileSync(path.resolve(__dirname, filePath)); //....webshop/routes/../users.json

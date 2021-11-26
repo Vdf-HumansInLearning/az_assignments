@@ -10,7 +10,15 @@ module.exports = {
       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     if (user.email && user.password && user.username) {
       if (regexEmail.test(user.email)) {
-        isValid = true;
+        if (user.password.length >= 4) {
+          if (user.username.length >= 2) {
+            isValid = true;
+          } else {
+            message = "Username must be at least two characters long.";
+          }
+        } else {
+          message = "Password must be at least four characters long.";
+        }
       } else {
         message = "Email address incorrect";
       }

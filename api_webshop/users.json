@@ -17,22 +17,29 @@
     {
       "id": 3,
       "email": "adela@adela.com",
-      "password": "adela",
       "username": "adela",
+      "password": "adela",
       "isAdmin": false
     },
     {
       "id": 4,
       "email": "adela@adela.com",
-      "password": "adela",
       "username": "adela",
+      "password": "adela",
       "isAdmin": false
     },
     {
-      "id": 5,
-      "email": "adela@adela.com",
-      "password": "adela",
-      "username": "adela",
+      "id": 6,
+      "email": "test",
+      "password": "test",
+      "username": "test",
+      "isAdmin": false
+    },
+    {
+      "id": 7,
+      "email": "aaa@aa.com",
+      "password": "aaaa",
+      "username": "aa",
       "isAdmin": false
     }
   ]
