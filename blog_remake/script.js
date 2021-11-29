@@ -24,7 +24,7 @@ const blogPosts = [
     ],
     quote:
       "Life is like riding a bicycle, to keep your balance you must keep moving",
-    linkReadMore: "#details",
+    linkReadMore: "#articles/cgte0118",
   },
   {
     id: "7/9",
@@ -51,7 +51,7 @@ const blogPosts = [
     ],
     quote:
       "Life is like riding a bicycle, to keep your balance you must keep moving",
-    linkReadMore: "./details.html",
+    linkReadMore: "#articles/ymvb3018",
   },
   {
     id: "6/9",
@@ -78,7 +78,7 @@ const blogPosts = [
     ],
     quote:
       "Life is like riding a bicycle, to keep your balance you must keep moving",
-    linkReadMore: "./details.html",
+    linkReadMore: "#articles/tlod1718",
   },
   {
     id: "6/9",
@@ -109,9 +109,11 @@ const blogPosts = [
     ],
     quote:
       "Life is like riding a bicycle, to keep your balance you must keep moving",
-    linkReadMore: "./details.html",
+    linkReadMore: "#articles/scrg2917",
   },
 ];
+
+//----------DECLARATIONS----------
 const navItems = [
   { link: "#updates", title: "Travel updates" },
   { link: "#reviews", title: "Reviews" },
@@ -155,6 +157,14 @@ const modalInputs = [
   },
 ];
 
+//modal
+let modal = null;
+
+//routes for next/pevious articles
+let nextRoute = null;
+let previousRoute = null;
+
+//----------FUNCTIONS----------
 function generateNavbarItems(item) {
   //create list item
   let navItem = document.createElement("li");
@@ -524,25 +534,46 @@ function generateIndexPage() {
   app.appendChild(modal);
 }
 
-function generateDetailsPage() {
+function generateDetailsPage(article, currentIndex) {
   let navbar = generateNavbarWhole();
   app.appendChild(navbar);
   let main = document.createElement("main");
   //link all article children to parent main
 
-  let newBlogPost = generateArticleDetails(blogPosts[0], blogPosts[0].quote);
+  let newBlogPost = generateArticleDetails(article, article.quote);
   app.appendChild(newBlogPost);
 
   app.appendChild(main);
 
   let footer = generateFooter(articleFooterBtn);
+
+  if (currentIndex === blogPosts.length - 1)
+    // footer.lastChild.style.display = "none";
+    console.log(currentIndex);
+  if (currentIndex === 0) {
+    console.log("fffffffffffffffffffffffffffffffff");
+    footer.firstChild.style.display = "none";
+  }
+
+  console.log(blogPosts[currentIndex + 1].linkReadMore);
+  nextRoute = blogPosts[currentIndex + 1].linkReadMore;
+  previousRoute = blogPosts[currentIndex - 1].linkReadMore;
+  if (footer.firstChild) {
+    footer.firstChild.addEventListener("click", changeRoutePrev, false);
+  }
+  if (footer.lastChild) {
+    footer.lastChild.addEventListener("click", changeRouteNext, false);
+  }
+
   app.appendChild(footer);
 }
 
-//modal control
-function toggleClass() {
-  console.log(modal);
-  if (modal) modal.classList.toggle("show-modal");
+function changeRouteNext() {
+  window.location.hash = nextRoute;
+}
+
+function changeRoutePrev() {
+  window.location.hash = previousRoute;
 }
 
 function switchTheme(e) {
@@ -564,6 +595,12 @@ function cleanup(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
+}
+
+//modal control
+function toggleClass() {
+  console.log(modal);
+  if (modal) modal.classList.toggle("show-modal");
 }
 
 function addModalControl() {
@@ -592,7 +629,6 @@ function addThemeControl() {
   }
 }
 
-let modal = null;
 const currentTheme = localStorage.getItem("theme")
   ? localStorage.getItem("theme")
   : null;
@@ -619,6 +655,10 @@ class MyHashRouter {
 
     let message = document.createElement("h1");
 
+    let regex = /articles\/[a-z]{4}[0-9]{4}/;
+
+    console.log(regex.test(contentUri));
+
     switch (contentUri) {
       case "home":
         //generate homepage
@@ -631,9 +671,21 @@ class MyHashRouter {
         addModalControl();
         break;
 
-      case "details":
+      //cgte0118
+      case contentUri.match(/articles\/[a-z]{4}[0-9]{4}/)?.input:
         //generate one article
-        generateDetailsPage();
+        let articleId = "#" + contentUri;
+        console.log(articleId);
+        let foundArticle = blogPosts.find(
+          (item) => item.linkReadMore === articleId
+        );
+        let foundArticleIndex = blogPosts.findIndex(
+          (item) => item.linkReadMore === articleId
+        );
+        console.log(foundArticle);
+        console.log(foundArticleIndex);
+        generateDetailsPage(foundArticle, foundArticleIndex);
+        // generateDetailsPage();
         break;
 
       case "updates":
