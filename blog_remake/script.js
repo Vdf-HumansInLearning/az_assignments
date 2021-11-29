@@ -154,8 +154,6 @@ const modalInputs = [
     placehoder: "Please enter quote",
   },
 ];
-//point of entry for the application
-// let app = document.getElementById("app");
 
 function generateNavbarItems(item) {
   //create list item
@@ -191,8 +189,6 @@ function generateNavbarWhole() {
 
   return navTag;
 }
-
-generateNavbarWhole();
 
 function generateArticleContent(contentList, quote) {
   let contentContainer = document.createElement("div");
@@ -507,7 +503,7 @@ function generateThemeSwitch() {
 
 function generateIndexPage() {
   let navbar = generateNavbarWhole();
-  app.prepend(navbar);
+  app.appendChild(navbar);
 
   let main = document.createElement("main");
 
@@ -543,13 +539,63 @@ function generateDetailsPage() {
   app.appendChild(footer);
 }
 
+//modal control
+function toggleClass() {
+  console.log(modal);
+  if (modal) modal.classList.toggle("show-modal");
+}
+
+function switchTheme(e) {
+  if (e.target.checked) {
+    document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark"); //add this
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light"); //add this
+  }
+}
+
+function saveArticle() {
+  console.log("article saved");
+  modal.classList.toggle("show-modal");
+}
+
 function cleanup(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
 }
 
-let currentPage = "/index.html";
+function addModalControl() {
+  let actionBtn = document.querySelector("#addBtn");
+  console.log(actionBtn);
+  let saveBtn = document.querySelector("#saveBtn");
+  let cancelBtn = document.querySelector("#cancelBtn");
+  modal = document.querySelector("#addModal");
+
+  actionBtn.addEventListener("click", toggleClass);
+  cancelBtn.addEventListener("click", toggleClass);
+  saveBtn.addEventListener("click", saveArticle);
+}
+
+function addThemeControl() {
+  const toggleSwitch = document.querySelector(
+    '.theme-switch input[type="checkbox"]'
+  );
+  toggleSwitch.addEventListener("change", switchTheme, false);
+  if (currentTheme) {
+    document.documentElement.setAttribute("data-theme", currentTheme);
+
+    if (currentTheme === "dark") {
+      toggleSwitch.checked = true;
+    }
+  }
+}
+
+let modal = null;
+const currentTheme = localStorage.getItem("theme")
+  ? localStorage.getItem("theme")
+  : null;
 
 class MyHashRouter {
   constructor() {
@@ -569,11 +615,8 @@ class MyHashRouter {
   loadContent(uri) {
     const contentUri = `${uri}`;
 
-    console.log("inside loadContent");
-
-    console.log(uri);
-
     cleanup(app);
+
     let message = document.createElement("h1");
 
     switch (contentUri) {
@@ -582,38 +625,10 @@ class MyHashRouter {
         generateIndexPage();
 
         //switch for night mode
-        const toggleSwitch = document.querySelector(
-          '.theme-switch input[type="checkbox"]'
-        );
-        toggleSwitch.addEventListener("change", switchTheme, false);
-        if (currentTheme) {
-          document.documentElement.setAttribute("data-theme", currentTheme);
-
-          if (currentTheme === "dark") {
-            toggleSwitch.checked = true;
-          }
-        }
+        addThemeControl();
 
         //modal control
-        let actionBtn = document.querySelector("#addBtn");
-        console.log(actionBtn);
-        let saveBtn = document.querySelector("#saveBtn");
-        let cancelBtn = document.querySelector("#cancelBtn");
-        let modal = document.querySelector("#addModal");
-
-        //modal control
-        function toggleClass() {
-          modal.classList.toggle("show-modal");
-        }
-
-        function saveArticle() {
-          console.log("article saved");
-          modal.classList.toggle("show-modal");
-        }
-
-        actionBtn.addEventListener("click", toggleClass);
-        cancelBtn.addEventListener("click", toggleClass);
-        saveBtn.addEventListener("click", saveArticle);
+        addModalControl();
         break;
 
       case "details":
@@ -646,25 +661,6 @@ class MyHashRouter {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("dom");
-
-  console.log(window.location.hash);
   let myRouter = new MyHashRouter();
-  window.location.hash = "#";
-
   window.location.hash = "#home";
 });
-
-function switchTheme(e) {
-  if (e.target.checked) {
-    document.documentElement.setAttribute("data-theme", "dark");
-    localStorage.setItem("theme", "dark"); //add this
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-    localStorage.setItem("theme", "light"); //add this
-  }
-}
-
-const currentTheme = localStorage.getItem("theme")
-  ? localStorage.getItem("theme")
-  : null;
