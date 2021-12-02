@@ -541,7 +541,7 @@ function generateDetailsPage(article, currentIndex) {
   //link all article children to parent main
 
   let newBlogPost = generateArticleDetails(article, article.quote);
-  app.appendChild(newBlogPost);
+  main.appendChild(newBlogPost);
 
   app.appendChild(main);
 
@@ -549,7 +549,6 @@ function generateDetailsPage(article, currentIndex) {
 
   if (currentIndex === blogPosts.length - 1) {
     footer.lastChild.style.display = "none";
-    console.log(currentIndex);
   } else {
     nextRoute = blogPosts[currentIndex + 1].linkReadMore;
   }
@@ -607,7 +606,6 @@ function toggleClass() {
 
 function addModalControl() {
   let actionBtn = document.querySelector("#addBtn");
-  console.log(actionBtn);
   let saveBtn = document.querySelector("#saveBtn");
   let cancelBtn = document.querySelector("#cancelBtn");
   modal = document.querySelector("#addModal");
@@ -645,8 +643,6 @@ class MyHashRouter {
     const hashLocation = window.location.hash.substring(1);
 
     console.log("inside routechange");
-
-    console.log(hashLocation);
     this.loadContent(hashLocation);
   }
   //uri = partea de dupa /#
@@ -659,13 +655,9 @@ class MyHashRouter {
 
     let regex = /articles\/[a-z]{4}[0-9]{4}/;
 
-    console.log(contentUri);
-
     switch (contentUri) {
       case "":
         //when the user first loads the page
-        console.log("user loaded the page");
-        window.location.hash = "#";
         window.location.hash = "#home";
         break;
       case "home":
@@ -683,20 +675,15 @@ class MyHashRouter {
       case contentUri.match(/articles\/[a-z]{4}[0-9]{4}/)?.input:
         //generate one article
         let articleId = "#" + contentUri;
-        console.log(articleId);
         let foundArticle = blogPosts.find(
           (item) => item.linkReadMore === articleId
         );
         let foundArticleIndex = blogPosts.findIndex(
           (item) => item.linkReadMore === articleId
         );
-        console.log(foundArticle);
-        console.log(foundArticleIndex);
         generateDetailsPage(foundArticle, foundArticleIndex);
         window.scrollTo(0, 0);
-        // generateDetailsPage();
         break;
-
       case "updates":
         message.innerText = "Updates page";
         app.appendChild(message);
