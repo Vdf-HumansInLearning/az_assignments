@@ -547,17 +547,19 @@ function generateDetailsPage(article, currentIndex) {
 
   let footer = generateFooter(articleFooterBtn);
 
-  if (currentIndex === blogPosts.length - 1)
-    // footer.lastChild.style.display = "none";
+  if (currentIndex === blogPosts.length - 1) {
+    footer.lastChild.style.display = "none";
     console.log(currentIndex);
+  } else {
+    nextRoute = blogPosts[currentIndex + 1].linkReadMore;
+  }
   if (currentIndex === 0) {
-    console.log("fffffffffffffffffffffffffffffffff");
     footer.firstChild.style.display = "none";
+    footer.style.justifyContent = "end";
+  } else {
+    previousRoute = blogPosts[currentIndex - 1].linkReadMore;
   }
 
-  console.log(blogPosts[currentIndex + 1].linkReadMore);
-  nextRoute = blogPosts[currentIndex + 1].linkReadMore;
-  previousRoute = blogPosts[currentIndex - 1].linkReadMore;
   if (footer.firstChild) {
     footer.firstChild.addEventListener("click", changeRoutePrev, false);
   }
@@ -685,6 +687,7 @@ class MyHashRouter {
         console.log(foundArticle);
         console.log(foundArticleIndex);
         generateDetailsPage(foundArticle, foundArticleIndex);
+        window.scrollTo(0, 0);
         // generateDetailsPage();
         break;
 
@@ -714,5 +717,6 @@ class MyHashRouter {
 
 document.addEventListener("DOMContentLoaded", () => {
   let myRouter = new MyHashRouter();
+  window.location.hash = "#";
   window.location.hash = "#home";
 });
