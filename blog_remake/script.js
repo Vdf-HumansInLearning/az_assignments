@@ -659,9 +659,15 @@ class MyHashRouter {
 
     let regex = /articles\/[a-z]{4}[0-9]{4}/;
 
-    console.log(regex.test(contentUri));
+    console.log(contentUri);
 
     switch (contentUri) {
+      case "":
+        //when the user first loads the page
+        console.log("user loaded the page");
+        window.location.hash = "#";
+        window.location.hash = "#home";
+        break;
       case "home":
         //generate homepage
         generateIndexPage();
@@ -717,6 +723,7 @@ class MyHashRouter {
 
 document.addEventListener("DOMContentLoaded", () => {
   let myRouter = new MyHashRouter();
-  window.location.hash = "#";
-  window.location.hash = "#home";
+  const initialHash = window.location.hash;
+  window.location.hash = "#aa";
+  window.location.hash = initialHash;
 });
