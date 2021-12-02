@@ -511,6 +511,25 @@ function generateThemeSwitch() {
   return themeSwitch;
 }
 
+function generateHomeButton() {
+  let btnContainer = document.createElement("div");
+  btnContainer.classList.add("add__container");
+  btnContainer.classList.add("home");
+
+  let btn = document.createElement("button");
+  btn.type = "button";
+  btn.classList.add("button");
+  btn.onclick = function () {
+    window.location.hash = "#home";
+  };
+  let btnText = document.createTextNode("home");
+
+  btn.appendChild(btnText);
+  btnContainer.appendChild(btn);
+
+  return btnContainer;
+}
+
 function generateIndexPage() {
   let navbar = generateNavbarWhole();
   app.appendChild(navbar);
@@ -538,7 +557,9 @@ function generateDetailsPage(article, currentIndex) {
   let navbar = generateNavbarWhole();
   app.appendChild(navbar);
   let main = document.createElement("main");
-  //link all article children to parent main
+
+  let homeBtn = generateHomeButton();
+  main.appendChild(homeBtn);
 
   let newBlogPost = generateArticleDetails(article, article.quote);
   main.appendChild(newBlogPost);

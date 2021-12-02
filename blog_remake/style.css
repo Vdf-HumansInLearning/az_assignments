@@ -258,6 +258,10 @@ article img {
   display: flex;
 }
 
+.home {
+  justify-content: end;
+}
+
 /*Simple css to style it like a toggle switch*/
 .theme-switch-wrapper {
   display: flex;
