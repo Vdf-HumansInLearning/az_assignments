@@ -36,14 +36,12 @@
             <p class="fw-bolder">Choose phone brand</p>
             <div id="brandsFilter">
               <% for(var i=0; i < brands.length; i++) {%> <% var label =
-              brands[i].toLowerCase() %>
+              brands[i].toLowerCase() %> <% var checked = brands[i] in
+              selectedBrands ? 'checked' : '' %>
+
               <label for="<%= brands[i] %>">
-                <input
-                  type="checkbox"
-                  name="brand[]"
-                  value="<%= brands[i] %>"
-                />
-                <%= brands[i] %>
+                <input type="checkbox" name="brand[]" value="<%= brands[i] %>"
+                "<%= checked %>" /><%= brands[i] %>
               </label>
 
               <% } %>
@@ -78,6 +76,7 @@
             <div id="availabilityFilters">
               <% for(var i=0; i < propertiesAvailability.length; i++) {%> <% var
               label = propertiesAvailability[i].replace("_", " ") %>
+
               <label for="<%= propertiesAvailability[i] %>">
                 <input
                   type="radio"
@@ -95,9 +94,13 @@
             <button id="btnSearch" type="submit" class="btn btn-primary">
               Search
             </button>
-            <button id="btnReset" type="button" class="btn btn-link">
-              Reset filters
-            </button>
+            <a
+              href="http://localhost:3000/shop"
+              class="btn btn-link"
+              role="button"
+              aria-disabled="true"
+              >Reset filters</a
+            >
           </div>
         </form>
       </aside>

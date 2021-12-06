@@ -159,6 +159,7 @@ function filterProducts(products, req) {
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
+  selectedBrands = req.query.brand ? req.query.brand : [];
   axios
     .get("http://localhost:8080/api/products")
     .then(function (response) {
@@ -172,6 +173,7 @@ router.get("/", function (req, res, next) {
         propertiesAvailability: availability,
         message: message,
         isAdmin: true,
+        selectedBrands: selectedBrands,
       });
     })
     .catch(function (error) {
