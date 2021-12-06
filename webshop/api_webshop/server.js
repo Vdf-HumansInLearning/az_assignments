@@ -7,6 +7,7 @@ const cors = require("cors");
 const uuid = require("uuid");
 
 var usersRouter = require("./routes/users");
+var productsRouter = require("./routes/products");
 // var shopRouter = require("./routes/shop");
 // var authRouter = require("./routes/auth");
 
@@ -26,6 +27,7 @@ app.use(
 );
 
 app.use("/api", usersRouter);
+app.use("/api", productsRouter);
 // app.use("/shop", shopRouter);
 // app.use("/shop/product", shopRouter);
 // app.use("/auth", authRouter);

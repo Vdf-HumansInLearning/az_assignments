@@ -18,28 +18,17 @@ router.get("/users", (req, res) => {
 
 /* GET one user */
 router.get("/users/:id", (req, res) => {
-  console.log(req.params.id);
-
-  let foundUser = userList.find((user) => user.id == req.params.id);
-  if (foundUser) {
-    res.status(200).send(foundUser);
+  let userId = Number(req.params.id);
+  if (isNaN(userId)) {
+    res.status(400).send({ message: "Bad request" });
   } else {
-    res.status(404).send({ message: "User not found" });
+    let foundUser = userList.find((user) => user.id == req.params.id);
+    if (foundUser) {
+      res.status(200).send(foundUser);
+    } else {
+      res.status(404).send({ message: "User not found" });
+    }
   }
-});
-
-/* GET admin list */
-router.get("/admins", (req, res) => {
-  let fiteredList = userList.filter((user) => user.isAdmin);
-  console.log(fiteredList);
-  res.status(200).send(fiteredList);
-});
-
-/* GET regular users list */
-router.get("/regulars", (req, res) => {
-  let fiteredList = userList.filter((user) => !user.isAdmin);
-  console.log(fiteredList);
-  res.status(200).send(fiteredList);
 });
 
 /* POST user */

@@ -6,7 +6,7 @@ const path = require("path");
 
 const utils = require("../../utils");
 
-let rawdata = fs.readFileSync(path.resolve(__dirname, "../productList.json"));
+let rawdata = fs.readFileSync(path.resolve(__dirname, "../products.json"));
 
 let jsonData = JSON.parse(rawdata);
 let productList = jsonData.products;
@@ -18,13 +18,18 @@ router.get("/products", (req, res) => {
 
 /* GET one products */
 router.get("/products/:id", (req, res) => {
-  console.log(req.params.id);
-
-  let foundProduct = productList.find((product) => product.id == req.params.id);
-  if (foundProduct) {
-    res.status(200).send(foundProduct);
+  let productId = Number(req.params.id);
+  if (isNaN(productId)) {
+    res.status(400).send({ message: "Bad request" });
   } else {
-    res.status(404).send({ message: "Product not found" });
+    let foundProduct = productList.find(
+      (product) => product.id == req.params.id
+    );
+    if (foundProduct) {
+      res.status(200).send(foundProduct);
+    } else {
+      res.status(404).send({ message: "Product not found" });
+    }
   }
 });
 
@@ -79,53 +84,42 @@ router.post("/products", (req, res) => {
 });
 
 /* DELETE products */
-router.delete("/products", (req, res) => {
-  //TO-DO: modify url to include id; delete product by id
-  if (req.body.name && req.body.brand) {
-    let foundProduct = productList.find(
-      (product) =>
-        product.name == req.body.name && product.brand === req.body.brand
-    );
-    if (foundProduct) {
-      let productIndex = productList.findIndex(
-        (item) => item.name === req.body.name && item.brand === req.body.brand
-      );
-      console.log(userIndex);
-      if (productIndex !== -1) {
-        let removed = productList.splice(productIndex, 1);
-        console.log(removed);
-        let json = JSON.stringify(jsonData, null, 2);
-        fs.writeFile(
-          path.resolve(__dirname, "../products.json"),
-          json,
-          function (err) {
-            if (err) throw err;
-            {
-              res
-                .status(200)
-                .send(`Product ${removed[0].name} ${removed[0].brand} deleted`);
-            }
+router.delete("/products/:id", (req, res) => {
+  let productId = Number(req.params.id);
+  if (isNaN(productId)) {
+    res.status(400).send({ message: "Bad request" });
+  } else {
+    let productIndex = productList.findIndex((item) => item.id === productId);
+    if (productIndex !== -1) {
+      let removed = productList.splice(productIndex, 1);
+      console.log(removed);
+      let json = JSON.stringify(jsonData, null, 2);
+      fs.writeFile(
+        path.resolve(__dirname, "../products.json"),
+        json,
+        function (err) {
+          if (err) throw err;
+          {
+            res
+              .status(200)
+              .send(`Product ${removed[0].name} ${removed[0].brand} deleted`);
           }
-        );
-      } else {
-        res.status(404).send({ message: "Product not found" });
-      }
+        }
+      );
     } else {
       res.status(404).send({ message: "Product not found" });
     }
-  } else {
-    res.status(400).send({ message: "Please complete all fields" });
   }
 });
 
 /* PUT products */
 //update a product
-router.put("/products", (req, res) => {
-  if (req.body.name && req.body.brand) {
-    //get the user
-    let productIndex = productList.findIndex(
-      (item) => item.name === req.body.name && item.brand === req.body.brand
-    );
+router.put("/products/:id", (req, res) => {
+  let productId = Number(req.params.id);
+  if (isNaN(productId)) {
+    res.status(400).send({ message: "Bad request" });
+  } else {
+    let productIndex = productList.findIndex((item) => item.id === productId);
     if (productIndex !== -1) {
       //update whole user
       const {
@@ -171,15 +165,13 @@ router.put("/products", (req, res) => {
           if (err) throw err;
 
           res.status(200).send({
-            message: `Product ${name} ${brand} was updated`,
+            message: `Product ${productList[productIndex].name} ${productList[productIndex].brand} was updated`,
           });
         }
       );
     } else {
       res.status(404).send({ message: "Product not found" });
     }
-  } else {
-    res.status(400).send({ message: "Please complete all fields" });
   }
 });
 
