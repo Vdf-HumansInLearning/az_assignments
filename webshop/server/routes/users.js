@@ -8,12 +8,10 @@ router.get("/", function (req, res, next) {
   axios
     .get("http://localhost:8080/api/users")
     .then(function (response) {
-      console.log(response.data);
-
       res.render("users", {
         title: "Users",
         users: response.data,
-        isAdmin: true,
+        isAdmin: false,
       });
     })
     .catch(function (error) {

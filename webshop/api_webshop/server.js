@@ -8,8 +8,7 @@ const uuid = require("uuid");
 
 var usersRouter = require("./routes/users");
 var productsRouter = require("./routes/products");
-// var shopRouter = require("./routes/shop");
-// var authRouter = require("./routes/auth");
+var authRouter = require("./routes/auth");
 
 var app = express();
 const port = 8080;
@@ -28,9 +27,7 @@ app.use(
 
 app.use("/api", usersRouter);
 app.use("/api", productsRouter);
-// app.use("/shop", shopRouter);
-// app.use("/shop/product", shopRouter);
-// app.use("/auth", authRouter);
+app.use("/api", authRouter);
 
 app.listen(8080, () => {
   console.log(`Server is running on http://localhost:${8080}`);
