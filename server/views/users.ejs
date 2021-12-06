@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <%- include('./partials/_head'); %>
+
+  <body>
+    <%- include('./partials/_navbar'); %>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %> page</p>
+
+    <ol class="list-group list-group-numbered">
+      <% for(var i=0; i < users.length; i++) {%>
+
+      <li
+        class="list-group-item d-flex justify-content-between align-items-start"
+      >
+        <div class="ms-2 me-auto">
+          <div class="fw-bold"><%= users[i].name %></div>
+          <%= users[i].username %>
+        </div>
+      </li>
+
+      <% } %>
+    </ol>
+    <%- include('./partials/_scripts'); %>
+  </body>
+</html>

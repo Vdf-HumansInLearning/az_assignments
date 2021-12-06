@@ -1,0 +1,178 @@
+<!--TO-DO: addProductToCart() link in js and localstorage-->
+<!--TO-DO: switch in server-->
+<!--TO-DO: details page for phones-->
+<!--TO-DO: href /details/product-->
+
+<!DOCTYPE html>
+<html>
+  <%- include('./partials/_head'); %>
+  <body>
+    <%- include('./partials/_navbar'); %>
+    <div class="main-container">
+      <aside id="filtersContainer" class="aside p-2">
+        <form action="/shop">
+          <h5>Filters</h5>
+
+          <div class="search card">
+            <label for="quickSearch" class="fw-bolder">
+              Quick search
+              <input
+                id="inputQuickSearch"
+                type="text"
+                class="search-input"
+                name="quickSearch"
+                placeholder="Search brand..."
+              />
+            </label>
+            <button
+              id="btnAll"
+              type="button"
+              class="btn btn-outline-light btn-reset search-button--hidden"
+            >
+              x
+            </button>
+          </div>
+          <div class="card">
+            <p class="fw-bolder">Choose phone brand</p>
+            <div id="brandsFilter">
+              <% for(var i=0; i < brands.length; i++) {%> <% var label =
+              brands[i].toLowerCase() %>
+              <label for="<%= brands[i] %>">
+                <input
+                  type="checkbox"
+                  name="brand[]"
+                  value="<%= brands[i] %>"
+                />
+                <%= brands[i] %>
+              </label>
+
+              <% } %>
+              <!--add onclick function for list item-->
+            </div>
+          </div>
+          <div id="priceFilters" class="card">
+            <label for="minPrice" class="fw-bolder">
+              Enter minimum price
+              <input type="number" id="minPrice" name="minPrice" />
+            </label>
+            <br />
+            <label for="maxPrice" class="fw-bolder">
+              Enter maximum price
+              <input type="number" id="maxPrice" name="maxPrice" />
+            </label>
+          </div>
+          <div class="card">
+            <p class="fw-bolder">Select property to sort by</p>
+            <div class="d-flex flex-column justify-content-between">
+              <select name="sortProp" id="sortProperties">
+                <% for(var i=0; i < propertiesSort.length; i++) {%>
+                <option value="<%= propertiesSort[i].id  %>">
+                  <%= propertiesSort[i].text %>
+                </option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+          <div class="card">
+            <p class="fw-bolder">Choose availability</p>
+            <div id="availabilityFilters">
+              <% for(var i=0; i < propertiesAvailability.length; i++) {%> <% var
+              label = propertiesAvailability[i].replace("_", " ") %>
+              <label for="<%= propertiesAvailability[i] %>">
+                <input
+                  type="radio"
+                  name="availability"
+                  value="<%= propertiesAvailability[i] %>"
+                />
+                <%= label %>
+              </label>
+
+              <% } %>
+              <!--add onclick function for list item-->
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center my-3">
+            <button id="btnSearch" type="submit" class="btn btn-primary">
+              Search
+            </button>
+            <button id="btnReset" type="button" class="btn btn-link">
+              Reset filters
+            </button>
+          </div>
+        </form>
+      </aside>
+      <main class="main p-2">
+        <div id="productList">
+          <ol class="list-group list-group-numbered">
+            <% for(var i=0; i < productList.length; i++) {%>
+            <li
+              class="
+                list-group-item
+                d-flex
+                justify-content-between
+                align-items-start
+                list-products
+              "
+            >
+              <div class="ms-2 me-auto list__item">
+                <div class="fw-bold d-flex justify-content-between">
+                  <%= productList[i].name %>
+                  <button
+                    type="button"
+                    onclick="addProductToCart( productList[i] )"
+                    class="btn btn-outline-primary btn-add-cart"
+                  >
+                    Add to cart
+                  </button>
+                </div>
+                <a
+                  href="details.html?phone=<%= productList[i].name %>"
+                  target="_blank"
+                >
+                  <%= productList[i].brand %>
+                </a>
+                <% if(productList[i].discount > 0){ %> <% var finalPrice =
+                productList[i].price - productList[i].discount; %>
+                <p>
+                  <span class="discounted"> <%= productList[i].price %></span
+                  >&nbsp; <%= finalPrice %> lei
+                </p>
+                <% } else{ %>
+                <p><%=productList[i].price%></p>
+                <% } %> <% if(productList[i].rating > 0){ %>
+                <p>
+                  <%= productList[i].rating %> <%= avgRatings[i] %> (avg per
+                  brand)
+                </p>
+                <% } else{ %>
+                <p>-</p>
+                <% } %>
+              </div>
+            </li>
+
+            <% } %>
+          </ol>
+        </div>
+      </main>
+    </div>
+
+    <div class="toast-container position-absolute p-3 top-0 end-0">
+      <div class="toast" id="myToast">
+        <div class="toast-header">
+          <strong class="me-auto"
+            ><i class="bi-gift-fill"></i> Product added to cart</strong
+          >
+          <button
+            type="button"
+            class="btn-close me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+    <script src="../javascripts/register.js"></script>
+
+    <%- include('./partials/_scripts'); %>
+  </body>
+</html>

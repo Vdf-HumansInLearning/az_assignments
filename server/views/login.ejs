@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <%- include('./partials/_head'); %>
+  <body>
+    <main class="main d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center flex-column main__container">
+        <h1 class="mb-2">Log in to your account</h1>
+        <hr />
+        <form id="loginForm" class="form mt-2">
+          <div class="input-simple mb-3">
+            <label class="me-3" for="inputEmail">
+              <i class="fas fa-user"></i>
+            </label>
+            <input
+              type="text"
+              name="username"
+              class="form-control"
+              id="inputEmail"
+              placeholder="email"
+              value="maria@maria.com"
+            />
+            <div class="email invalid-feedback"></div>
+          </div>
+          <div class="input-simple mb-3">
+            <label class="me-3" for="inputPassword">
+              <i class="fas fa-unlock"></i>
+            </label>
+            <input
+              type="password"
+              name="password"
+              class="form-control"
+              id="inputPassword"
+              placeholder="password"
+              value="maria"
+            />
+            <div class="password invalid-feedback"></div>
+          </div>
+          <button type="submit" class="btn btn-primary mb-1 mt-3 btn-login">
+            Login
+          </button>
+
+          <p>
+            You don't have an account? <a href="/auth/register">Register</a>
+          </p>
+        </form>
+      </div>
+    </main>
+
+    <div class="toast" id="myToast">
+      <div class="toast-header">
+        <strong class="me-auto"
+          ><i class="bi-gift-fill"></i> We miss you!</strong
+        >
+        <small>10 mins ago</small>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="toast"
+        ></button>
+      </div>
+      <div class="toast-body">
+        It's been a long time since you visited us. We've something special for
+        you. <a href="#">Click here!</a>
+      </div>
+    </div>
+
+    <%- include('./partials/_scripts'); %>
+    <script src="javascripts/login.js"></script>
+  </body>
+</html>
