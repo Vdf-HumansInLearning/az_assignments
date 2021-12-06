@@ -58,25 +58,29 @@ router.post("/products", (req, res) => {
 
     //TO-DO: add validation of fields
 
-    let verifyProduct = productList.find(
-      (product) =>
-        product.name == req.body.name &&
-        product.brand === req.body.brand &&
-        product.operating_system === req.body.operating_system
-    );
-    if (verifyProduct) {
-      res.status(403).send({ message: "Product alredy exists." });
+    //name, brand, os, availability date are strings
+    //price, discount, quantity, rating are numbers
+    //price>0, discount >=0 && discount <=100, quantity >0,
+    //rating >=0 && rating <=5
+    let isValid = validateProduct(product);
+    if (isValid) {
+      let verifyProduct = productList.find((item) => item.id == product.id);
+      if (verifyProduct) {
+        res.status(403).send({ message: "Product alredy exists." });
+      } else {
+        productList.push(product);
+        let json = JSON.stringify(jsonData, null, 2);
+        fs.writeFile(
+          path.resolve(__dirname, "../products.json"),
+          json,
+          function (err) {
+            if (err) throw err;
+            res.status(201).send(`Product ${product.name} created`);
+          }
+        );
+      }
     } else {
-      productList.push(product);
-      let json = JSON.stringify(jsonData, null, 2);
-      fs.writeFile(
-        path.resolve(__dirname, "../products.json"),
-        json,
-        function (err) {
-          if (err) throw err;
-          res.status(201).send(`Product ${product.name} created`);
-        }
-      );
+      res.status(400).send({ message: "Bad request" });
     }
   } else {
     res.status(400).send({ message: "Please complete all fields" });
@@ -132,6 +136,7 @@ router.put("/products/:id", (req, res) => {
         availability_date,
         rating,
       } = req.body;
+
       productList[productIndex].name = name
         ? name
         : productList[productIndex].name;

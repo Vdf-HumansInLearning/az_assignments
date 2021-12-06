@@ -1,5 +1,5 @@
 module.exports = {
-  validatePriceInputs: function (wordArr1, wordArr2) {
+  validatePriceInputs: function () {
     return isValid;
   },
   validateNewUser: function (user) {
@@ -52,5 +52,33 @@ module.exports = {
       message: message,
     };
   },
-  validateProduct: function (product) {},
+  //name, brand, operating_system, price, discount, quantity,
+  //availability_date, rating
+  //multiple functions that verify one thing and larger functions
+  //that call them
+  validateString: function (item) {},
+  //name between 1-30 characters
+  //
+  validateProduct: function (product) {
+    let regexLetters = /^[a-zA-Z]+$/;
+    let isValid = false;
+    if (
+      product.name.match(regexLetters) &&
+      product.name.length >= 1 &&
+      product.name.length <= 30 &&
+      product.brand.match(regexLetters) &&
+      product.brand.length >= 1 &&
+      product.brand.length <= 30 &&
+      product.operating_system.match(regexLetters) &&
+      product.price > 0 &&
+      product.discount >= 0 &&
+      product.discount <= 100 &&
+      product.quantity > 0 &&
+      product.rating >= 0 &&
+      product.rating <= 5
+    )
+      isValid = true;
+    else isValid = false;
+    return isValid;
+  },
 };
