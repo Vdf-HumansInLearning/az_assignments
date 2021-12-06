@@ -20,11 +20,10 @@
         <li class="nav-item">
           <a class="nav-link" href="/shop">Shop</a>
         </li>
-        <% if(isAdmin){ %>
         <li class="nav-item">
           <a class="nav-link" href="/users">Users</a>
         </li>
-        <% } else{ %> <% } %>
+        <% if(isAdmin){ %> <% } else{ %> <% } %>
       </ul>
     </div>
   </div>

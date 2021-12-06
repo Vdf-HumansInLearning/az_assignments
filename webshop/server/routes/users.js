@@ -6,14 +6,14 @@ var router = express.Router();
 router.get("/", function (req, res, next) {
   // obtain the users from an API call
   axios
-    .get("http://jsonplaceholder.typicode.com/users")
+    .get("http://localhost:8080/api/users")
     .then(function (response) {
       console.log(response.data);
 
       res.render("users", {
         title: "Users",
         users: response.data,
-        isAdmin: false,
+        isAdmin: true,
       });
     })
     .catch(function (error) {

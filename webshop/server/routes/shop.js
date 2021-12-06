@@ -106,13 +106,11 @@ function vaidatePrice(minPrice, maxPrice) {
   return isValid;
 }
 
-//create validation method for number inputs
-
-/* GET home page. */
-router.get("/", function (req, res, next) {
-  productList = productList
+function filterProducts(products, req) {
+  return products
     .filter((product) => {
       if (req.query.brand) {
+        console.log(req.query.brand);
         let selectedBrands = req.query.brand;
         return selectedBrands.includes(product.brand);
       }
@@ -155,18 +153,33 @@ router.get("/", function (req, res, next) {
       }
       return true;
     });
+}
 
-  res.render("shop", {
-    title: "Shop",
-    productList: productList,
-    avgRatings: averageProdRatings,
-    brands: brands,
-    os: os,
-    propertiesSort: propertiesSort,
-    propertiesAvailability: availability,
-    message: message,
-    isAdmin: false,
-  });
+//create validation method for number inputs
+
+/* GET home page. */
+router.get("/", function (req, res, next) {
+  axios
+    .get("http://localhost:8080/api/products")
+    .then(function (response) {
+      res.render("shop", {
+        title: "Shop",
+        productList: filterProducts(response.data, req),
+        avgRatings: averageProdRatings,
+        brands: brands,
+        os: os,
+        propertiesSort: propertiesSort,
+        propertiesAvailability: availability,
+        message: message,
+        isAdmin: true,
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
 });
 
 /* GET product list. */
