@@ -28,7 +28,7 @@ loginForm.addEventListener("submit", function (event) {
       password: password,
     };
 
-    let postUrl = url + "/auth/login";
+    let postUrl = "http://localhost:8080/api/login";
     fetch(postUrl, {
       method: "POST",
       headers: {
@@ -37,14 +37,11 @@ loginForm.addEventListener("submit", function (event) {
       body: JSON.stringify(user),
     })
       .then((response) => {
-        console.log(response);
         response.json();
       })
       .then((data) => {
-        console.log(data);
         let user = data;
         localStorage.setItem("isLoggedIn", true);
-        localStorage.setItem("isAdmin", user.isAdmin);
         window.location.replace("/");
       })
       .catch((error) => {

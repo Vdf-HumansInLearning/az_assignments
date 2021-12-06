@@ -12,7 +12,7 @@ let users = JSON.parse(rawdata);
 let userList = users.userList;
 
 /* POST login */
-router.get("/login", (req, res) => {
+router.post("/login", (req, res) => {
   if (req.body.email && req.body.password) {
     let user = {
       email: req.body.email,
@@ -38,7 +38,7 @@ router.get("/login", (req, res) => {
 });
 
 /* POST register */
-router.get("/register", (req, res) => {
+router.post("/register", (req, res) => {
   //verify if necessary fields are present
   if (req.body.email && req.body.password && req.body.username) {
     let user = {
@@ -54,10 +54,14 @@ router.get("/register", (req, res) => {
     if (result.isValid) {
       userList.push(user);
       let json = JSON.stringify(users, null, 2);
-      fs.writeFile(path.resolve(__dirname, "users.json"), json, function (err) {
-        if (err) throw err;
-        res.status(201).send(user);
-      });
+      fs.writeFile(
+        path.resolve(__dirname, "../users.json"),
+        json,
+        function (err) {
+          if (err) throw err;
+          res.status(201).send(user);
+        }
+      );
     } else {
       res.status(406).send({ message: result.message });
     }

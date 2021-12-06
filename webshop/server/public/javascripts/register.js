@@ -34,7 +34,7 @@ registerForm.addEventListener("submit", function (event) {
       username: username,
     };
 
-    let postUrl = url + "/auth/register";
+    let postUrl = "http://localhost:8080/api/register";
     fetch(postUrl, {
       method: "POST",
       headers: {
