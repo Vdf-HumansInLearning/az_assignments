@@ -674,7 +674,7 @@ class MyHashRouter {
 
     let message = document.createElement("h1");
 
-    let regex = /articles\/[a-z]{4}[0-9]{4}/;
+    const regex = /articles\/[a-z]{4}[0-9]{4}/;
 
     switch (contentUri) {
       case "":
@@ -693,7 +693,7 @@ class MyHashRouter {
         break;
 
       //cgte0118
-      case contentUri.match(/articles\/[a-z]{4}[0-9]{4}/)?.input:
+      case contentUri.match(regex)?.input:
         //generate one article
         let articleId = "#" + contentUri;
         let foundArticle = blogPosts.find(
