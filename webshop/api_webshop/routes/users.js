@@ -22,7 +22,7 @@ router.get("/users/:id", (req, res) => {
   if (isNaN(userId)) {
     res.status(400).send({ message: "Bad request" });
   } else {
-    let foundUser = userList.find((user) => user.id == req.params.id);
+    let foundUser = userList.find((user) => user.id == userId);
     if (foundUser) {
       res.status(200).send(foundUser);
     } else {
@@ -68,11 +68,11 @@ router.post("/users", (req, res) => {
 
 /* DELETE user */
 router.delete("/users/:id", (req, res) => {
-  let productId = Number(req.params.id);
-  if (isNaN(productId)) {
+  let userId = Number(req.params.id);
+  if (isNaN(userId)) {
     res.status(400).send({ message: "Bad request" });
   } else {
-    let userIndex = userList.findIndex((item) => item.id === productId);
+    let userIndex = userList.findIndex((item) => item.id === userId);
     console.log(userIndex);
     if (userIndex !== -1) {
       let removed = userList.splice(userIndex, 1);
