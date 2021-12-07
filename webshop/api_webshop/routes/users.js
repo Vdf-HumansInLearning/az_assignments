@@ -67,33 +67,27 @@ router.post("/users", (req, res) => {
 });
 
 /* DELETE user */
-router.delete("/users", (req, res) => {
-  if (req.body.email) {
-    let foundUser = userList.find((user) => user.email == req.body.email);
-    if (foundUser) {
-      let userIndex = userList.findIndex(
-        (item) => item.email === req.body.email
-      );
-      console.log(userIndex);
-      if (userIndex !== -1) {
-        let removed = userList.splice(userIndex, 1);
-        console.log(removed);
-        let json = JSON.stringify(users, null, 2);
-        fs.writeFile(
-          path.resolve(__dirname, "../users.json"),
-          json,
-          function (err) {
-            if (err) throw err;
-            {
-              res
-                .status(200)
-                .send(`User with email ${removed[0].email} deleted`);
-            }
+router.delete("/users/:id", (req, res) => {
+  let productId = Number(req.params.id);
+  if (isNaN(productId)) {
+    res.status(400).send({ message: "Bad request" });
+  } else {
+    let userIndex = userList.findIndex((item) => item.id === productId);
+    console.log(userIndex);
+    if (userIndex !== -1) {
+      let removed = userList.splice(userIndex, 1);
+      console.log(removed);
+      let json = JSON.stringify(users, null, 2);
+      fs.writeFile(
+        path.resolve(__dirname, "../users.json"),
+        json,
+        function (err) {
+          if (err) throw err;
+          {
+            res.status(200).send(`User with email ${removed[0].email} deleted`);
           }
-        );
-      } else {
-        res.status(404).send({ message: "User not found" });
-      }
+        }
+      );
     } else {
       res.status(404).send({ message: "User not found" });
     }
@@ -101,15 +95,24 @@ router.delete("/users", (req, res) => {
 });
 
 /* PUT user */
-//modify a user admin status
-router.put("/users", (req, res) => {
-  if (req.body.email) {
-    let foundIndex = userList.findIndex(
-      (item) => item.email === req.body.email
-    );
-    console.log(foundIndex);
-    if (foundIndex) {
-      userList[foundIndex].isAdmin = !userList[foundIndex].isAdmin;
+router.put("/users/:id", (req, res) => {
+  let userId = Number(req.params.id);
+  if (isNaN(userId)) {
+    res.status(400).send({ message: "Bad request" });
+  } else {
+    let foundIndex = userList.findIndex((item) => item.id === userId);
+    if (foundIndex !== -1) {
+      const { email, password, username, isAdmin } = req.body;
+      userList[foundIndex].email = email ? email : userList[foundIndex].email;
+      userList[foundIndex].password = password
+        ? password
+        : userList[foundIndex].password;
+      userList[foundIndex].username = username
+        ? username
+        : userList[foundIndex].username;
+      userList[foundIndex].isAdmin = isAdmin
+        ? isAdmin
+        : userList[foundIndex].isAdmin;
       let json = JSON.stringify(users, null, 2);
       fs.writeFile(
         path.resolve(__dirname, "../users.json"),
@@ -125,8 +128,6 @@ router.put("/users", (req, res) => {
     } else {
       res.status(404).send({ message: "User not found" });
     }
-  } else {
-    res.status(400).send({ message: "Please complete all fields" });
   }
 });
 

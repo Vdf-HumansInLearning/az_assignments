@@ -184,9 +184,4 @@ router.get("/", function (req, res, next) {
     });
 });
 
-/* GET product list. */
-router.get("/api/products", function (req, res, next) {
-  res.status(200).send(productList.products);
-});
-
 module.exports = router;
