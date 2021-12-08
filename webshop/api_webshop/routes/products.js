@@ -34,6 +34,16 @@ router.get("/products/:id", (req, res) => {
 });
 
 /* POST products */
+
+// {
+
+//   "name":"my Phone",
+//   "brand": "my Brand",
+//   "operating_system":"iOS",
+//   "price":14,
+//   "discount": 14
+// }
+
 router.post("/products", (req, res) => {
   if (
     req.body.name &&
@@ -62,7 +72,8 @@ router.post("/products", (req, res) => {
     //price, discount, quantity, rating are numbers
     //price>0, discount >=0 && discount <=100, quantity >0,
     //rating >=0 && rating <=5
-    let isValid = validateProduct(product);
+    let isValid = utils.validateProduct(product);
+    console.log(isValid);
     if (isValid) {
       let verifyProduct = productList.find((item) => item.id == product.id);
       if (verifyProduct) {
@@ -80,14 +91,14 @@ router.post("/products", (req, res) => {
         );
       }
     } else {
-      res.status(400).send({ message: "Bad request" });
+      res.status(400).send({ message: "Fields are not completed correctly" });
     }
   } else {
     res.status(400).send({ message: "Please complete all fields" });
   }
 });
 
-/* DELETE products */
+/* DELETE product */
 router.delete("/products/:id", (req, res) => {
   let productId = Number(req.params.id);
   if (isNaN(productId)) {
@@ -125,7 +136,7 @@ router.put("/products/:id", (req, res) => {
   } else {
     let productIndex = productList.findIndex((item) => item.id === productId);
     if (productIndex !== -1) {
-      //update whole user
+      //update whole product
       const {
         name,
         brand,
@@ -137,43 +148,51 @@ router.put("/products/:id", (req, res) => {
         rating,
       } = req.body;
 
-      productList[productIndex].name = name
-        ? name
-        : productList[productIndex].name;
-      productList[productIndex].brand = brand
-        ? brand
-        : productList[productIndex].brand;
-      productList[productIndex].operating_system = operating_system
-        ? operating_system
-        : productList[productIndex].operating_system;
-      productList[productIndex].price = price
-        ? price
-        : productList[productIndex].price;
-      productList[productIndex].discount = discount
-        ? discount
-        : productList[productIndex].discount;
-      productList[productIndex].price = quantity
-        ? quantity
-        : productList[productIndex].quantity;
-      productList[productIndex].price = availability_date
-        ? availability_date
-        : productList[productIndex].availability_date;
-      productList[productIndex].price = rating
-        ? rating
-        : productList[productIndex].rating;
+      let product = req.body;
 
-      let json = JSON.stringify(jsonData, null, 2);
-      fs.writeFile(
-        path.resolve(__dirname, "../products.json"),
-        json,
-        function (err) {
-          if (err) throw err;
+      //validate request
+      let isValid = utils.validateExistingProduct(product);
+      if (isValid) {
+        productList[productIndex].name = name
+          ? name
+          : productList[productIndex].name;
+        productList[productIndex].brand = brand
+          ? brand
+          : productList[productIndex].brand;
+        productList[productIndex].operating_system = operating_system
+          ? operating_system
+          : productList[productIndex].operating_system;
+        productList[productIndex].price = price
+          ? price
+          : productList[productIndex].price;
+        productList[productIndex].discount = discount
+          ? discount
+          : productList[productIndex].discount;
+        productList[productIndex].price = quantity
+          ? quantity
+          : productList[productIndex].quantity;
+        productList[productIndex].price = availability_date
+          ? availability_date
+          : productList[productIndex].availability_date;
+        productList[productIndex].price = rating
+          ? rating
+          : productList[productIndex].rating;
 
-          res.status(200).send({
-            message: `Product ${productList[productIndex].name} ${productList[productIndex].brand} was updated`,
-          });
-        }
-      );
+        let json = JSON.stringify(jsonData, null, 2);
+        fs.writeFile(
+          path.resolve(__dirname, "../products.json"),
+          json,
+          function (err) {
+            if (err) throw err;
+
+            res.status(200).send({
+              message: `Product ${productList[productIndex].name} ${productList[productIndex].brand} was updated`,
+            });
+          }
+        );
+      } else {
+        res.status(400).send({ message: "Bad request" });
+      }
     } else {
       res.status(404).send({ message: "Product not found" });
     }

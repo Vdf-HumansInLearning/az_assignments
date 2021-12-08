@@ -11,13 +11,19 @@ let rawdata = fs.readFileSync(path.resolve(__dirname, "../users.json"));
 let users = JSON.parse(rawdata);
 let userList = users.userList;
 
+console.log("users api was called");
+
 /* GET all users */
 router.get("/users", (req, res) => {
+  console.log("users GET api was called");
+
   res.status(200).send(userList);
 });
 
 /* GET one user */
 router.get("/users/:id", (req, res) => {
+  console.log("users GET ONE USER api was called");
+
   let userId = Number(req.params.id);
   if (isNaN(userId)) {
     res.status(400).send({ message: "Bad request" });
@@ -33,6 +39,8 @@ router.get("/users/:id", (req, res) => {
 
 /* POST user */
 router.post("/users", (req, res) => {
+  console.log("users POST api was called");
+
   if (req.body.email && req.body.password && req.body.username) {
     const user = {
       id: userList[userList.length - 1].id + 1,
@@ -68,6 +76,8 @@ router.post("/users", (req, res) => {
 
 /* DELETE user */
 router.delete("/users/:id", (req, res) => {
+  console.log("users DELETE api was called");
+
   let userId = Number(req.params.id);
   if (isNaN(userId)) {
     res.status(400).send({ message: "Bad request" });
@@ -78,11 +88,14 @@ router.delete("/users/:id", (req, res) => {
       let removed = userList.splice(userIndex, 1);
       console.log(removed);
       let json = JSON.stringify(users, null, 2);
+
       fs.writeFile(
         path.resolve(__dirname, "../users.json"),
         json,
         function (err) {
-          if (err) throw err;
+          if (err) {
+            res.status(400).send(err);
+          }
           {
             res.status(200).send(`User with email ${removed[0].email} deleted`);
           }
@@ -96,6 +109,8 @@ router.delete("/users/:id", (req, res) => {
 
 /* PUT user */
 router.put("/users/:id", (req, res) => {
+  console.log("users PUT api was called");
+
   let userId = Number(req.params.id);
   if (isNaN(userId)) {
     res.status(400).send({ message: "Bad request" });
