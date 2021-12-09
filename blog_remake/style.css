@@ -5,6 +5,7 @@
   --color-pink: #ffe3e3;
   --color-black: #000;
   --color-white: #fff;
+  --color-white-gray: #ccc;
 }
 
 [data-theme="dark"] {
@@ -280,7 +281,7 @@ article img {
 }
 
 .slider {
-  background-color: #ccc;
+  background-color: var(--color-white-gray);
   bottom: 0;
   cursor: pointer;
   left: 0;
