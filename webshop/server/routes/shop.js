@@ -160,9 +160,13 @@ function filterProducts(products, req) {
 /* GET home page. */
 router.get("/", function (req, res, next) {
   selectedBrands = req.query.brand ? req.query.brand : [];
+  console.log("selected brands");
+  console.log(selectedBrands);
   axios
     .get("http://localhost:8080/api/products")
     .then(function (response) {
+      console.log("inside brands");
+      console.log(selectedBrands);
       res.render("shop", {
         title: "Shop",
         productList: filterProducts(response.data, req),

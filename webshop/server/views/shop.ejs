@@ -36,12 +36,15 @@
             <p class="fw-bolder">Choose phone brand</p>
             <div id="brandsFilter">
               <% for(var i=0; i < brands.length; i++) {%> <% var label =
-              brands[i].toLowerCase() %> <% var checked = brands[i] in
-              selectedBrands ? 'checked' : '' %>
+              brands[i].toLowerCase() %>
 
               <label for="<%= brands[i] %>">
-                <input type="checkbox" name="brand[]" value="<%= brands[i] %>"
-                "<%= checked %>" /><%= brands[i] %>
+                <input
+                  type="checkbox"
+                  name="brand[]"
+                  value="<%= brands[i] %>"
+                />
+                <%= brands[i] %>
               </label>
 
               <% } %>

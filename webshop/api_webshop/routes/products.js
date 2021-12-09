@@ -66,8 +66,6 @@ router.post("/products", (req, res) => {
       rating: -1,
     };
 
-    //TO-DO: add validation of fields
-
     //name, brand, os, availability date are strings
     //price, discount, quantity, rating are numbers
     //price>0, discount >=0 && discount <=100, quantity >0,

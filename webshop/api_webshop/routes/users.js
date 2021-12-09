@@ -15,15 +15,11 @@ console.log("users api was called");
 
 /* GET all users */
 router.get("/users", (req, res) => {
-  console.log("users GET api was called");
-
   res.status(200).send(userList);
 });
 
 /* GET one user */
 router.get("/users/:id", (req, res) => {
-  console.log("users GET ONE USER api was called");
-
   let userId = Number(req.params.id);
   if (isNaN(userId)) {
     res.status(400).send({ message: "Bad request" });
@@ -39,8 +35,6 @@ router.get("/users/:id", (req, res) => {
 
 /* POST user */
 router.post("/users", (req, res) => {
-  console.log("users POST api was called");
-
   if (req.body.email && req.body.password && req.body.username) {
     const user = {
       id: userList[userList.length - 1].id + 1,
@@ -76,8 +70,6 @@ router.post("/users", (req, res) => {
 
 /* DELETE user */
 router.delete("/users/:id", (req, res) => {
-  console.log("users DELETE api was called");
-
   let userId = Number(req.params.id);
   if (isNaN(userId)) {
     res.status(400).send({ message: "Bad request" });
@@ -109,8 +101,6 @@ router.delete("/users/:id", (req, res) => {
 
 /* PUT user */
 router.put("/users/:id", (req, res) => {
-  console.log("users PUT api was called");
-
   let userId = Number(req.params.id);
   if (isNaN(userId)) {
     res.status(400).send({ message: "Bad request" });
