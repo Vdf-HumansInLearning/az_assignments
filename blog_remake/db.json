@@ -1,7 +1,7 @@
 {
   "articles": [
     {
-      "id": "8",
+      "id": 8,
       "title": "The complete guide to explore Trasilvania, with your bike",
       "infoList": [
         "Destination Europe",
@@ -31,7 +31,7 @@
       "linkReadMore": "#articles/cgte0118"
     },
     {
-      "id": "7",
+      "id": 7,
       "title": "Bucegi: Places you must visit before you die",
       "infoList": [
         "Destination Europe",
@@ -61,7 +61,7 @@
       "linkReadMore": "#articles/ymvb3018"
     },
     {
-      "id": "6",
+      "id": 6,
       "title": "Romania: The land of dreams",
       "infoList": [
         "Destination Europe",
@@ -91,7 +91,7 @@
       "linkReadMore": "#articles/tlod1718"
     },
     {
-      "id": "5",
+      "id": 5,
       "title": "Sarmale - stuffed cabbage rolls. Good or bad?",
       "infoList": [
         "Destination Europe",
