@@ -25,6 +25,8 @@ jobs:
           node-version: 16
       - name: Running npm ci
         run: npm ci
+        working-directory: ./webshop/api_webshop
       - name: Running npm test
         run: npm test
+        working-directory: ./webshop/api_webshop
 
