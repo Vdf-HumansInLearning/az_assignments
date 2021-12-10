@@ -1,5 +1,5 @@
 //----------DECLARATIONS----------
-const baseUrl = " http://localhost:3000/articles";
+const baseUrl = "http://localhost:3000/articles";
 let blogPosts = null;
 const navItems = [
   { link: "#updates", title: "Travel updates" },
