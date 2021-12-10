@@ -11,8 +11,6 @@ let rawdata = fs.readFileSync(path.resolve(__dirname, "../users.json"));
 let users = JSON.parse(rawdata);
 let userList = users.userList;
 
-console.log("users api was called");
-
 /* GET all users */
 router.get("/users", (req, res) => {
   res.status(200).send(userList);
