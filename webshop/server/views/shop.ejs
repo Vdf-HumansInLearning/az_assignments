@@ -124,7 +124,7 @@
                   <%= productList[i].name %>
                   <button
                     type="button"
-                    onclick="addProductToCart( productList[i] )"
+                    onclick="addProductToCart( '<%=productList[i].id%>' )"
                     class="btn btn-outline-primary btn-add-cart"
                   >
                     Add to cart
@@ -176,8 +176,7 @@
         </div>
       </div>
     </div>
-    <script src="../javascripts/register.js"></script>
 
-    <%- include('./partials/_scripts'); %>
+    <script src="javascripts/shop.js"></script>
   </body>
 </html>

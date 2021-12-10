@@ -87,7 +87,9 @@ router.delete("/users/:id", (req, res) => {
             res.status(400).send(err);
           }
           {
-            res.status(200).send(`User with email ${removed[0].email} deleted`);
+            res
+              .status(200)
+              .send({ message: `User with email ${removed[0].email} deleted` });
           }
         }
       );
