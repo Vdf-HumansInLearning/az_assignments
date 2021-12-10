@@ -23,5 +23,9 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: npm ci
-      - run: npm test
+      - name: Running npm ci
+        run: npm ci
+        working-directory: ./webshop
+      - name: Running npm test
+        run: npm test
+        working-directory: ./webshop
