@@ -27,7 +27,7 @@
             Edit
           </button>
           <button
-            onclick="deleteUser({email:'<%= users[i].email %>', username: '<%= users[i].email %>', id: '<%= users[i].id %>'});"
+            onclick="deleteUser(<%= JSON.stringify(users[i]) %>)"
             data-bs-toggle="modal"
             data-bs-target="#confirmDelete"
             class="btn btn-outline-danger"

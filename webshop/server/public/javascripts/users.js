@@ -21,6 +21,7 @@ function editUser(user) {
 }
 
 function deleteUser(user) {
+  console.log(user);
   userIdDelete = user.id;
   let deleteModal = document.getElementById("confirmDelete");
   let modalText = deleteModal.querySelector(".modal-body p");
