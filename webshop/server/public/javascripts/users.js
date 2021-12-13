@@ -54,6 +54,9 @@ function updateUser() {
 
   let isValid = false;
 
+  console.log("ddd");
+  console.log(currentEditItem);
+
   //validate inputs
   if (updatedUser.email && updatedUser.username) {
     if (regexEmail.test(updatedUser.email)) {
@@ -61,7 +64,7 @@ function updateUser() {
         isValid = true;
       } else {
         inputUsername.classList.add("is-invalid");
-        let usernameInvalid = document.querySelector(
+        let usernameInvalid = currentEditItem.querySelector(
           "#username-container .invalid-feedback"
         );
 
@@ -77,7 +80,7 @@ function updateUser() {
       }
     } else {
       inputEmail.classList.add("is-invalid");
-      let emailInvalid = document.querySelector(
+      let emailInvalid = currentEditItem.querySelector(
         "#email-container .invalid-feedback"
       );
       while (emailInvalid.firstChild) {
@@ -91,7 +94,9 @@ function updateUser() {
   } else {
     if (!updatedUser.email) {
       inputEmail.classList.add("is-invalid");
-      let emailInvalid = document.querySelector(
+      console.log(inputEmail);
+
+      let emailInvalid = currentEditItem.querySelector(
         "#email-container .invalid-feedback"
       );
       while (emailInvalid.firstChild) {
@@ -101,10 +106,12 @@ function updateUser() {
       emailText = document.createTextNode("Email field cannot be empty.");
 
       emailInvalid.appendChild(emailText);
+      console.log(updatedUser);
+      console.log(emailInvalid);
     }
     if (!updatedUser.username) {
       inputUsername.classList.add("is-invalid");
-      let usernameInvalid = document.querySelector(
+      let usernameInvalid = currentEditItem.querySelector(
         "#username-container .invalid-feedback"
       );
 
