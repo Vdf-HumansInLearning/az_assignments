@@ -7,35 +7,161 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %> page</p>
 
-    <ol class="list-group list-group-numbered">
-      <% for(var i=0; i < users.length; i++) {%>
-
-      <li
-        class="list-group-item d-flex justify-content-between align-items-start"
+    <div>
+      <button
+        onclick="addUser()"
+        class="btn btn-outline-primary"
+        role="button"
+        data-bs-toggle="modal"
+        data-bs-target="#addUser"
       >
-        <div class="ms-2 me-auto">
-          <div class="fw-bold"><%= users[i].email %></div>
-          <%= users[i].username %>
+        Add user
+      </button>
+
+      <div
+        class="modal fade modal-add"
+        id="addUser"
+        tabindex="-1"
+        aria-labelledby="addUserLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content border-primary">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title" id="addUserLabel">Create a new user</h5>
+            </div>
+            <div class="modal-body">
+              Please complete the fields
+
+              <div class="ms-2 me-auto mt-4">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="input-email">Email</span>
+                  <input
+                    id="email"
+                    type="email"
+                    class="form-control"
+                    aria-label="Email input"
+                    aria-describedby="input-email"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="input-username"
+                    >Username</span
+                  >
+                  <input
+                    id="username"
+                    type="text"
+                    class="form-control"
+                    aria-label="Username input"
+                    aria-describedby="input-username"
+                  />
+                </div>
+              </div>
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-info"
+                data-bs-dismiss="modal"
+              >
+                <i class="fas fa-times"></i> Cancel
+              </button>
+              <button
+                onclick="confirmDelete()"
+                type="button"
+                class="btn btn-success"
+              >
+                <i class="fas fa-check"></i>
+
+                Save
+              </button>
+            </div>
+          </div>
         </div>
-        <div>
-          <button
-            onclick="editUser( '<%=users[i].id%>' )"
-            class="btn btn-outline-info"
-            role="button"
-          >
-            <i class="far fa-edit"></i>
-            Edit
-          </button>
-          <button
-            onclick="deleteUser(<%= JSON.stringify(users[i]) %>)"
-            data-bs-toggle="modal"
-            data-bs-target="#confirmDelete"
-            class="btn btn-outline-danger"
-            role="button"
-          >
-            <i class="far fa-trash-alt"></i>
-            Delete
-          </button>
+      </div>
+    </div>
+
+    <ol class="list-group list-group-numbered">
+      <% for(var i=0; i < users.length; i++) {%> <% var itemId = `item${i}` %>
+      <li id="<%= itemId %>" class="list-group-item">
+        <div
+          id="viewUser"
+          class="d-flex justify-content-between align-items-start"
+        >
+          <div class="ms-2 me-auto">
+            <div class="fw-bold"><%= users[i].email %></div>
+            <%= users[i].username %>
+          </div>
+
+          <div>
+            <button
+              onclick="editUser(i)"
+              class="btn btn-outline-info"
+              role="button"
+            >
+              <i class="far fa-edit"></i>
+              Edit
+            </button>
+            <button
+              onclick="deleteUser(<%= JSON.stringify(users[i]) %>)"
+              data-bs-toggle="modal"
+              data-bs-target="#confirmDelete"
+              class="btn btn-outline-danger"
+              role="button"
+            >
+              <i class="far fa-trash-alt"></i>
+              Delete
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="editUser"
+          class="d-flex justify-content-between align-items-start"
+        >
+          <div class="ms-2 me-auto">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="input-email">Email</span>
+              <input
+                id="email"
+                type="email"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="input-email"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="input-username">Username</span>
+              <input
+                id="username"
+                type="text"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="input-username"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              onclick="deleteUser(<%= JSON.stringify(users[i]) %>)"
+              data-bs-toggle="modal"
+              data-bs-target="#confirmDelete"
+              class="btn btn-outline-dark"
+              role="button"
+            >
+              <i class="fas fa-times"></i> Cancel
+            </button>
+            <button
+              onclick="editUser( <%= JSON.stringify(users[i]) %> )"
+              class="btn btn-success"
+              role="button"
+            >
+              <i class="fas fa-check"></i>
+              Save
+            </button>
+          </div>
         </div>
       </li>
 
@@ -56,7 +182,6 @@
           </div>
           <div class="modal-body">
             Are you sure you want to delete this user?
-            <p></p>
           </div>
           <div class="modal-footer">
             <button

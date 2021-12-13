@@ -55,7 +55,9 @@ router.post("/users", (req, res) => {
         json,
         function (err) {
           if (err) throw err;
-          res.status(201).send(`User with name ${user.username} created`);
+          res
+            .status(201)
+            .send({ message: `User with name ${user.username} created` });
         }
       );
     } else {

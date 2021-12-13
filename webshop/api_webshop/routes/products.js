@@ -115,7 +115,9 @@ router.delete("/products/:id", (req, res) => {
           {
             res
               .status(200)
-              .send(`Product ${removed[0].name} ${removed[0].brand} deleted`);
+              .send({
+                message: `Product ${removed[0].name} ${removed[0].brand} deleted`,
+              });
           }
         }
       );

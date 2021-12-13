@@ -27,13 +27,13 @@ router.post("/login", (req, res) => {
       if (foundUser) {
         res.status(200).send(user);
       } else {
-        res.status(403).send({ message: "No user found" });
+        res.status(404).send({ message: "No user found" });
       }
     } else {
       res.status(403).send({ message: result.message });
     }
   } else {
-    res.status(403).send({ message: "Please provide email or password" });
+    res.status(400).send({ message: "Please provide email or password" });
   }
 });
 
