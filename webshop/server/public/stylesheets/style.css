@@ -67,3 +67,10 @@
   display: none;
   transition: opacity 0.15s linear;
 }
+
+.edit-user {
+  display: none !important;
+}
+.edit-user--visible {
+  display: inherit !important ;
+}

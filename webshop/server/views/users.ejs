@@ -61,6 +61,7 @@
             </div>
             <div class="modal-footer">
               <button
+                onclick="cancelEdit()"
                 type="button"
                 class="btn btn-outline-info"
                 data-bs-dismiss="modal"
@@ -68,7 +69,7 @@
                 <i class="fas fa-times"></i> Cancel
               </button>
               <button
-                onclick="confirmDelete()"
+                onclick="confirmEdit()"
                 type="button"
                 class="btn btn-success"
               >
@@ -96,7 +97,8 @@
 
           <div>
             <button
-              onclick="editUser(i)"
+              id="editUserBtn"
+              onclick="editUser({id: <%= itemId %>, user:<%= JSON.stringify(users[i]) %>})"
               class="btn btn-outline-info"
               role="button"
             >
@@ -118,10 +120,10 @@
 
         <div
           id="editUser"
-          class="d-flex justify-content-between align-items-start"
+          class="d-flex justify-content-between align-items-start edit-user"
         >
-          <div class="ms-2 me-auto">
-            <div class="input-group mb-3">
+          <div class="ms-2 me-auto requires-validation" novalidate>
+            <div id="email-container" class="input-group mb-3">
               <span class="input-group-text" id="input-email">Email</span>
               <input
                 id="email"
@@ -129,9 +131,11 @@
                 class="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="input-email"
+                required
               />
+              <div class="invalid-feedback"></div>
             </div>
-            <div class="input-group mb-3">
+            <div id="username-container" class="input-group mb-3">
               <span class="input-group-text" id="input-username">Username</span>
               <input
                 id="username"
@@ -139,22 +143,22 @@
                 class="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="input-username"
+                required
               />
+              <div class="invalid-feedback"></div>
             </div>
           </div>
 
           <div>
             <button
-              onclick="deleteUser(<%= JSON.stringify(users[i]) %>)"
-              data-bs-toggle="modal"
-              data-bs-target="#confirmDelete"
+              onclick="cancelEdit()"
               class="btn btn-outline-dark"
               role="button"
             >
               <i class="fas fa-times"></i> Cancel
             </button>
             <button
-              onclick="editUser( <%= JSON.stringify(users[i]) %> )"
+              onclick="updateUser()"
               class="btn btn-success"
               role="button"
             >

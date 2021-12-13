@@ -37,9 +37,9 @@
     },
     {
       "id": 7,
-      "email": "aaa@aa.com",
+      "email": "myaaa@aaa.com",
       "password": "aaaa",
-      "username": "aa",
+      "username": "myaaa",
       "isAdmin": false
     },
     {
