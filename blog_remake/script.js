@@ -1,5 +1,5 @@
 //----------DECLARATIONS----------
-const baseUrl = "http://localhost:3000/articles";
+const baseUrl = "http://localhost:3000/articles/";
 let blogPosts = null;
 const navItems = [
   { link: "#updates", title: "Travel updates" },
@@ -13,31 +13,37 @@ const indexFooterBtn = ["previous", "next"];
 const articleFooterBtn = ["previous article", "next article"];
 const modalInputs = [
   {
+    id: "newTitle",
     cssClass: "input",
     type: "text",
     placehoder: "Please enter title",
   },
   {
+    id: "newTag",
     cssClass: "input",
     type: "text",
     placehoder: "Please enter tag",
   },
   {
+    id: "newAuthor",
     cssClass: "input",
     type: "text",
     placehoder: "Please enter author",
   },
   {
+    id: "newDate",
     cssClass: "input",
     type: "text",
-    placehoder: "Please enter date",
+    placehoder: "Please enter date (DD/MM/YYY)",
   },
   {
+    id: "newImg",
     cssClass: "input",
     type: "text",
     placehoder: "Please enter image url",
   },
   {
+    id: "newQuote",
     cssClass: "input",
     type: "text",
     placehoder: "Please enter quote",
@@ -161,12 +167,17 @@ function generateArticle(item) {
   let actionsContainer = document.createElement("div");
   actionsContainer.classList.add("actions__container");
 
-  actionButtons.forEach((item) => {
+  actionButtons.forEach((btn) => {
     let button = document.createElement("button");
     button.type = "button";
     button.classList.add("actions__btn");
-    let btnText = document.createTextNode(item);
+    let btnText = document.createTextNode(btn);
     button.appendChild(btnText);
+    if (btn === "Edit") {
+      button.onclick = () => editArticle();
+    } else {
+      button.onclick = () => deleteArticle(item.id);
+    }
     actionsContainer.appendChild(button);
   });
 
@@ -198,6 +209,7 @@ function generateArticle(item) {
   //link all article contents to parent article
   article.appendChild(articleTitle);
   article.appendChild(infoContainer);
+  article.appendChild(actionsContainer);
   article.appendChild(articleImg);
   article.appendChild(contentContainer);
   article.appendChild(readContainer);
@@ -276,11 +288,12 @@ function generateFooter(footerButtons) {
   return footer;
 }
 
-function generateInput(classCSS, type, placehoder) {
+function generateInput(id, classCSS, type, placehoder) {
   let input = document.createElement("input");
   input.classList.add(classCSS);
   input.type = type;
   input.placeholder = placehoder;
+  input.id = id;
   return input;
 }
 
@@ -310,6 +323,7 @@ function generateModal() {
   textarea.name = "content";
   textarea.placeholder = "Please enter content";
   textarea.style.maxHeight = "252px";
+  textarea.id = "newContent";
 
   //create modal action buttons
   let modalButtons = document.createElement("div");
@@ -336,9 +350,10 @@ function generateModal() {
   //add all the elements to the modal
   modalInputs.forEach((item) =>
     inputsContainer.appendChild(
-      generateInput(item.cssClass, item.type, item.placehoder)
+      generateInput(item.id, item.cssClass, item.type, item.placehoder)
     )
   );
+
   modalContent.appendChild(modalTitle);
   modalContent.appendChild(inputsContainer);
   modalContent.appendChild(textarea);
@@ -496,9 +511,186 @@ function switchTheme(e) {
 }
 
 function saveArticle() {
-  console.log("article saved");
-  modal.classList.toggle("show-modal");
+  let newTitle = modal.querySelector("#newTitle");
+  let newTag = modal.querySelector("#newTag");
+  let newAuthor = modal.querySelector("#newAuthor");
+  let newDate = modal.querySelector("#newDate");
+  let newImg = modal.querySelector("#newImg");
+  let newQuote = modal.querySelector("#newQuote");
+  let newContent = modal.querySelector("#newContent");
+
+  newImg.value =
+    "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*";
+
+  if (
+    newTitle.value &&
+    newTag.value &&
+    newAuthor.value &&
+    newDate.value &&
+    newImg.value &&
+    newQuote.value &&
+    newContent.value
+  ) {
+    //get article details from inputs
+    title = newTitle.value;
+    tag = newTag.value;
+    author = newAuthor.value;
+    date = newDate.value;
+    img = newImg.value;
+    quote = newQuote.value;
+
+    //get article content from textarea
+    let allContent = newContent.value.split(/\r?\n/);
+    let frontContent = null;
+    if (allContent.length < 2) {
+      generateSnackbar("Content must have at least two sentences");
+    } else {
+      frontContent = allContent.slice(0, 2);
+    }
+
+    //form the readmore link for the new article
+    //link read more: initials of the 4 words + day + year
+    let titleWords = title.split(" ");
+    let dateNumbers = date.split("/");
+    let linkText = "";
+    let linkReadMore = "";
+    if (titleWords.length < 4) {
+      let words = titleWords[0].split("");
+      linkText = (words[0] + words[1] + words[2] + words[3]).toLowerCase();
+    } else {
+      linkText = (
+        titleWords[0][0] +
+        titleWords[1][0] +
+        titleWords[2][0] +
+        titleWords[3][0]
+      ).toLowerCase();
+    }
+    //putting it all together
+    linkReadMore = "#articles/" + linkText + dateNumbers[0] + dateNumbers[1];
+    console.log(linkReadMore);
+
+    //create an article object to put in request body
+    let article = {
+      title: title,
+      infoList: [tag, author, date],
+      blogImg: {
+        src: img,
+        alt: "alt",
+      },
+      quote: quote,
+      frontContent: frontContent,
+      fullContent: allContent,
+      linkReadMore: linkReadMore,
+    };
+
+    fetch(baseUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(article),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        generateSnackbar(`New article with title ${data.title} created`);
+        modal.classList.toggle("show-modal");
+        const initialHash = window.location.hash;
+        window.location.hash = "#aa";
+        window.location.hash = initialHash;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  } else {
+    generateSnackbar("please complete all fields");
+  }
 }
+
+function dateInputMask(elm) {
+  elm.addEventListener("keypress", function (e) {
+    if (e.keyCode < 47 || e.keyCode > 57) {
+      e.preventDefault();
+    }
+
+    var len = elm.value.length;
+
+    // If we're at a particular place, let the user type the slash
+    // i.e., 12/12/1212
+    if (len !== 1 || len !== 3) {
+      if (e.keyCode == 47) {
+        e.preventDefault();
+      }
+    }
+
+    // If they don't add the slash, do it for them...
+    if (len === 2) {
+      elm.value += "/";
+    }
+
+    // If they don't add the slash, do it for them...
+    if (len === 5) {
+      elm.value += "/";
+    }
+  });
+}
+
+function generateSnackbar(message) {
+  console.log("aaaaaa");
+  let snackbar = document.createElement("div");
+  snackbar.id = "snackbar";
+
+  let text = document.createTextNode(message);
+  snackbar.appendChild(text);
+  snackbar.classList.add("show");
+  let app = document.getElementById("app");
+  app.appendChild(snackbar);
+  setTimeout(function () {
+    snackbar.classList.remove("show");
+  }, 3000);
+}
+
+function deleteArticle(articleId) {
+  console.log(articleId);
+  //9
+  fetch(baseUrl + articleId, {
+    method: "DELETE",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      const initialHash = window.location.hash;
+      window.location.hash = "#aa";
+      window.location.hash = initialHash;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+function cancelArticle() {
+  let newTitle = modal.querySelector("#newTitle");
+  let newTag = modal.querySelector("#newTag");
+  let newAuthor = modal.querySelector("#newAuthor");
+  let newDate = modal.querySelector("#newDate");
+  let newImg = modal.querySelector("#newImg");
+  let newQuote = modal.querySelector("#newQuote");
+  let newContent = modal.querySelector("#newContent");
+
+  newTitle.value = "";
+  newTag.value = "";
+  newAuthor.value = "";
+  newDate.value = "";
+  newImg.value = "";
+  newQuote.value = "";
+  newContent.value = "";
+
+  toggleClass();
+}
+
+function editArticle() {}
 
 function cleanup(parent) {
   while (parent.firstChild) {
@@ -519,7 +711,7 @@ function addModalControl() {
   modal = document.querySelector("#addModal");
 
   actionBtn.addEventListener("click", toggleClass);
-  cancelBtn.addEventListener("click", toggleClass);
+  cancelBtn.addEventListener("click", cancelArticle);
   saveBtn.addEventListener("click", saveArticle);
 }
 
@@ -586,6 +778,11 @@ class MyHashRouter {
       case "home":
         //generate homepage
         generateIndexPage();
+
+        //add mask for date input of modal
+        const inputDate = document.getElementById("newDate");
+        inputDate.maxLength = 10;
+        dateInputMask(inputDate);
 
         //switch for night mode
         addThemeControl();
