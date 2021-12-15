@@ -975,9 +975,9 @@ function loadNextArticles() {
     pageNumber * pageSize,
     pageNumber * pageSize + pageSize
   );
-  cleanup(app);
-  generateIndexPage(currentArticles);
-  window.scrollTo(0, 0);
+  const initialHash = window.location.hash;
+  window.location.hash = "#aa";
+  window.location.hash = initialHash;
 }
 function loadPreviousArticles() {
   if (pageNumber > 0) {
@@ -989,9 +989,9 @@ function loadPreviousArticles() {
     pageNumber * pageSize,
     pageNumber * pageSize + pageSize
   );
-  cleanup(app);
-  generateIndexPage(currentArticles);
-  window.scrollTo(0, 0);
+  const initialHash = window.location.hash;
+  window.location.hash = "#aa";
+  window.location.hash = initialHash;
 }
 
 //loading
@@ -1102,7 +1102,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((data) => {
       blogPosts = data;
       hideLoading();
-      console.log(pageNumber);
       currentArticles = blogPosts.slice(
         pageNumber * pageSize,
         pageNumber * pageSize + pageSize
