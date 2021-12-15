@@ -965,31 +965,33 @@ function addThemeControl() {
 }
 
 function loadNextArticles() {
-  let app = document.getElementById("app");
-  if (pageNumber >= 0) {
+  maxPageNumber = Math.round(blogPosts.length / pageSize);
+  if (pageNumber < maxPageNumber) {
     pageNumber++;
-    console.log(pageNumber);
-    console.log(currentArticles);
-    currentArticles = blogPosts.slice(
-      pageNumber * pageSize,
-      pageNumber * pageSize + pageSize
-    );
-    cleanup(app);
-    generateIndexPage(currentArticles);
-    window.scrollTo(0, 0);
+  } else {
+    pageNumber = maxPageNumber;
   }
+  currentArticles = blogPosts.slice(
+    pageNumber * pageSize,
+    pageNumber * pageSize + pageSize
+  );
+  cleanup(app);
+  generateIndexPage(currentArticles);
+  window.scrollTo(0, 0);
 }
 function loadPreviousArticles() {
-  if (pageNumber >= 0) {
+  if (pageNumber > 0) {
     pageNumber--;
-    currentArticles = blogPosts.slice(
-      pageNumber * pageSize,
-      pageNumber * pageSize + pageSize
-    );
-    cleanup(app);
-    generateIndexPage(currentArticles);
-    window.scrollTo(0, 0);
+  } else {
+    pageNumber = 0;
   }
+  currentArticles = blogPosts.slice(
+    pageNumber * pageSize,
+    pageNumber * pageSize + pageSize
+  );
+  cleanup(app);
+  generateIndexPage(currentArticles);
+  window.scrollTo(0, 0);
 }
 
 //loading
