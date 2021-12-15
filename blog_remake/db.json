@@ -121,11 +121,11 @@
       "linkReadMore": "#articles/scrg2917"
     },
     {
-      "title": "My new title article",
+      "title": "My new fancy title article",
       "infoList": [
-        "tag tag",
-        "author author ",
-        "11/11/1111"
+        "destination mexico",
+        "author author",
+        "December 15, 2021"
       ],
       "blogImg": {
         "src": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*",
@@ -134,21 +134,25 @@
       "quote": "a nice quote",
       "frontContent": [
         "aaaaaaaaaa",
-        "aaaaaaaaaa"
+        "bbbbbbbbbbb"
       ],
       "fullContent": [
         "aaaaaaaaaa",
-        "aaaaaaaaaa"
+        "bbbbbbbbbbb",
+        "ccccccccccc",
+        "dddddddddddddd",
+        "eeeeeeeeeeee",
+        "fffffffffffff"
       ],
-      "linkReadMore": "#articles/mnta1111",
+      "linkReadMore": "#articles/mnft1512",
       "id": 9
     },
     {
-      "title": "My new title article",
+      "title": "title",
       "infoList": [
-        "tag tag",
+        "destination europe",
         "author author",
-        "11/11/1111"
+        "December 15, 2021"
       ],
       "blogImg": {
         "src": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*",
@@ -156,24 +160,22 @@
       },
       "quote": "a nice quote",
       "frontContent": [
-        "aaaaaaaaa",
-        "bbbbbbbbbbbbbb",
-        "ccccccccccccc",
-        "dddddddddddd"
+        "aaaaaaaaaa",
+        "bbbbbbbbb"
       ],
       "fullContent": [
-        "aaaaaaaaa",
-        "bbbbbbbbbbbbbb"
+        "aaaaaaaaaa",
+        "bbbbbbbbb"
       ],
-      "linkReadMore": "#articles/mnta1111",
+      "linkReadMore": "#articles/titl1512",
       "id": 10
     },
     {
-      "title": "My new title article",
+      "title": "a beautiful title",
       "infoList": [
-        "tag tag",
+        "destination mexico",
         "author author",
-        "11/11/1111"
+        "December 15, 2021"
       ],
       "blogImg": {
         "src": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*",
@@ -181,15 +183,14 @@
       },
       "quote": "a nice quote",
       "frontContent": [
-        "AAAAAAAAAAAA",
-        "gggggggg"
+        "gggggggggg",
+        "tttttttttttt"
       ],
       "fullContent": [
-        "AAAAAAAAAAAA",
-        "gggggggg",
-        "fffffffffff"
+        "gggggggggg",
+        "tttttttttttt"
       ],
-      "linkReadMore": "#articles/mnta1111",
+      "linkReadMore": "#articles/aundefinedundefinedundefined1512",
       "id": 11
     }
   ]

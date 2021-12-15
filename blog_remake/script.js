@@ -57,6 +57,15 @@ let modal = null;
 let nextRoute = null;
 let previousRoute = null;
 
+//selected article id
+let selectedArticleId = 0;
+
+let isEditMode = false;
+
+let pageSize = 5;
+let pageNumber = 0;
+let currentArticles = [];
+
 //----------FUNCTIONS----------
 function generateNavbarItems(item) {
   //create list item
@@ -174,7 +183,7 @@ function generateArticle(item) {
     let btnText = document.createTextNode(btn);
     button.appendChild(btnText);
     if (btn === "Edit") {
-      button.onclick = () => editArticle();
+      button.onclick = () => editArticle(item.id);
     } else {
       button.onclick = () => deleteArticle(item.id);
     }
@@ -231,7 +240,7 @@ function generateArticleDetails(item) {
   infoContainer.classList.add("info__container");
 
   if (item.infoList.length !== 3) {
-    console.log("You must have 3 arguments. Check the source.");
+    generateSnackbar("You must have 3 arguments. Check the source.");
   } else {
     item.infoList.forEach((item, index) => {
       let infoContainerItem = document.createElement("li");
@@ -280,7 +289,12 @@ function generateFooter(footerButtons) {
     let button = document.createElement("button");
     button.type = "button";
     button.classList.add("footer__link");
-    if (item === "next") button.classList.add("footer__link--next");
+    if (item === "next") {
+      button.classList.add("footer__link--next");
+      button.addEventListener("click", loadNextArticles);
+    } else {
+      button.addEventListener("click", loadPreviousArticles);
+    }
     let btnText = document.createTextNode(item);
     button.appendChild(btnText);
     footer.appendChild(button);
@@ -344,8 +358,19 @@ function generateModal() {
   let btnTextSave = document.createTextNode("Save");
   btnSave.appendChild(btnTextSave);
 
+  let btnEdit = document.createElement("button");
+  btnEdit.type = "button";
+  btnEdit.id = "editBtn";
+  btnEdit.classList.add("button");
+  btnEdit.classList.add("button--pink");
+  let btnTextEdit = document.createTextNode("Save changes");
+  btnEdit.appendChild(btnTextEdit);
+  //set visibility to hidden
+  btnEdit.style.visibility = "hidden";
+
   modalButtons.appendChild(btnCancel);
   modalButtons.appendChild(btnSave);
+  modalButtons.appendChild(btnEdit);
 
   //add all the elements to the modal
   modalInputs.forEach((item) =>
@@ -432,7 +457,7 @@ function generateHomeButton() {
   return btnContainer;
 }
 
-function generateIndexPage() {
+function generateIndexPage(currentArticles) {
   let navbar = generateNavbarWhole();
   app.appendChild(navbar);
 
@@ -442,7 +467,7 @@ function generateIndexPage() {
   main.appendChild(modalSwitch);
 
   //link all article children to parent main
-  blogPosts.forEach((blogPost) => {
+  currentArticles.forEach((blogPost) => {
     let newBlogPost = generateArticle(blogPost);
     main.appendChild(newBlogPost);
   });
@@ -569,6 +594,8 @@ function saveArticle() {
     linkReadMore = "#articles/" + linkText + dateNumbers[0] + dateNumbers[1];
     console.log(linkReadMore);
 
+    date = parseDate(dateNumbers);
+
     //create an article object to put in request body
     let article = {
       title: title,
@@ -601,11 +628,77 @@ function saveArticle() {
         window.location.hash = initialHash;
       })
       .catch((error) => {
-        console.error("Error:", error);
+        generateSnackbar(error);
       });
   } else {
     generateSnackbar("please complete all fields");
   }
+}
+
+function parseDate(dateNumbers) {
+  let date = "";
+  console.log(dateNumbers);
+  let day = dateNumbers[0];
+  let month = dateNumbers[1];
+  let year = dateNumbers[2];
+
+  switch (month) {
+    case "01":
+      month = "January";
+      break;
+    case "02":
+      month = "February";
+      break;
+    case "03":
+      month = "March";
+      break;
+    case "04":
+      month = "April";
+      break;
+    case "05":
+      month = "May";
+      break;
+    case "06":
+      month = "June";
+      break;
+    case "07":
+      month = "July";
+      break;
+    case "08":
+      month = "August";
+      break;
+    case "09":
+      month = "September";
+      break;
+    case "10":
+      month = "November";
+      break;
+    case "11":
+      month = "November";
+      break;
+    case "12":
+      month = "December";
+      break;
+    default:
+      month = "N/A";
+      break;
+  }
+
+  console.log(month);
+  date = `${month} ${day}, ${year}`;
+  console.log(date);
+  return date;
+}
+
+function redoDate(dateString) {
+  let newDate = new Date(dateString);
+  let day = newDate.getDate().toString().padStart(2, "0");
+  let month = (newDate.getMonth() + 1).toString().padStart(2, "0");
+  let year = newDate.getFullYear();
+
+  let finalDate = `${day}/${month}/${year}`;
+
+  return finalDate;
 }
 
 function dateInputMask(elm) {
@@ -637,7 +730,6 @@ function dateInputMask(elm) {
 }
 
 function generateSnackbar(message) {
-  console.log("aaaaaa");
   let snackbar = document.createElement("div");
   snackbar.id = "snackbar";
 
@@ -687,10 +779,149 @@ function cancelArticle() {
   newQuote.value = "";
   newContent.value = "";
 
+  isEditMode = false;
+  console.log(isEditMode);
+  setBtnVisibility();
+
   toggleClass();
 }
 
-function editArticle() {}
+function setBtnVisibility() {
+  let editBtn = document.querySelector("#editBtn");
+  let saveBtn = document.querySelector("#saveBtn");
+  if (isEditMode) {
+    editBtn.style.display = "block";
+    editBtn.style.visibility = "visible";
+    saveBtn.style.visibility = "hidden";
+  } else {
+    editBtn.style.visibility = "hidden";
+    editBtn.style.display = "none";
+    saveBtn.style.visibility = "visible";
+  }
+}
+
+function editArticle(articleId) {
+  toggleClass();
+
+  isEditMode = true;
+  setBtnVisibility();
+
+  let foundArticle = blogPosts.find((item) => item.id === articleId);
+
+  let foundDate = redoDate(foundArticle.infoList[2]);
+
+  let newTitle = modal.querySelector("#newTitle");
+  let newTag = modal.querySelector("#newTag");
+  let newAuthor = modal.querySelector("#newAuthor");
+  let newDate = modal.querySelector("#newDate");
+  let newImg = modal.querySelector("#newImg");
+  let newQuote = modal.querySelector("#newQuote");
+  let newContent = modal.querySelector("#newContent");
+
+  selectedArticleId = articleId;
+
+  newTitle.value = foundArticle.title;
+  newTag.value = foundArticle.infoList[0];
+  newAuthor.value = foundArticle.infoList[1];
+  newDate.value = foundDate;
+  newImg.value = foundArticle.blogImg.src;
+  newQuote.value = foundArticle.quote;
+  newContent.value = foundArticle.fullContent.join("\r\n");
+}
+
+function saveEditedArticle() {
+  let newTitle = modal.querySelector("#newTitle");
+  let newTag = modal.querySelector("#newTag");
+  let newAuthor = modal.querySelector("#newAuthor");
+  let newDate = modal.querySelector("#newDate");
+  let newImg = modal.querySelector("#newImg");
+  let newQuote = modal.querySelector("#newQuote");
+  let newContent = modal.querySelector("#newContent");
+
+  if (
+    newTitle.value &&
+    newTag.value &&
+    newAuthor.value &&
+    newDate.value &&
+    newImg.value &&
+    newQuote.value &&
+    newContent.value
+  ) {
+    title = newTitle.value;
+    tag = newTag.value;
+    author = newAuthor.value;
+    date = newDate.value;
+    img = newImg.value;
+    quote = newQuote.value;
+    content = newContent.value;
+    let allContent = content.split(/\r?\n/);
+    let frontContent = null;
+    if (allContent.length < 2) {
+      generateSnackbar("Content must have at least two sentences");
+    } else {
+      frontContent = allContent.slice(0, 2);
+    }
+
+    let titleWords = title.split(" ");
+    let dateNumbers = date.split("/");
+    let linkText = "";
+    let linkReadMore = "";
+    if (titleWords.length < 4) {
+      let words = titleWords[0].split("");
+      linkText = (words[0] + words[1] + words[2] + words[3]).toLowerCase();
+    } else {
+      linkText = (
+        titleWords[0][0] +
+        titleWords[1][0] +
+        titleWords[2][0] +
+        titleWords[3][0]
+      ).toLowerCase();
+    }
+    //putting it all together
+    linkReadMore = "#articles/" + linkText + dateNumbers[0] + dateNumbers[1];
+    console.log(linkReadMore);
+
+    let article = {
+      title: title,
+      infoList: [tag, author, date],
+      blogImg: {
+        src: img,
+        alt: "alt",
+      },
+      quote: quote,
+      frontContent: frontContent,
+      fullContent: allContent,
+    };
+
+    fetch(baseUrl + selectedArticleId, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(article),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        generateSnackbar(`Article with title ${data.title} created`);
+        modal.classList.toggle("show-modal");
+        console.log("save edited article");
+
+        isEditMode = false;
+        setBtnVisibility();
+
+        const initialHash = window.location.hash;
+        window.location.hash = "#aa";
+        window.location.hash = initialHash;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  } else {
+    generateSnackbar("please complete all fields");
+  }
+}
 
 function cleanup(parent) {
   while (parent.firstChild) {
@@ -701,18 +932,22 @@ function cleanup(parent) {
 //modal control
 function toggleClass() {
   console.log(modal);
-  if (modal) modal.classList.toggle("show-modal");
+  if (modal) {
+    modal.classList.toggle("show-modal");
+  }
 }
 
 function addModalControl() {
   let actionBtn = document.querySelector("#addBtn");
   let saveBtn = document.querySelector("#saveBtn");
+  let editBtn = document.querySelector("#editBtn");
   let cancelBtn = document.querySelector("#cancelBtn");
   modal = document.querySelector("#addModal");
 
   actionBtn.addEventListener("click", toggleClass);
   cancelBtn.addEventListener("click", cancelArticle);
   saveBtn.addEventListener("click", saveArticle);
+  editBtn.addEventListener("click", saveEditedArticle);
 }
 
 function addThemeControl() {
@@ -726,6 +961,34 @@ function addThemeControl() {
     if (currentTheme === "dark") {
       toggleSwitch.checked = true;
     }
+  }
+}
+
+function loadNextArticles() {
+  let app = document.getElementById("app");
+  if (pageNumber >= 0) {
+    pageNumber++;
+    console.log(pageNumber);
+    console.log(currentArticles);
+    currentArticles = blogPosts.slice(
+      pageNumber * pageSize,
+      pageNumber * pageSize + pageSize
+    );
+    cleanup(app);
+    generateIndexPage(currentArticles);
+    window.scrollTo(0, 0);
+  }
+}
+function loadPreviousArticles() {
+  if (pageNumber >= 0) {
+    pageNumber--;
+    currentArticles = blogPosts.slice(
+      pageNumber * pageSize,
+      pageNumber * pageSize + pageSize
+    );
+    cleanup(app);
+    generateIndexPage(currentArticles);
+    window.scrollTo(0, 0);
   }
 }
 
@@ -766,7 +1029,8 @@ class MyHashRouter {
 
     cleanup(app);
 
-    let message = document.createElement("h1");
+    let message = document.createElement("h2");
+    message.classList.add("title");
 
     const regex = /articles\/[a-z]{4}[0-9]{4}/;
 
@@ -777,13 +1041,12 @@ class MyHashRouter {
         break;
       case "home":
         //generate homepage
-        generateIndexPage();
+        generateIndexPage(currentArticles);
 
         //add mask for date input of modal
         const inputDate = document.getElementById("newDate");
         inputDate.maxLength = 10;
         dateInputMask(inputDate);
-
         //switch for night mode
         addThemeControl();
 
@@ -837,6 +1100,11 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((data) => {
       blogPosts = data;
       hideLoading();
+      console.log(pageNumber);
+      currentArticles = blogPosts.slice(
+        pageNumber * pageSize,
+        pageNumber * pageSize + pageSize
+      );
       let myRouter = new MyHashRouter();
       const initialHash = window.location.hash;
       window.location.hash = "#aa";
