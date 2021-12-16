@@ -67,6 +67,10 @@ let pageNumber = 0;
 let currentArticles = [];
 
 //----------FUNCTIONS----------
+
+//
+//----------navbar----------
+//
 function generateNavbarItems(item) {
   //create list item
   let navItem = document.createElement("li");
@@ -102,6 +106,9 @@ function generateNavbarWhole() {
   return navTag;
 }
 
+//
+//----------article----------
+//
 function generateArticleContent(contentList, quote) {
   let contentContainer = document.createElement("div");
   contentContainer.classList.add("content__container");
@@ -148,7 +155,7 @@ function generateArticle(item) {
   infoContainer.classList.add("info__container");
 
   if (item.infoList.length !== 3) {
-    console.log("You must have 3 arguments. Check the source.");
+    generateSnackbar("You must have 3 arguments. Check the source.");
   } else {
     item.infoList.forEach((item, index) => {
       let infoContainerItem = document.createElement("li");
@@ -281,6 +288,9 @@ function generateArticleDetails(item) {
   return article;
 }
 
+//
+//----------footer----------
+//
 function generateFooter(footerButtons) {
   let footer = document.createElement("footer");
   footer.classList.add("footer");
@@ -302,6 +312,10 @@ function generateFooter(footerButtons) {
   return footer;
 }
 
+//
+//----------modal----------
+//
+//inputs for modal
 function generateInput(id, classCSS, type, placehoder) {
   let input = document.createElement("input");
   input.classList.add(classCSS);
@@ -311,6 +325,7 @@ function generateInput(id, classCSS, type, placehoder) {
   return input;
 }
 
+//modal as a whole
 function generateModal() {
   //create modal div
   let modalOverlay = document.createElement("div");
@@ -389,6 +404,7 @@ function generateModal() {
   return modalOverlay;
 }
 
+//create div with modal and theme triggers
 function generateModalSwitch() {
   let modalSwitch = document.createElement("div");
   modalSwitch.classList.add("add__container");
@@ -414,6 +430,47 @@ function generateModalSwitch() {
   return modalSwitch;
 }
 
+//add click events on the buttons for the modal
+function addModalControl() {
+  let actionBtn = document.querySelector("#addBtn");
+  let saveBtn = document.querySelector("#saveBtn");
+  let editBtn = document.querySelector("#editBtn");
+  let cancelBtn = document.querySelector("#cancelBtn");
+  modal = document.querySelector("#addModal");
+
+  actionBtn.addEventListener("click", toggleClass);
+  cancelBtn.addEventListener("click", cancelArticle);
+  saveBtn.addEventListener("click", saveArticle);
+  editBtn.addEventListener("click", saveEditedArticle);
+}
+
+//show/hide modal
+function toggleClass() {
+  if (modal) {
+    modal.classList.toggle("show-modal");
+  }
+}
+
+//change button visibility to show save button
+//or to hide edit button
+function setBtnVisibility() {
+  let editBtn = document.querySelector("#editBtn");
+  let saveBtn = document.querySelector("#saveBtn");
+  if (isEditMode) {
+    editBtn.style.display = "block";
+    editBtn.style.visibility = "visible";
+    saveBtn.style.visibility = "hidden";
+  } else {
+    editBtn.style.visibility = "hidden";
+    editBtn.style.display = "none";
+    saveBtn.style.visibility = "visible";
+  }
+}
+
+//
+//----------light/dark theme----------
+//
+//create the trigger for theme change
 function generateThemeSwitch() {
   let themeSwitch = document.createElement("div");
   themeSwitch.classList.add("theme-switch-wrapper");
@@ -438,6 +495,34 @@ function generateThemeSwitch() {
   return themeSwitch;
 }
 
+//add change listener to the theme control switch
+//and logic to change the theme
+function addThemeControl() {
+  const toggleSwitch = document.querySelector(
+    '.theme-switch input[type="checkbox"]'
+  );
+  toggleSwitch.addEventListener("change", switchTheme, false);
+  if (currentTheme) {
+    document.documentElement.setAttribute("data-theme", currentTheme);
+
+    if (currentTheme === "dark") {
+      toggleSwitch.checked = true;
+    }
+  }
+}
+
+//function to actually change the html attribute from
+//light to dark and vice-versa
+function switchTheme(e) {
+  if (e.target.checked) {
+    document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark"); //add this
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light"); //add this
+  }
+}
+
 function generateHomeButton() {
   let btnContainer = document.createElement("div");
   btnContainer.classList.add("add__container");
@@ -457,6 +542,9 @@ function generateHomeButton() {
   return btnContainer;
 }
 
+//
+//----------main pages----------
+//
 function generateIndexPage(currentArticles) {
   let navbar = generateNavbarWhole();
   app.appendChild(navbar);
@@ -478,11 +566,52 @@ function generateIndexPage(currentArticles) {
 
   let modal = generateModal();
   app.appendChild(modal);
+
+  //set the number of pages to fit all articles
+  maxPageNumber = Math.round(blogPosts.length / pageSize);
+  setBtnVisibility();
+}
+
+//handle navigation on main page
+function loadNextArticles() {
+  console.log("load next articles");
+  console.log(currentArticles.length);
+  console.log(currentArticles);
+  console.log(pageNumber);
+
+  if (pageNumber < maxPageNumber) {
+    pageNumber++;
+  } else {
+    pageNumber = maxPageNumber;
+  }
+  currentArticles = blogPosts.slice(
+    pageNumber * pageSize,
+    pageNumber * pageSize + pageSize
+  );
+  const initialHash = window.location.hash;
+  window.location.hash = "#aa";
+  window.location.hash = initialHash;
+}
+
+function loadPreviousArticles() {
+  if (pageNumber > 0) {
+    pageNumber--;
+  } else {
+    pageNumber = 0;
+  }
+  currentArticles = blogPosts.slice(
+    pageNumber * pageSize,
+    pageNumber * pageSize + pageSize
+  );
+  const initialHash = window.location.hash;
+  window.location.hash = "#aa";
+  window.location.hash = initialHash;
 }
 
 function generateDetailsPage(article, currentIndex) {
   let navbar = generateNavbarWhole();
   app.appendChild(navbar);
+
   let main = document.createElement("main");
 
   let homeBtn = generateHomeButton();
@@ -517,6 +646,7 @@ function generateDetailsPage(article, currentIndex) {
   app.appendChild(footer);
 }
 
+//handle navigation on details page
 function changeRouteNext() {
   window.location.hash = nextRoute;
 }
@@ -525,16 +655,9 @@ function changeRoutePrev() {
   window.location.hash = previousRoute;
 }
 
-function switchTheme(e) {
-  if (e.target.checked) {
-    document.documentElement.setAttribute("data-theme", "dark");
-    localStorage.setItem("theme", "dark"); //add this
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-    localStorage.setItem("theme", "light"); //add this
-  }
-}
-
+//
+//----------operations----------
+//
 function saveArticle() {
   let newTitle = modal.querySelector("#newTitle");
   let newTag = modal.querySelector("#newTag");
@@ -569,234 +692,71 @@ function saveArticle() {
     let frontContent = null;
     if (allContent.length < 2) {
       generateSnackbar("Content must have at least two sentences");
+      frontContent = fullContent;
     } else {
       frontContent = allContent.slice(0, 2);
-    }
-
-    //form the readmore link for the new article
-    //link read more: initials of the 4 words + day + year
-    let titleWords = title.split(" ");
-    let dateNumbers = date.split("/");
-    let linkText = "";
-    let linkReadMore = "";
-    if (titleWords.length < 4) {
-      let words = titleWords[0].split("");
-      linkText = (words[0] + words[1] + words[2] + words[3]).toLowerCase();
-    } else {
-      linkText = (
-        titleWords[0][0] +
-        titleWords[1][0] +
-        titleWords[2][0] +
-        titleWords[3][0]
-      ).toLowerCase();
-    }
-    //putting it all together
-    linkReadMore = "#articles/" + linkText + dateNumbers[0] + dateNumbers[1];
-    console.log(linkReadMore);
-
-    date = parseDate(dateNumbers);
-
-    //create an article object to put in request body
-    let article = {
-      title: title,
-      infoList: [tag, author, date],
-      blogImg: {
-        src: img,
-        alt: "alt",
-      },
-      quote: quote,
-      frontContent: frontContent,
-      fullContent: allContent,
-      linkReadMore: linkReadMore,
-    };
-
-    fetch(baseUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(article),
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        generateSnackbar(`New article with title ${data.title} created`);
-        modal.classList.toggle("show-modal");
-        const initialHash = window.location.hash;
-        window.location.hash = "#aa";
-        window.location.hash = initialHash;
-      })
-      .catch((error) => {
-        generateSnackbar(error);
-      });
-  } else {
-    generateSnackbar("please complete all fields");
-  }
-}
-
-function parseDate(dateNumbers) {
-  let date = "";
-  console.log(dateNumbers);
-  let day = dateNumbers[0];
-  let month = dateNumbers[1];
-  let year = dateNumbers[2];
-
-  switch (month) {
-    case "01":
-      month = "January";
-      break;
-    case "02":
-      month = "February";
-      break;
-    case "03":
-      month = "March";
-      break;
-    case "04":
-      month = "April";
-      break;
-    case "05":
-      month = "May";
-      break;
-    case "06":
-      month = "June";
-      break;
-    case "07":
-      month = "July";
-      break;
-    case "08":
-      month = "August";
-      break;
-    case "09":
-      month = "September";
-      break;
-    case "10":
-      month = "November";
-      break;
-    case "11":
-      month = "November";
-      break;
-    case "12":
-      month = "December";
-      break;
-    default:
-      month = "N/A";
-      break;
-  }
-
-  console.log(month);
-  date = `${month} ${day}, ${year}`;
-  console.log(date);
-  return date;
-}
-
-function redoDate(dateString) {
-  let newDate = new Date(dateString);
-  let day = newDate.getDate().toString().padStart(2, "0");
-  let month = (newDate.getMonth() + 1).toString().padStart(2, "0");
-  let year = newDate.getFullYear();
-
-  let finalDate = `${day}/${month}/${year}`;
-
-  return finalDate;
-}
-
-function dateInputMask(elm) {
-  elm.addEventListener("keypress", function (e) {
-    if (e.keyCode < 47 || e.keyCode > 57) {
-      e.preventDefault();
-    }
-
-    var len = elm.value.length;
-
-    // If we're at a particular place, let the user type the slash
-    // i.e., 12/12/1212
-    if (len !== 1 || len !== 3) {
-      if (e.keyCode == 47) {
-        e.preventDefault();
+      //form the readmore link for the new article
+      //link read more: initials of the 4 words + day + year
+      let titleWords = title.split(" ");
+      let dateNumbers = date.split("/");
+      let linkText = "";
+      let linkReadMore = "";
+      if (titleWords.length < 4) {
+        let words = titleWords[0].split("");
+        linkText = (words[0] + words[1] + words[2] + words[3]).toLowerCase();
+      } else {
+        linkText = (
+          titleWords[0][0] +
+          titleWords[1][0] +
+          titleWords[2][0] +
+          titleWords[3][0]
+        ).toLowerCase();
       }
+      //putting it all together
+      linkReadMore = "#articles/" + linkText + dateNumbers[0] + dateNumbers[1];
+
+      date = parseDate(dateNumbers);
+
+      //create an article object to put in request body
+      let article = {
+        title: title,
+        infoList: [tag, author, date],
+        blogImg: {
+          src: img,
+          alt: "alt",
+        },
+        quote: quote,
+        frontContent: frontContent,
+        fullContent: allContent,
+        linkReadMore: linkReadMore,
+      };
+
+      fetch(baseUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(article),
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          generateSnackbar(`New article with title ${data.title} created`);
+          modal.classList.toggle("show-modal");
+          setTimeout(function () {
+            const initialHash = window.location.hash;
+            window.location.hash = "#aa";
+            window.location.hash = initialHash;
+          }, 4000);
+        })
+        .catch((error) => {
+          console.log(error);
+          generateSnackbar(error);
+        });
     }
-
-    // If they don't add the slash, do it for them...
-    if (len === 2) {
-      elm.value += "/";
-    }
-
-    // If they don't add the slash, do it for them...
-    if (len === 5) {
-      elm.value += "/";
-    }
-  });
-}
-
-function generateSnackbar(message) {
-  let snackbar = document.createElement("div");
-  snackbar.id = "snackbar";
-
-  let text = document.createTextNode(message);
-  snackbar.appendChild(text);
-  snackbar.classList.add("show");
-  let app = document.getElementById("app");
-  app.appendChild(snackbar);
-  setTimeout(function () {
-    snackbar.classList.remove("show");
-  }, 3000);
-}
-
-function deleteArticle(articleId) {
-  console.log(articleId);
-  //9
-  fetch(baseUrl + articleId, {
-    method: "DELETE",
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      const initialHash = window.location.hash;
-      window.location.hash = "#aa";
-      window.location.hash = initialHash;
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
-
-function cancelArticle() {
-  let newTitle = modal.querySelector("#newTitle");
-  let newTag = modal.querySelector("#newTag");
-  let newAuthor = modal.querySelector("#newAuthor");
-  let newDate = modal.querySelector("#newDate");
-  let newImg = modal.querySelector("#newImg");
-  let newQuote = modal.querySelector("#newQuote");
-  let newContent = modal.querySelector("#newContent");
-
-  newTitle.value = "";
-  newTag.value = "";
-  newAuthor.value = "";
-  newDate.value = "";
-  newImg.value = "";
-  newQuote.value = "";
-  newContent.value = "";
-
-  isEditMode = false;
-  console.log(isEditMode);
-  setBtnVisibility();
-
-  toggleClass();
-}
-
-function setBtnVisibility() {
-  let editBtn = document.querySelector("#editBtn");
-  let saveBtn = document.querySelector("#saveBtn");
-  if (isEditMode) {
-    editBtn.style.display = "block";
-    editBtn.style.visibility = "visible";
-    saveBtn.style.visibility = "hidden";
   } else {
-    editBtn.style.visibility = "hidden";
-    editBtn.style.display = "none";
-    saveBtn.style.visibility = "visible";
+    generateSnackbar("Please complete all fields");
   }
 }
 
@@ -858,142 +818,120 @@ function saveEditedArticle() {
     let frontContent = null;
     if (allContent.length < 2) {
       generateSnackbar("Content must have at least two sentences");
+      frontContent = fullContent;
     } else {
       frontContent = allContent.slice(0, 2);
-    }
+      let titleWords = title.split(" ");
+      let dateNumbers = date.split("/");
+      let linkText = "";
+      let linkReadMore = "";
+      if (titleWords.length < 4) {
+        let words = titleWords[0].split("");
+        linkText = (words[0] + words[1] + words[2] + words[3]).toLowerCase();
+      } else {
+        linkText = (
+          titleWords[0][0] +
+          titleWords[1][0] +
+          titleWords[2][0] +
+          titleWords[3][0]
+        ).toLowerCase();
+      }
+      //putting it all together
+      linkReadMore = "#articles/" + linkText + dateNumbers[0] + dateNumbers[1];
 
-    let titleWords = title.split(" ");
-    let dateNumbers = date.split("/");
-    let linkText = "";
-    let linkReadMore = "";
-    if (titleWords.length < 4) {
-      let words = titleWords[0].split("");
-      linkText = (words[0] + words[1] + words[2] + words[3]).toLowerCase();
-    } else {
-      linkText = (
-        titleWords[0][0] +
-        titleWords[1][0] +
-        titleWords[2][0] +
-        titleWords[3][0]
-      ).toLowerCase();
-    }
-    //putting it all together
-    linkReadMore = "#articles/" + linkText + dateNumbers[0] + dateNumbers[1];
-    console.log(linkReadMore);
+      let article = {
+        title: title,
+        infoList: [tag, author, date],
+        blogImg: {
+          src: img,
+          alt: "alt",
+        },
+        quote: quote,
+        frontContent: frontContent,
+        fullContent: allContent,
+      };
 
-    let article = {
-      title: title,
-      infoList: [tag, author, date],
-      blogImg: {
-        src: img,
-        alt: "alt",
-      },
-      quote: quote,
-      frontContent: frontContent,
-      fullContent: allContent,
-    };
-
-    fetch(baseUrl + selectedArticleId, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(article),
-    })
-      .then((response) => {
-        return response.json();
+      fetch(baseUrl + selectedArticleId, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(article),
       })
-      .then((data) => {
-        generateSnackbar(`Article with title ${data.title} created`);
-        modal.classList.toggle("show-modal");
-        console.log("save edited article");
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          generateSnackbar(`Article with title ${data.title} created`);
 
-        isEditMode = false;
-        setBtnVisibility();
+          setTimeout(function () {
+            modal.classList.toggle("show-modal");
 
-        const initialHash = window.location.hash;
-        window.location.hash = "#aa";
-        window.location.hash = initialHash;
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+            isEditMode = false;
+            setBtnVisibility();
+
+            const initialHash = window.location.hash;
+            window.location.hash = "#aa";
+            window.location.hash = initialHash;
+          }, 3000);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
   } else {
     generateSnackbar("please complete all fields");
   }
 }
 
-function cleanup(parent) {
-  while (parent.firstChild) {
-    parent.removeChild(parent.firstChild);
-  }
+function deleteArticle(articleId) {
+  //9
+  fetch(baseUrl + articleId, {
+    method: "DELETE",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      generateSnackbar(`Article deleted`);
+
+      setTimeout(function () {
+        const initialHash = window.location.hash;
+        window.location.hash = "#aa";
+        window.location.hash = initialHash;
+      }, 4000);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
 
-//modal control
-function toggleClass() {
-  console.log(modal);
-  if (modal) {
-    modal.classList.toggle("show-modal");
-  }
+function cancelArticle() {
+  let newTitle = modal.querySelector("#newTitle");
+  let newTag = modal.querySelector("#newTag");
+  let newAuthor = modal.querySelector("#newAuthor");
+  let newDate = modal.querySelector("#newDate");
+  let newImg = modal.querySelector("#newImg");
+  let newQuote = modal.querySelector("#newQuote");
+  let newContent = modal.querySelector("#newContent");
+
+  newTitle.value = "";
+  newTag.value = "";
+  newAuthor.value = "";
+  newDate.value = "";
+  newImg.value = "";
+  newQuote.value = "";
+  newContent.value = "";
+
+  isEditMode = false;
+  setBtnVisibility();
+
+  toggleClass();
 }
 
-function addModalControl() {
-  let actionBtn = document.querySelector("#addBtn");
-  let saveBtn = document.querySelector("#saveBtn");
-  let editBtn = document.querySelector("#editBtn");
-  let cancelBtn = document.querySelector("#cancelBtn");
-  modal = document.querySelector("#addModal");
-
-  actionBtn.addEventListener("click", toggleClass);
-  cancelBtn.addEventListener("click", cancelArticle);
-  saveBtn.addEventListener("click", saveArticle);
-  editBtn.addEventListener("click", saveEditedArticle);
-}
-
-function addThemeControl() {
-  const toggleSwitch = document.querySelector(
-    '.theme-switch input[type="checkbox"]'
-  );
-  toggleSwitch.addEventListener("change", switchTheme, false);
-  if (currentTheme) {
-    document.documentElement.setAttribute("data-theme", currentTheme);
-
-    if (currentTheme === "dark") {
-      toggleSwitch.checked = true;
-    }
-  }
-}
-
-function loadNextArticles() {
-  maxPageNumber = Math.round(blogPosts.length / pageSize);
-  if (pageNumber < maxPageNumber) {
-    pageNumber++;
-  } else {
-    pageNumber = maxPageNumber;
-  }
-  currentArticles = blogPosts.slice(
-    pageNumber * pageSize,
-    pageNumber * pageSize + pageSize
-  );
-  const initialHash = window.location.hash;
-  window.location.hash = "#aa";
-  window.location.hash = initialHash;
-}
-function loadPreviousArticles() {
-  if (pageNumber > 0) {
-    pageNumber--;
-  } else {
-    pageNumber = 0;
-  }
-  currentArticles = blogPosts.slice(
-    pageNumber * pageSize,
-    pageNumber * pageSize + pageSize
-  );
-  const initialHash = window.location.hash;
-  window.location.hash = "#aa";
-  window.location.hash = initialHash;
-}
-
+//
+//----------utils----------
+//
 //loading
 function showLoading() {
   let loading = document.createElement("div");
@@ -1007,6 +945,123 @@ function showLoading() {
 function hideLoading() {
   let container = document.getElementById("loadingContainer");
   if (container) container.remove();
+}
+//cleanup before each load
+function cleanup(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
+//element to show messages to user
+function generateSnackbar(message) {
+  let snackbar = document.createElement("div");
+  snackbar.id = "snackbar";
+
+  let text = document.createTextNode(message);
+  snackbar.appendChild(text);
+  snackbar.classList.add("show");
+  let app = document.getElementById("app");
+  app.appendChild(snackbar);
+  setTimeout(function () {
+    snackbar.classList.remove("show");
+  }, 3000);
+}
+
+//get date from add new article modal and parse in
+//in the expected format
+function parseDate(dateNumbers) {
+  let date = "";
+
+  let day = dateNumbers[0];
+  let month = dateNumbers[1];
+  let year = dateNumbers[2];
+
+  switch (month) {
+    case "01":
+      month = "January";
+      break;
+    case "02":
+      month = "February";
+      break;
+    case "03":
+      month = "March";
+      break;
+    case "04":
+      month = "April";
+      break;
+    case "05":
+      month = "May";
+      break;
+    case "06":
+      month = "June";
+      break;
+    case "07":
+      month = "July";
+      break;
+    case "08":
+      month = "August";
+      break;
+    case "09":
+      month = "September";
+      break;
+    case "10":
+      month = "November";
+      break;
+    case "11":
+      month = "November";
+      break;
+    case "12":
+      month = "December";
+      break;
+    default:
+      month = "N/A";
+      break;
+  }
+
+  date = `${month} ${day}, ${year}`;
+
+  return date;
+}
+
+//format date to match DD/MM/YYYY
+function redoDate(dateString) {
+  let newDate = new Date(dateString);
+  let day = newDate.getDate().toString().padStart(2, "0");
+  let month = (newDate.getMonth() + 1).toString().padStart(2, "0");
+  let year = newDate.getFullYear();
+
+  let finalDate = `${day}/${month}/${year}`;
+
+  return finalDate;
+}
+
+//mask input to match DD/MM/YYYY
+function dateInputMask(item) {
+  item.addEventListener("keypress", function (event) {
+    if (event.keyCode < 47 || event.keyCode > 57) {
+      event.preventDefault();
+    }
+
+    var len = item.value.length;
+
+    // If we're at a particular place, let the user type the slash
+    // i.e., 12/12/1212
+    if (len !== 1 || len !== 3) {
+      if (event.keyCode == 47) {
+        event.preventDefault();
+      }
+    }
+
+    // If they don't add the slash, do it for them...
+    if (len === 2) {
+      item.value += "/";
+    }
+
+    // If they don't add the slash, do it for them...
+    if (len === 5) {
+      item.value += "/";
+    }
+  });
 }
 
 const currentTheme = localStorage.getItem("theme")
@@ -1049,11 +1104,15 @@ class MyHashRouter {
         const inputDate = document.getElementById("newDate");
         inputDate.maxLength = 10;
         dateInputMask(inputDate);
+
         //switch for night mode
         addThemeControl();
 
         //modal control
         addModalControl();
+
+        //return to top after changing to next page
+        window.scrollTo(0, 0);
         break;
 
       //cgte0118
