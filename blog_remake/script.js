@@ -1125,8 +1125,14 @@ class MyHashRouter {
         let foundArticleIndex = blogPosts.findIndex(
           (item) => item.linkReadMore === articleId
         );
-        generateDetailsPage(foundArticle, foundArticleIndex);
-        window.scrollTo(0, 0);
+        if (foundArticle) {
+          generateDetailsPage(foundArticle, foundArticleIndex);
+          window.scrollTo(0, 0);
+        } else {
+          message.innerText = "Not found";
+          app.appendChild(message);
+        }
+
         break;
       case "updates":
         message.innerText = "Updates page";
