@@ -899,7 +899,7 @@ function deleteArticle(articleId) {
         const initialHash = window.location.hash;
         window.location.hash = "#aa";
         window.location.hash = initialHash;
-      }, 4000);
+      }, 10000);
     })
     .catch((error) => {
       console.error("Error:", error);
