@@ -10,7 +10,7 @@
     {
       "id": 2,
       "email": "maria@maria.com",
-      "username": "maria",
+      "username": "ma",
       "password": "maria",
       "isAdmin": false
     },
@@ -33,6 +33,20 @@
       "email": "test",
       "password": "test",
       "username": "test",
+      "isAdmin": false
+    },
+    {
+      "id": 7,
+      "email": "myaaa@aaa.com",
+      "password": "aaaa",
+      "username": "myaaa",
+      "isAdmin": false
+    },
+    {
+      "id": 7,
+      "email": "aaa@aa.com",
+      "password": "aaaa",
+      "username": "aa",
       "isAdmin": false
     },
     {

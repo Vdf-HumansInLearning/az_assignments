@@ -7,20 +7,239 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %> page</p>
 
-    <ol class="list-group list-group-numbered">
-      <% for(var i=0; i < users.length; i++) {%>
-
-      <li
-        class="list-group-item d-flex justify-content-between align-items-start"
+    <div>
+      <button
+        onclick="addUser()"
+        class="btn btn-outline-primary"
+        role="button"
+        data-bs-toggle="modal"
+        data-bs-target="#addUser"
       >
-        <div class="ms-2 me-auto">
-          <div class="fw-bold"><%= users[i].email %></div>
-          <%= users[i].username %>
+        Add user
+      </button>
+
+      <div
+        class="modal fade modal-add"
+        id="addUser"
+        tabindex="-1"
+        aria-labelledby="addUserLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content border-primary">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title" id="addUserLabel">Create a new user</h5>
+            </div>
+            <div class="modal-body">
+              Please complete the fields
+
+              <div class="ms-2 me-auto mt-4">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="input-email">Email</span>
+                  <input
+                    id="email"
+                    type="email"
+                    class="form-control"
+                    aria-label="Email input"
+                    aria-describedby="input-email"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="input-username"
+                    >Username</span
+                  >
+                  <input
+                    id="username"
+                    type="text"
+                    class="form-control"
+                    aria-label="Username input"
+                    aria-describedby="input-username"
+                  />
+                </div>
+              </div>
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button
+                onclick="cancelEdit()"
+                type="button"
+                class="btn btn-outline-info"
+                data-bs-dismiss="modal"
+              >
+                <i class="fas fa-times"></i> Cancel
+              </button>
+              <button
+                onclick="confirmEdit()"
+                type="button"
+                class="btn btn-success"
+              >
+                <i class="fas fa-check"></i>
+
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ol class="list-group list-group-numbered">
+      <% for(var i=0; i < users.length; i++) {%> <% var itemId = `item${i}` %>
+      <li id="<%= itemId %>" class="list-group-item">
+        <div
+          id="viewUser"
+          class="d-flex justify-content-between align-items-start"
+        >
+          <div class="ms-2 me-auto">
+            <div class="fw-bold"><%= users[i].email %></div>
+            <%= users[i].username %>
+          </div>
+
+          <div>
+            <button
+              id="editUserBtn"
+              onclick="editUser({id: <%= itemId %>, user:<%= JSON.stringify(users[i]) %>})"
+              class="btn btn-outline-info"
+              role="button"
+            >
+              <i class="far fa-edit"></i>
+              Edit
+            </button>
+            <button
+              onclick="deleteUser(<%= JSON.stringify(users[i]) %>)"
+              data-bs-toggle="modal"
+              data-bs-target="#confirmDelete"
+              class="btn btn-outline-danger"
+              role="button"
+            >
+              <i class="far fa-trash-alt"></i>
+              Delete
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="editUser"
+          class="d-flex justify-content-between align-items-start edit-user"
+        >
+          <div class="ms-2 me-auto requires-validation" novalidate>
+            <div id="email-container" class="input-group mb-3">
+              <span class="input-group-text" id="input-email">Email</span>
+              <input
+                id="email"
+                type="email"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="input-email"
+                required
+              />
+              <div class="invalid-feedback"></div>
+            </div>
+            <div id="username-container" class="input-group mb-3">
+              <span class="input-group-text" id="input-username">Username</span>
+              <input
+                id="username"
+                type="text"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="input-username"
+                required
+              />
+              <div class="invalid-feedback"></div>
+            </div>
+          </div>
+
+          <div>
+            <button
+              onclick="cancelEdit()"
+              class="btn btn-outline-dark"
+              role="button"
+            >
+              <i class="fas fa-times"></i> Cancel
+            </button>
+            <button
+              onclick="updateUser()"
+              class="btn btn-success"
+              role="button"
+            >
+              <i class="fas fa-check"></i>
+              Save
+            </button>
+          </div>
         </div>
       </li>
 
       <% } %>
     </ol>
-    <%- include('./partials/_scripts'); %>
+
+    <div
+      class="modal fade"
+      id="confirmDelete"
+      tabindex="-1"
+      aria-labelledby="confirmDeleteLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content border-danger">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="confirmDeleteLabel">Delete user</h5>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this user?
+          </div>
+          <div class="modal-footer">
+            <button
+              onclick="confirmDelete()"
+              type="button"
+              class="btn btn-danger"
+            >
+              Delete
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="
+        toast-container
+        position-absolute
+        p-3
+        top-50
+        start-50
+        translate-middle
+      "
+      id="toastPlacement"
+      data-original-class="toast-container position-absolute p-3"
+    >
+      <div
+        id="liveToast"
+        class="toast fade bg-danger text-white border-0"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        data-bs-autohide="false"
+      >
+        <div class="toast-header">
+          <strong class="me-auto">Error</strong>
+        </div>
+        <div class="toast-body"></div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script src="javascripts/users.js"></script>
   </body>
 </html>

@@ -10,15 +10,7 @@ loginForm.addEventListener("submit", function (event) {
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   //validate input
 
-  if (!email) {
-    let errorContainer = document.querySelector(".email");
-    errorContainer.style.display = "inherit";
-    errorContainer.innerText = "This field is empty.";
-  } else if (!password) {
-    let errorContainer = document.querySelector(".password");
-    errorContainer.style.display = "inherit";
-    errorContainer.innerText = "This field is empty.";
-  } else if (!regexEmail.test(email)) {
+  if (!regexEmail.test(email)) {
     let errorContainer = document.querySelector(".email");
     errorContainer.style.display = "inherit";
     errorContainer.innerText = "Email not correct.";

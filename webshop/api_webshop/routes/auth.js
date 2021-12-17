@@ -27,13 +27,13 @@ router.post("/login", (req, res) => {
       if (foundUser) {
         res.status(200).send(user);
       } else {
-        res.status(403).send({ message: "No user found" });
+        res.status(404).send({ message: "No user found" });
       }
     } else {
       res.status(403).send({ message: result.message });
     }
   } else {
-    res.status(403).send({ message: "Please provide username or password" });
+    res.status(400).send({ message: "Please provide email or password" });
   }
 });
 
@@ -41,6 +41,7 @@ router.post("/login", (req, res) => {
 router.post("/register", (req, res) => {
   //verify if necessary fields are present
   if (req.body.email && req.body.password && req.body.username) {
+    //a user needs to be made admin by another admin
     let user = {
       id: userList[userList.length - 1].id + 1,
       email: req.body.email,
@@ -59,7 +60,7 @@ router.post("/register", (req, res) => {
         json,
         function (err) {
           if (err) throw err;
-          res.status(201).send(user);
+          res.status(201).send({ email: user.email });
         }
       );
     } else {
