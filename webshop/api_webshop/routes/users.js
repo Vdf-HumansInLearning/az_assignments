@@ -55,7 +55,9 @@ router.post("/users", (req, res) => {
         json,
         function (err) {
           if (err) throw err;
-          res.status(201).send(`User with name ${user.username} created`);
+          res
+            .status(201)
+            .send({ message: `User with name ${user.username} created` });
         }
       );
     } else {
@@ -78,13 +80,18 @@ router.delete("/users/:id", (req, res) => {
       let removed = userList.splice(userIndex, 1);
       console.log(removed);
       let json = JSON.stringify(users, null, 2);
+
       fs.writeFile(
         path.resolve(__dirname, "../users.json"),
         json,
         function (err) {
-          if (err) throw err;
+          if (err) {
+            res.status(400).send(err);
+          }
           {
-            res.status(200).send(`User with email ${removed[0].email} deleted`);
+            res
+              .status(200)
+              .send({ message: `User with email ${removed[0].email} deleted` });
           }
         }
       );

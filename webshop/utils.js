@@ -54,13 +54,8 @@ module.exports = {
   },
   //name, brand, operating_system, price, discount, quantity,
   //availability_date, rating
-  //multiple functions that verify one thing and larger functions
-  //that call them
-  validateString: function (item) {},
-  //name between 1-30 characters
-  //
   validateProduct: function (product) {
-    let regexLetters = /^[a-zA-Z]+$/;
+    let regexLetters = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/;
     let isValid = false;
     if (
       product.name.match(regexLetters) &&
@@ -74,11 +69,73 @@ module.exports = {
       product.discount >= 0 &&
       product.discount <= 100 &&
       product.quantity > 0 &&
-      product.rating >= 0 &&
+      product.rating >= -1 &&
       product.rating <= 5
     )
       isValid = true;
     else isValid = false;
+    return isValid;
+  },
+  validateExistingProduct: function (product) {
+    let regexLetters = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/;
+    let validationObj = {
+      isValidName: false,
+      isValidBrand: false,
+      isValidOs: false,
+      isValidPrice: false,
+      isValidQuantity: false,
+      isValidDiscount: false,
+      isValidRating: false,
+    };
+    switch (product) {
+      case product.name:
+        if (
+          product.name.match(regexLetters) &&
+          product.name.length >= 1 &&
+          product.name.length <= 30
+        ) {
+          validationObj.isValidName = true;
+        }
+        break;
+      case product.brand:
+        if (
+          product.brand.match(regexLetters) &&
+          product.brand.length >= 1 &&
+          product.brand.length <= 30
+        ) {
+          validationObj.isValidBrand = true;
+        }
+        break;
+      case product.operating_system:
+        if (product.operating_system.match(regexLetters)) {
+          validationObj.isValidOs = true;
+        }
+        break;
+      case product.price:
+        if (product.price > 0) {
+          validationObj.isValidPrice = true;
+        }
+        break;
+      case product.quantity:
+        if (product.quantity > 0) {
+          validationObj.isValidQuantity = true;
+        }
+        break;
+      case product.discount:
+        if (product.discount >= 0 && product.discount <= 100) {
+          validationObj.isValidDiscount = true;
+        }
+        break;
+      case product.rating:
+        if (product.rating >= -1 && product.rating <= 5) {
+          validationObj.isValidRating = true;
+        }
+        break;
+    }
+
+    const validationArr = Object.values(validationObj);
+    let isValid = validationArr.every((item) => item === true);
+
     return isValid;
   },
 };

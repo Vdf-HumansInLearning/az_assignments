@@ -87,6 +87,17 @@
       "quantity": 0,
       "availability_date": "2999-10-25",
       "rating": -1
+    },
+    {
+      "id": 8,
+      "name": "my Phone test",
+      "brand": "my Brand",
+      "operating_system": "iOS",
+      "price": 14,
+      "discount": 0,
+      "quantity": 14,
+      "availability_date": "1/1/1111",
+      "rating": -1
     }
   ],
   "standard_delivery_fee": 35,
