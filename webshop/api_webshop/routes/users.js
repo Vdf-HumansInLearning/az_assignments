@@ -108,6 +108,7 @@ router.put("/users/:id", (req, res) => {
     res.status(400).send({ message: "Bad request" });
   } else {
     let foundIndex = userList.findIndex((item) => item.id === userId);
+    console.log(userId);
     if (foundIndex !== -1) {
       const { email, password, username, isAdmin } = req.body;
       userList[foundIndex].email = email ? email : userList[foundIndex].email;

@@ -140,18 +140,13 @@ function updateUser() {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         cancelEdit();
-        let liveToast = document.getElementById("liveToast");
-        let toastBody = document.querySelector("#liveToast .toast-body");
-        let text = document.createTextNode(data.message);
-        toastBody.appendChild(text);
-        let toast = new bootstrap.Toast(liveToast);
-        toast.show();
+        let titleMessage = "User edited with success";
+        let bodyMessage = data.message;
+        showToast(titleMessage, bodyMessage, true);
         setTimeout(() => {
           location.reload();
         }, 5000);
-        //location.reload();
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -203,15 +198,12 @@ function confirmDelete() {
     })
     .then((data) => {
       console.log(data);
-      location.reload();
-
-      let liveToast = document.getElementById("liveToast");
-      let toastBody = document.querySelector("#liveToast .toast-body");
-      let text = document.createTextNode(data.message);
-      toastBody.appendChild(text);
-      let toast = new bootstrap.Toast(liveToast);
-      toast.show();
-      console.log(liveToast);
+      let titleMessage = "User deleted with success";
+      let bodyMessage = data.message;
+      showToast(titleMessage, bodyMessage, false);
+      setTimeout(() => {
+        location.reload();
+      }, 5000);
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -220,4 +212,68 @@ function confirmDelete() {
 
 function addUser() {
   console.log("add user");
+}
+
+function generateToastError(titleMessage, bodyMessage) {
+  //create toast container
+  let toastContainer = document.createElement("div");
+  toastContainer.className =
+    "toast-container position-absolute p-3 top-50 start-50 translate-middle";
+  toastContainer.setAttribute(
+    "data-original-class",
+    "toast-container position-absolute p-3"
+  );
+
+  //create toast element and add attributes
+  let liveToast = document.createElement("div");
+  liveToast.id = "liveToast";
+  liveToast.className = "toast fade bg-danger text-white border-0";
+  liveToast.role = "alert";
+  liveToast.ariaLive = "assertive";
+  liveToast.ariaAtomic = true;
+  liveToast.setAttribute("data-bs-autohide", false);
+
+  //create toast header
+  let toastHeader = document.createElement("div");
+  toastHeader.className = "toast-header";
+  let title = document.createElement("strong");
+  title.className = "me-auto";
+  let titleText = document.createTextNode(titleMessage);
+
+  //create toast body
+  let toastBody = document.createElement("div");
+  toastBody.className = "toast-body";
+  let bodyText = document.createTextNode(bodyMessage);
+
+  let body = document.getElementById("body");
+  //append header, body and the text to toast
+  title.appendChild(titleText);
+  toastHeader.appendChild(title);
+  toastBody.appendChild(bodyText);
+  liveToast.appendChild(toastHeader);
+  liveToast.appendChild(toastBody);
+  toastContainer.appendChild(liveToast);
+  body.prepend(toastContainer);
+
+  return toastContainer;
+}
+
+function showToast(titleMessage, bodyMessage, isSucces) {
+  let liveToast = document.getElementById("liveToast");
+  if (isSucces) {
+    liveToast.classList.remove("bg-danger");
+    liveToast.classList.add("bg-success");
+  } else {
+    liveToast.classList.remove("bg-success");
+    liveToast.classList.add("bg-danger");
+  }
+
+  let toastHeader = liveToast.querySelector(".toast-header .me-auto");
+  toastHeaderText = document.createTextNode(titleMessage);
+  toastHeader.appendChild(toastHeaderText);
+  let toastBody = liveToast.querySelector(".toast-body");
+  let toastBodyText = document.createTextNode(bodyMessage);
+  toastBody.appendChild(toastBodyText);
+  let toast = new bootstrap.Toast(liveToast);
+  toast.show();
 }
