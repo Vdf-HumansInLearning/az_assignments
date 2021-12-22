@@ -1,119 +1,6 @@
-const blogPosts = [
-  {
-    id: "8/9",
-    title: "The complete guide to explore Trasilvania, with your bike",
-    infoList: ["Destination Europe", "Jonnathan Mercadina", "July 01, 2018"],
-    blogImg: {
-      src: "img/bike.jpg",
-      alt: "Bike",
-    },
-    frontContent: [
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
-    ],
-    fullContent: [
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus blanditiis, a dolorum repudiandae quam sunt consequuntur. Distinctio, exercitationem aperiam? Doloremque alias id inventore quia ut voluptatibus accusantium maiores ipsam mollitia asperiores in ad vero consequatur exercitationem debitis, officiis laudantium perferendis eos quisquam cum repellendus neque rem dolores. Non, reiciendis asperiores architecto sapiente est accusamus repellat? Similique quas eos earum aliquam! Nam fugiat, odio dicta ex a repellat obcaecati numquam! Blanditiis distinctio eligendi aut laboriosam quia. Nesciunt fugiat explicabo ipsum dolorum ad odit harum ipsa nobis, incidunt cum, sint doloribus. Consequatur doloremque ea illum voluptate maxime magni doloribus numquam, blanditiis laborum tenetur beatae hic odio aliquam quaerat possimus accusantium saepe. Placeat, cupiditate autem non maiores esse ex assumenda quas? Quaerat minus facilis perspiciatis rerum, officia laborum debitis laboriosam officiis reprehenderit ullam veritatis enim. Odio, animi pariatur quidem doloribus voluptatem consequuntur dolor illo ullam harum optio debitis quos, dolores labore magni saepe!",
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio corporis quas ab, deleniti quod rerum, amet expedita harum at, esse maiores hic est consequatur et! Vero quasi a aperiam, rem modi quibusdam deleniti ab obcaecati sed dignissimos, quam omnis laudantium autem optio nostrum asperiores nihil aut natus voluptatibus earum qui hic accusamus. Dolore commodi velit temporibus! Quibusdam quidem mollitia eius, corrupti voluptatem voluptatibus consequatur voluptates deleniti aperiam excepturi officiis tempore vitae nisi blanditiis dolor enim debitis possimus explicabo? Quod libero in ex, accusamus temporibus porro officia ratione quam sed ipsam saepe expedita ullam ut ea non enim beatae explicabo consectetur exercitationem possimus nobis molestiae quaerat. Delectus ipsum, labore neque voluptate earum quas illo tenetur veritatis quisquam veniam molestias suscipit adipisci hic assumenda fugit ea fuga repudiandae et tempora eos non reprehenderit, rerum doloribus? Fugit provident ducimus nisi reiciendis omnis similique distinctio quaerat veniam, vero, voluptatum quasi consequatur eos ipsa sunt ipsum autem ipsam. Iste natus rem voluptatem tempore ipsam ab a dolorem, officiis consequuntur soluta eaque quidem quibusdam, esse veritatis veniam ratione doloremque. Sit beatae cum consequatur sequi placeat est corporis quidem eum nostrum libero id iure similique dignissimos illo voluptatem, perferendis veritatis quod aliquid hic excepturi optio magni eligendi?",
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis rerum ipsam, modi quas reprehenderit provident quaerat consequatur adipisci veniam? Labore consectetur nam blanditiis minus neque dolore illum dolor molestiae cupiditate molestias fugit mollitia ducimus, eos nisi alias laborum, sed quod aspernatur ab in. Quae enim eaque placeat natus aliquam numquam, quasi, maxime aperiam voluptatibus dolorum, dicta unde quaerat esse porro! Aperiam inventore qui placeat ratione velit magni dicta magnam ex ipsam amet architecto, ipsa quidem maxime eaque tempore culpa voluptate. Molestias amet mollitia aliquam praesentium laudantium porro quod. Doloribus amet aliquam saepe tenetur rerum est accusamus repellat libero vitae repellendus!",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia natus, sit aut tempore delectus earum numquam placeat tempora modi sed facere fuga perferendis aliquam quidem culpa praesentium? Ad vitae laborum cum tenetur doloremque soluta saepe explicabo, provident corporis, cumque a quae eligendi repudiandae quo facilis ducimus hic nesciunt voluptate neque corrupti. Qui provident ipsum beatae unde voluptatibus laudantium ipsa? Eaque!",
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae mollitia tempora reiciendis odio vero autem voluptatem quia sed! Maiores, voluptate ab corrupti sequi recusandae perspiciatis at tempora ut laudantium sint natus cupiditate accusantium aperiam deserunt officia laboriosam quae, eum repellat? Molestiae sint voluptate amet similique obcaecati animi at accusamus odio? Impedit cumque esse, voluptas at provident est. Suscipit praesentium consequatur impedit laborum veniam voluptatem, maiores nam dolorem quidem expedita nesciunt corrupti iusto ipsa eos asperiores assumenda maxime magnam libero iste. Debitis repudiandae sed necessitatibus reprehenderit quisquam illo sapiente doloremque unde, voluptatum commodi assumenda amet ab perspiciatis magnam dignissimos exercitationem ex blanditiis nemo, nihil at iste non. Autem cumque reiciendis itaque natus placeat soluta, laboriosam repellendus sapiente! Sint nisi aspernatur eaque?",
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe quaerat ratione quis impedit! Exercitationem, ipsa. Placeat quod voluptate hic nam incidunt temporibus quis blanditiis eos architecto iste commodi, est ex voluptatum veniam, ut nisi obcaecati impedit debitis! Fugiat consequatur dolorum, possimus quo magni aspernatur at quia repudiandae animi nam debitis.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut earum praesentium temporibus tempora? Magni, molestiae. Ab deleniti, totam a, amet pariatur doloremque iusto consequatur ducimus assumenda libero architecto id ullam dolor, ipsa voluptate laboriosam enim sunt magni magnam vitae molestiae! Soluta facilis repellendus explicabo id dolore ex nam quis nostrum.",
-    ],
-    quote:
-      "Life is like riding a bicycle, to keep your balance you must keep moving",
-    linkReadMore: "#articles/cgte0118",
-  },
-  {
-    id: "7/9",
-    title: "Bucegi: Places you must visit before you die",
-    infoList: ["Destination Europe", "Jonnathan Mercadina", "June 30, 2018"],
-    blogImg: {
-      src: "img/bucegi.jpg",
-      alt: "Bucegi",
-    },
-    frontContent: [
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
-    ],
-    fullContent: [
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus blanditiis, a dolorum repudiandae quam sunt consequuntur. Distinctio, exercitationem aperiam? Doloremque alias id inventore quia ut voluptatibus accusantium maiores ipsam mollitia asperiores in ad vero consequatur exercitationem debitis, officiis laudantium perferendis eos quisquam cum repellendus neque rem dolores. Non, reiciendis asperiores architecto sapiente est accusamus repellat? Similique quas eos earum aliquam! Nam fugiat, odio dicta ex a repellat obcaecati numquam! Blanditiis distinctio eligendi aut laboriosam quia. Nesciunt fugiat explicabo ipsum dolorum ad odit harum ipsa nobis, incidunt cum, sint doloribus. Consequatur doloremque ea illum voluptate maxime magni doloribus numquam, blanditiis laborum tenetur beatae hic odio aliquam quaerat possimus accusantium saepe. Placeat, cupiditate autem non maiores esse ex assumenda quas? Quaerat minus facilis perspiciatis rerum, officia laborum debitis laboriosam officiis reprehenderit ullam veritatis enim. Odio, animi pariatur quidem doloribus voluptatem consequuntur dolor illo ullam harum optio debitis quos, dolores labore magni saepe!",
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio corporis quas ab, deleniti quod rerum, amet expedita harum at, esse maiores hic est consequatur et! Vero quasi a aperiam, rem modi quibusdam deleniti ab obcaecati sed dignissimos, quam omnis laudantium autem optio nostrum asperiores nihil aut natus voluptatibus earum qui hic accusamus. Dolore commodi velit temporibus! Quibusdam quidem mollitia eius, corrupti voluptatem voluptatibus consequatur voluptates deleniti aperiam excepturi officiis tempore vitae nisi blanditiis dolor enim debitis possimus explicabo? Quod libero in ex, accusamus temporibus porro officia ratione quam sed ipsam saepe expedita ullam ut ea non enim beatae explicabo consectetur exercitationem possimus nobis molestiae quaerat. Delectus ipsum, labore neque voluptate earum quas illo tenetur veritatis quisquam veniam molestias suscipit adipisci hic assumenda fugit ea fuga repudiandae et tempora eos non reprehenderit, rerum doloribus? Fugit provident ducimus nisi reiciendis omnis similique distinctio quaerat veniam, vero, voluptatum quasi consequatur eos ipsa sunt ipsum autem ipsam. Iste natus rem voluptatem tempore ipsam ab a dolorem, officiis consequuntur soluta eaque quidem quibusdam, esse veritatis veniam ratione doloremque. Sit beatae cum consequatur sequi placeat est corporis quidem eum nostrum libero id iure similique dignissimos illo voluptatem, perferendis veritatis quod aliquid hic excepturi optio magni eligendi?",
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis rerum ipsam, modi quas reprehenderit provident quaerat consequatur adipisci veniam? Labore consectetur nam blanditiis minus neque dolore illum dolor molestiae cupiditate molestias fugit mollitia ducimus, eos nisi alias laborum, sed quod aspernatur ab in. Quae enim eaque placeat natus aliquam numquam, quasi, maxime aperiam voluptatibus dolorum, dicta unde quaerat esse porro! Aperiam inventore qui placeat ratione velit magni dicta magnam ex ipsam amet architecto, ipsa quidem maxime eaque tempore culpa voluptate. Molestias amet mollitia aliquam praesentium laudantium porro quod. Doloribus amet aliquam saepe tenetur rerum est accusamus repellat libero vitae repellendus!",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia natus, sit aut tempore delectus earum numquam placeat tempora modi sed facere fuga perferendis aliquam quidem culpa praesentium? Ad vitae laborum cum tenetur doloremque soluta saepe explicabo, provident corporis, cumque a quae eligendi repudiandae quo facilis ducimus hic nesciunt voluptate neque corrupti. Qui provident ipsum beatae unde voluptatibus laudantium ipsa? Eaque!",
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae mollitia tempora reiciendis odio vero autem voluptatem quia sed! Maiores, voluptate ab corrupti sequi recusandae perspiciatis at tempora ut laudantium sint natus cupiditate accusantium aperiam deserunt officia laboriosam quae, eum repellat? Molestiae sint voluptate amet similique obcaecati animi at accusamus odio? Impedit cumque esse, voluptas at provident est. Suscipit praesentium consequatur impedit laborum veniam voluptatem, maiores nam dolorem quidem expedita nesciunt corrupti iusto ipsa eos asperiores assumenda maxime magnam libero iste. Debitis repudiandae sed necessitatibus reprehenderit quisquam illo sapiente doloremque unde, voluptatum commodi assumenda amet ab perspiciatis magnam dignissimos exercitationem ex blanditiis nemo, nihil at iste non. Autem cumque reiciendis itaque natus placeat soluta, laboriosam repellendus sapiente! Sint nisi aspernatur eaque?",
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe quaerat ratione quis impedit! Exercitationem, ipsa. Placeat quod voluptate hic nam incidunt temporibus quis blanditiis eos architecto iste commodi, est ex voluptatum veniam, ut nisi obcaecati impedit debitis! Fugiat consequatur dolorum, possimus quo magni aspernatur at quia repudiandae animi nam debitis.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut earum praesentium temporibus tempora? Magni, molestiae. Ab deleniti, totam a, amet pariatur doloremque iusto consequatur ducimus assumenda libero architecto id ullam dolor, ipsa voluptate laboriosam enim sunt magni magnam vitae molestiae! Soluta facilis repellendus explicabo id dolore ex nam quis nostrum.",
-    ],
-    quote:
-      "Life is like riding a bicycle, to keep your balance you must keep moving",
-    linkReadMore: "#articles/ymvb3018",
-  },
-  {
-    id: "6/9",
-    title: "Romania: The land of dreams",
-    infoList: ["Destination Europe", "Jonnathan Mercadina", "June 17, 2018"],
-    blogImg: {
-      src: "img/village.jpg",
-      alt: "Bucegi",
-    },
-    frontContent: [
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
-    ],
-    fullContent: [
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus blanditiis, a dolorum repudiandae quam sunt consequuntur. Distinctio, exercitationem aperiam? Doloremque alias id inventore quia ut voluptatibus accusantium maiores ipsam mollitia asperiores in ad vero consequatur exercitationem debitis, officiis laudantium perferendis eos quisquam cum repellendus neque rem dolores. Non, reiciendis asperiores architecto sapiente est accusamus repellat? Similique quas eos earum aliquam! Nam fugiat, odio dicta ex a repellat obcaecati numquam! Blanditiis distinctio eligendi aut laboriosam quia. Nesciunt fugiat explicabo ipsum dolorum ad odit harum ipsa nobis, incidunt cum, sint doloribus. Consequatur doloremque ea illum voluptate maxime magni doloribus numquam, blanditiis laborum tenetur beatae hic odio aliquam quaerat possimus accusantium saepe. Placeat, cupiditate autem non maiores esse ex assumenda quas? Quaerat minus facilis perspiciatis rerum, officia laborum debitis laboriosam officiis reprehenderit ullam veritatis enim. Odio, animi pariatur quidem doloribus voluptatem consequuntur dolor illo ullam harum optio debitis quos, dolores labore magni saepe!",
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio corporis quas ab, deleniti quod rerum, amet expedita harum at, esse maiores hic est consequatur et! Vero quasi a aperiam, rem modi quibusdam deleniti ab obcaecati sed dignissimos, quam omnis laudantium autem optio nostrum asperiores nihil aut natus voluptatibus earum qui hic accusamus. Dolore commodi velit temporibus! Quibusdam quidem mollitia eius, corrupti voluptatem voluptatibus consequatur voluptates deleniti aperiam excepturi officiis tempore vitae nisi blanditiis dolor enim debitis possimus explicabo? Quod libero in ex, accusamus temporibus porro officia ratione quam sed ipsam saepe expedita ullam ut ea non enim beatae explicabo consectetur exercitationem possimus nobis molestiae quaerat. Delectus ipsum, labore neque voluptate earum quas illo tenetur veritatis quisquam veniam molestias suscipit adipisci hic assumenda fugit ea fuga repudiandae et tempora eos non reprehenderit, rerum doloribus? Fugit provident ducimus nisi reiciendis omnis similique distinctio quaerat veniam, vero, voluptatum quasi consequatur eos ipsa sunt ipsum autem ipsam. Iste natus rem voluptatem tempore ipsam ab a dolorem, officiis consequuntur soluta eaque quidem quibusdam, esse veritatis veniam ratione doloremque. Sit beatae cum consequatur sequi placeat est corporis quidem eum nostrum libero id iure similique dignissimos illo voluptatem, perferendis veritatis quod aliquid hic excepturi optio magni eligendi?",
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis rerum ipsam, modi quas reprehenderit provident quaerat consequatur adipisci veniam? Labore consectetur nam blanditiis minus neque dolore illum dolor molestiae cupiditate molestias fugit mollitia ducimus, eos nisi alias laborum, sed quod aspernatur ab in. Quae enim eaque placeat natus aliquam numquam, quasi, maxime aperiam voluptatibus dolorum, dicta unde quaerat esse porro! Aperiam inventore qui placeat ratione velit magni dicta magnam ex ipsam amet architecto, ipsa quidem maxime eaque tempore culpa voluptate. Molestias amet mollitia aliquam praesentium laudantium porro quod. Doloribus amet aliquam saepe tenetur rerum est accusamus repellat libero vitae repellendus!",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia natus, sit aut tempore delectus earum numquam placeat tempora modi sed facere fuga perferendis aliquam quidem culpa praesentium? Ad vitae laborum cum tenetur doloremque soluta saepe explicabo, provident corporis, cumque a quae eligendi repudiandae quo facilis ducimus hic nesciunt voluptate neque corrupti. Qui provident ipsum beatae unde voluptatibus laudantium ipsa? Eaque!",
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae mollitia tempora reiciendis odio vero autem voluptatem quia sed! Maiores, voluptate ab corrupti sequi recusandae perspiciatis at tempora ut laudantium sint natus cupiditate accusantium aperiam deserunt officia laboriosam quae, eum repellat? Molestiae sint voluptate amet similique obcaecati animi at accusamus odio? Impedit cumque esse, voluptas at provident est. Suscipit praesentium consequatur impedit laborum veniam voluptatem, maiores nam dolorem quidem expedita nesciunt corrupti iusto ipsa eos asperiores assumenda maxime magnam libero iste. Debitis repudiandae sed necessitatibus reprehenderit quisquam illo sapiente doloremque unde, voluptatum commodi assumenda amet ab perspiciatis magnam dignissimos exercitationem ex blanditiis nemo, nihil at iste non. Autem cumque reiciendis itaque natus placeat soluta, laboriosam repellendus sapiente! Sint nisi aspernatur eaque?",
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe quaerat ratione quis impedit! Exercitationem, ipsa. Placeat quod voluptate hic nam incidunt temporibus quis blanditiis eos architecto iste commodi, est ex voluptatum veniam, ut nisi obcaecati impedit debitis! Fugiat consequatur dolorum, possimus quo magni aspernatur at quia repudiandae animi nam debitis.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut earum praesentium temporibus tempora? Magni, molestiae. Ab deleniti, totam a, amet pariatur doloremque iusto consequatur ducimus assumenda libero architecto id ullam dolor, ipsa voluptate laboriosam enim sunt magni magnam vitae molestiae! Soluta facilis repellendus explicabo id dolore ex nam quis nostrum.",
-    ],
-    quote:
-      "Life is like riding a bicycle, to keep your balance you must keep moving",
-    linkReadMore: "#articles/tlod1718",
-  },
-  {
-    id: "6/9",
-    title: "Sarmale - stuffed cabbage rolls. Good or bad?",
-    infoList: [
-      "Destination Europe",
-      "Jonnathan Mercadina",
-      "December 29, 2017",
-    ],
-    blogImg: {
-      src: "img/sarmale.jpg",
-      alt: "Bucegi",
-    },
-    frontContent: [
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
-    ],
-    fullContent: [
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est totam laboriosam debitis magnam voluptatum, incidunt neque. Totam ullam non quis, repellendus molestiae in itaque natus labore quos ipsum alias, veritatis nihil! Quisquam labore, sequi minima expedita necessitatibus omnis error amet recusandae atque commodi quia! Vel laborum recusandae voluptatum rerum id harum, fuga beatae ut, consequuntur repellendus ipsum temporibus libero itaque.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quod tempore quaerat deserunt. Voluptatibus possimus, magni quas rem adipisci, esse ipsa fuga, fugit eos repellendus quis? Dicta perferendis, doloremque provident repellendus natus fugit obcaecati, voluptate odio, nulla similique officia. Iure at aliquam dicta provident nulla modi optio maiores. Similique eos molestiae earum voluptatum nostrum porro, consequuntur nihil ex earum. Voluptatum placeat labore necessitatibus repellat. Repudiandae velit suscipit amet tenetur, mollitia aut dolor ipsa delectus a autem ut quibusdam incidunt? Nisi facilis voluptatem omnis debitis laborum cupiditate pariatur inventore molestiae eveniet!",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus blanditiis, a dolorum repudiandae quam sunt consequuntur. Distinctio, exercitationem aperiam? Doloremque alias id inventore quia ut voluptatibus accusantium maiores ipsam mollitia asperiores in ad vero consequatur exercitationem debitis, officiis laudantium perferendis eos quisquam cum repellendus neque rem dolores. Non, reiciendis asperiores architecto sapiente est accusamus repellat? Similique quas eos earum aliquam! Nam fugiat, odio dicta ex a repellat obcaecati numquam! Blanditiis distinctio eligendi aut laboriosam quia. Nesciunt fugiat explicabo ipsum dolorum ad odit harum ipsa nobis, incidunt cum, sint doloribus. Consequatur doloremque ea illum voluptate maxime magni doloribus numquam, blanditiis laborum tenetur beatae hic odio aliquam quaerat possimus accusantium saepe. Placeat, cupiditate autem non maiores esse ex assumenda quas? Quaerat minus facilis perspiciatis rerum, officia laborum debitis laboriosam officiis reprehenderit ullam veritatis enim. Odio, animi pariatur quidem doloribus voluptatem consequuntur dolor illo ullam harum optio debitis quos, dolores labore magni saepe!",
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio corporis quas ab, deleniti quod rerum, amet expedita harum at, esse maiores hic est consequatur et! Vero quasi a aperiam, rem modi quibusdam deleniti ab obcaecati sed dignissimos, quam omnis laudantium autem optio nostrum asperiores nihil aut natus voluptatibus earum qui hic accusamus. Dolore commodi velit temporibus! Quibusdam quidem mollitia eius, corrupti voluptatem voluptatibus consequatur voluptates deleniti aperiam excepturi officiis tempore vitae nisi blanditiis dolor enim debitis possimus explicabo? Quod libero in ex, accusamus temporibus porro officia ratione quam sed ipsam saepe expedita ullam ut ea non enim beatae explicabo consectetur exercitationem possimus nobis molestiae quaerat. Delectus ipsum, labore neque voluptate earum quas illo tenetur veritatis quisquam veniam molestias suscipit adipisci hic assumenda fugit ea fuga repudiandae et tempora eos non reprehenderit, rerum doloribus? Fugit provident ducimus nisi reiciendis omnis similique distinctio quaerat veniam, vero, voluptatum quasi consequatur eos ipsa sunt ipsum autem ipsam. Iste natus rem voluptatem tempore ipsam ab a dolorem, officiis consequuntur soluta eaque quidem quibusdam, esse veritatis veniam ratione doloremque. Sit beatae cum consequatur sequi placeat est corporis quidem eum nostrum libero id iure similique dignissimos illo voluptatem, perferendis veritatis quod aliquid hic excepturi optio magni eligendi?",
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis rerum ipsam, modi quas reprehenderit provident quaerat consequatur adipisci veniam? Labore consectetur nam blanditiis minus neque dolore illum dolor molestiae cupiditate molestias fugit mollitia ducimus, eos nisi alias laborum, sed quod aspernatur ab in. Quae enim eaque placeat natus aliquam numquam, quasi, maxime aperiam voluptatibus dolorum, dicta unde quaerat esse porro! Aperiam inventore qui placeat ratione velit magni dicta magnam ex ipsam amet architecto, ipsa quidem maxime eaque tempore culpa voluptate. Molestias amet mollitia aliquam praesentium laudantium porro quod. Doloribus amet aliquam saepe tenetur rerum est accusamus repellat libero vitae repellendus!",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia natus, sit aut tempore delectus earum numquam placeat tempora modi sed facere fuga perferendis aliquam quidem culpa praesentium? Ad vitae laborum cum tenetur doloremque soluta saepe explicabo, provident corporis, cumque a quae eligendi repudiandae quo facilis ducimus hic nesciunt voluptate neque corrupti. Qui provident ipsum beatae unde voluptatibus laudantium ipsa? Eaque!",
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae mollitia tempora reiciendis odio vero autem voluptatem quia sed! Maiores, voluptate ab corrupti sequi recusandae perspiciatis at tempora ut laudantium sint natus cupiditate accusantium aperiam deserunt officia laboriosam quae, eum repellat? Molestiae sint voluptate amet similique obcaecati animi at accusamus odio? Impedit cumque esse, voluptas at provident est. Suscipit praesentium consequatur impedit laborum veniam voluptatem, maiores nam dolorem quidem expedita nesciunt corrupti iusto ipsa eos asperiores assumenda maxime magnam libero iste. Debitis repudiandae sed necessitatibus reprehenderit quisquam illo sapiente doloremque unde, voluptatum commodi assumenda amet ab perspiciatis magnam dignissimos exercitationem ex blanditiis nemo, nihil at iste non. Autem cumque reiciendis itaque natus placeat soluta, laboriosam repellendus sapiente! Sint nisi aspernatur eaque?",
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe quaerat ratione quis impedit! Exercitationem, ipsa. Placeat quod voluptate hic nam incidunt temporibus quis blanditiis eos architecto iste commodi, est ex voluptatum veniam, ut nisi obcaecati impedit debitis! Fugiat consequatur dolorum, possimus quo magni aspernatur at quia repudiandae animi nam debitis.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut earum praesentium temporibus tempora? Magni, molestiae. Ab deleniti, totam a, amet pariatur doloremque iusto consequatur ducimus assumenda libero architecto id ullam dolor, ipsa voluptate laboriosam enim sunt magni magnam vitae molestiae! Soluta facilis repellendus explicabo id dolore ex nam quis nostrum.",
-    ],
-    quote:
-      "Life is like riding a bicycle, to keep your balance you must keep moving",
-    linkReadMore: "#articles/scrg2917",
-  },
-];
-
 //----------DECLARATIONS----------
+const baseUrl = "http://localhost:3000/articles/";
+let blogPosts = null;
 const navItems = [
   { link: "#updates", title: "Travel updates" },
   { link: "#reviews", title: "Reviews" },
@@ -126,31 +13,37 @@ const indexFooterBtn = ["previous", "next"];
 const articleFooterBtn = ["previous article", "next article"];
 const modalInputs = [
   {
+    id: "newTitle",
     cssClass: "input",
     type: "text",
     placehoder: "Please enter title",
   },
   {
+    id: "newTag",
     cssClass: "input",
     type: "text",
     placehoder: "Please enter tag",
   },
   {
+    id: "newAuthor",
     cssClass: "input",
     type: "text",
     placehoder: "Please enter author",
   },
   {
+    id: "newDate",
     cssClass: "input",
     type: "text",
-    placehoder: "Please enter date",
+    placehoder: "Please enter date (DD/MM/YYY)",
   },
   {
+    id: "newImg",
     cssClass: "input",
     type: "text",
     placehoder: "Please enter image url",
   },
   {
+    id: "newQuote",
     cssClass: "input",
     type: "text",
     placehoder: "Please enter quote",
@@ -164,7 +57,20 @@ let modal = null;
 let nextRoute = null;
 let previousRoute = null;
 
+//selected article id
+let selectedArticleId = 0;
+
+let isEditMode = false;
+
+let pageSize = 5;
+let pageNumber = 0;
+let currentArticles = [];
+
 //----------FUNCTIONS----------
+
+//
+//----------navbar----------
+//
 function generateNavbarItems(item) {
   //create list item
   let navItem = document.createElement("li");
@@ -200,6 +106,9 @@ function generateNavbarWhole() {
   return navTag;
 }
 
+//
+//----------article----------
+//
 function generateArticleContent(contentList, quote) {
   let contentContainer = document.createElement("div");
   contentContainer.classList.add("content__container");
@@ -246,7 +155,7 @@ function generateArticle(item) {
   infoContainer.classList.add("info__container");
 
   if (item.infoList.length !== 3) {
-    console.log("You must have 3 arguments. Check the source.");
+    generateSnackbar("You must have 3 arguments. Check the source.");
   } else {
     item.infoList.forEach((item, index) => {
       let infoContainerItem = document.createElement("li");
@@ -274,12 +183,17 @@ function generateArticle(item) {
   let actionsContainer = document.createElement("div");
   actionsContainer.classList.add("actions__container");
 
-  actionButtons.forEach((item) => {
+  actionButtons.forEach((btn) => {
     let button = document.createElement("button");
     button.type = "button";
     button.classList.add("actions__btn");
-    let btnText = document.createTextNode(item);
+    let btnText = document.createTextNode(btn);
     button.appendChild(btnText);
+    if (btn === "Edit") {
+      button.onclick = () => editArticle(item.id);
+    } else {
+      button.onclick = () => deleteArticle(item.id);
+    }
     actionsContainer.appendChild(button);
   });
 
@@ -311,6 +225,7 @@ function generateArticle(item) {
   //link all article contents to parent article
   article.appendChild(articleTitle);
   article.appendChild(infoContainer);
+  article.appendChild(actionsContainer);
   article.appendChild(articleImg);
   article.appendChild(contentContainer);
   article.appendChild(readContainer);
@@ -332,7 +247,7 @@ function generateArticleDetails(item) {
   infoContainer.classList.add("info__container");
 
   if (item.infoList.length !== 3) {
-    console.log("You must have 3 arguments. Check the source.");
+    generateSnackbar("You must have 3 arguments. Check the source.");
   } else {
     item.infoList.forEach((item, index) => {
       let infoContainerItem = document.createElement("li");
@@ -373,6 +288,9 @@ function generateArticleDetails(item) {
   return article;
 }
 
+//
+//----------footer----------
+//
 function generateFooter(footerButtons) {
   let footer = document.createElement("footer");
   footer.classList.add("footer");
@@ -381,7 +299,12 @@ function generateFooter(footerButtons) {
     let button = document.createElement("button");
     button.type = "button";
     button.classList.add("footer__link");
-    if (item === "next") button.classList.add("footer__link--next");
+    if (item === "next") {
+      button.classList.add("footer__link--next");
+      button.addEventListener("click", loadNextArticles);
+    } else {
+      button.addEventListener("click", loadPreviousArticles);
+    }
     let btnText = document.createTextNode(item);
     button.appendChild(btnText);
     footer.appendChild(button);
@@ -389,14 +312,20 @@ function generateFooter(footerButtons) {
   return footer;
 }
 
-function generateInput(classCSS, type, placehoder) {
+//
+//----------modal----------
+//
+//inputs for modal
+function generateInput(id, classCSS, type, placehoder) {
   let input = document.createElement("input");
   input.classList.add(classCSS);
   input.type = type;
   input.placeholder = placehoder;
+  input.id = id;
   return input;
 }
 
+//modal as a whole
 function generateModal() {
   //create modal div
   let modalOverlay = document.createElement("div");
@@ -423,6 +352,7 @@ function generateModal() {
   textarea.name = "content";
   textarea.placeholder = "Please enter content";
   textarea.style.maxHeight = "252px";
+  textarea.id = "newContent";
 
   //create modal action buttons
   let modalButtons = document.createElement("div");
@@ -443,15 +373,27 @@ function generateModal() {
   let btnTextSave = document.createTextNode("Save");
   btnSave.appendChild(btnTextSave);
 
+  let btnEdit = document.createElement("button");
+  btnEdit.type = "button";
+  btnEdit.id = "editBtn";
+  btnEdit.classList.add("button");
+  btnEdit.classList.add("button--pink");
+  let btnTextEdit = document.createTextNode("Save changes");
+  btnEdit.appendChild(btnTextEdit);
+  //set visibility to hidden
+  btnEdit.style.visibility = "hidden";
+
   modalButtons.appendChild(btnCancel);
   modalButtons.appendChild(btnSave);
+  modalButtons.appendChild(btnEdit);
 
   //add all the elements to the modal
   modalInputs.forEach((item) =>
     inputsContainer.appendChild(
-      generateInput(item.cssClass, item.type, item.placehoder)
+      generateInput(item.id, item.cssClass, item.type, item.placehoder)
     )
   );
+
   modalContent.appendChild(modalTitle);
   modalContent.appendChild(inputsContainer);
   modalContent.appendChild(textarea);
@@ -462,6 +404,7 @@ function generateModal() {
   return modalOverlay;
 }
 
+//create div with modal and theme triggers
 function generateModalSwitch() {
   let modalSwitch = document.createElement("div");
   modalSwitch.classList.add("add__container");
@@ -487,6 +430,47 @@ function generateModalSwitch() {
   return modalSwitch;
 }
 
+//add click events on the buttons for the modal
+function addModalControl() {
+  let actionBtn = document.querySelector("#addBtn");
+  let saveBtn = document.querySelector("#saveBtn");
+  let editBtn = document.querySelector("#editBtn");
+  let cancelBtn = document.querySelector("#cancelBtn");
+  modal = document.querySelector("#addModal");
+
+  actionBtn.addEventListener("click", toggleClass);
+  cancelBtn.addEventListener("click", cancelArticle);
+  saveBtn.addEventListener("click", saveArticle);
+  editBtn.addEventListener("click", saveEditedArticle);
+}
+
+//show/hide modal
+function toggleClass() {
+  if (modal) {
+    modal.classList.toggle("show-modal");
+  }
+}
+
+//change button visibility to show save button
+//or to hide edit button
+function setBtnVisibility() {
+  let editBtn = document.querySelector("#editBtn");
+  let saveBtn = document.querySelector("#saveBtn");
+  if (isEditMode) {
+    editBtn.style.display = "block";
+    editBtn.style.visibility = "visible";
+    saveBtn.style.visibility = "hidden";
+  } else {
+    editBtn.style.visibility = "hidden";
+    editBtn.style.display = "none";
+    saveBtn.style.visibility = "visible";
+  }
+}
+
+//
+//----------light/dark theme----------
+//
+//create the trigger for theme change
 function generateThemeSwitch() {
   let themeSwitch = document.createElement("div");
   themeSwitch.classList.add("theme-switch-wrapper");
@@ -511,6 +495,34 @@ function generateThemeSwitch() {
   return themeSwitch;
 }
 
+//add change listener to the theme control switch
+//and logic to change the theme
+function addThemeControl() {
+  const toggleSwitch = document.querySelector(
+    '.theme-switch input[type="checkbox"]'
+  );
+  toggleSwitch.addEventListener("change", switchTheme, false);
+  if (currentTheme) {
+    document.documentElement.setAttribute("data-theme", currentTheme);
+
+    if (currentTheme === "dark") {
+      toggleSwitch.checked = true;
+    }
+  }
+}
+
+//function to actually change the html attribute from
+//light to dark and vice-versa
+function switchTheme(e) {
+  if (e.target.checked) {
+    document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark"); //add this
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light"); //add this
+  }
+}
+
 function generateHomeButton() {
   let btnContainer = document.createElement("div");
   btnContainer.classList.add("add__container");
@@ -530,7 +542,10 @@ function generateHomeButton() {
   return btnContainer;
 }
 
-function generateIndexPage() {
+//
+//----------main pages----------
+//
+function generateIndexPage(currentArticles) {
   let navbar = generateNavbarWhole();
   app.appendChild(navbar);
 
@@ -540,7 +555,7 @@ function generateIndexPage() {
   main.appendChild(modalSwitch);
 
   //link all article children to parent main
-  blogPosts.forEach((blogPost) => {
+  currentArticles.forEach((blogPost) => {
     let newBlogPost = generateArticle(blogPost);
     main.appendChild(newBlogPost);
   });
@@ -551,11 +566,52 @@ function generateIndexPage() {
 
   let modal = generateModal();
   app.appendChild(modal);
+
+  //set the number of pages to fit all articles
+  maxPageNumber = Math.round(blogPosts.length / pageSize);
+  setBtnVisibility();
+}
+
+//handle navigation on main page
+function loadNextArticles() {
+  console.log("load next articles");
+  console.log(currentArticles.length);
+  console.log(currentArticles);
+  console.log(pageNumber);
+
+  if (pageNumber < maxPageNumber) {
+    pageNumber++;
+  } else {
+    pageNumber = maxPageNumber;
+  }
+  currentArticles = blogPosts.slice(
+    pageNumber * pageSize,
+    pageNumber * pageSize + pageSize
+  );
+  const initialHash = window.location.hash;
+  window.location.hash = "#aa";
+  window.location.hash = initialHash;
+}
+
+function loadPreviousArticles() {
+  if (pageNumber > 0) {
+    pageNumber--;
+  } else {
+    pageNumber = 0;
+  }
+  currentArticles = blogPosts.slice(
+    pageNumber * pageSize,
+    pageNumber * pageSize + pageSize
+  );
+  const initialHash = window.location.hash;
+  window.location.hash = "#aa";
+  window.location.hash = initialHash;
 }
 
 function generateDetailsPage(article, currentIndex) {
   let navbar = generateNavbarWhole();
   app.appendChild(navbar);
+
   let main = document.createElement("main");
 
   let homeBtn = generateHomeButton();
@@ -590,6 +646,7 @@ function generateDetailsPage(article, currentIndex) {
   app.appendChild(footer);
 }
 
+//handle navigation on details page
 function changeRouteNext() {
   window.location.hash = nextRoute;
 }
@@ -598,56 +655,413 @@ function changeRoutePrev() {
   window.location.hash = previousRoute;
 }
 
-function switchTheme(e) {
-  if (e.target.checked) {
-    document.documentElement.setAttribute("data-theme", "dark");
-    localStorage.setItem("theme", "dark"); //add this
+//
+//----------operations----------
+//
+function saveArticle() {
+  let newTitle = modal.querySelector("#newTitle");
+  let newTag = modal.querySelector("#newTag");
+  let newAuthor = modal.querySelector("#newAuthor");
+  let newDate = modal.querySelector("#newDate");
+  let newImg = modal.querySelector("#newImg");
+  let newQuote = modal.querySelector("#newQuote");
+  let newContent = modal.querySelector("#newContent");
+
+  newImg.value =
+    "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*";
+
+  if (
+    newTitle.value &&
+    newTag.value &&
+    newAuthor.value &&
+    newDate.value &&
+    newImg.value &&
+    newQuote.value &&
+    newContent.value
+  ) {
+    //get article details from inputs
+    title = newTitle.value;
+    tag = newTag.value;
+    author = newAuthor.value;
+    date = newDate.value;
+    img = newImg.value;
+    quote = newQuote.value;
+
+    //get article content from textarea
+    let allContent = newContent.value.split(/\r?\n/);
+    let frontContent = null;
+    if (allContent.length < 2) {
+      generateSnackbar("Content must have at least two sentences");
+      frontContent = fullContent;
+    } else {
+      frontContent = allContent.slice(0, 2);
+      //form the readmore link for the new article
+      //link read more: initials of the 4 words + day + year
+      let titleWords = title.split(" ");
+      let dateNumbers = date.split("/");
+      let linkText = "";
+      let linkReadMore = "";
+      if (titleWords.length < 4) {
+        let words = titleWords[0].split("");
+        linkText = (words[0] + words[1] + words[2] + words[3]).toLowerCase();
+      } else {
+        linkText = (
+          titleWords[0][0] +
+          titleWords[1][0] +
+          titleWords[2][0] +
+          titleWords[3][0]
+        ).toLowerCase();
+      }
+      //putting it all together
+      linkReadMore = "#articles/" + linkText + dateNumbers[0] + dateNumbers[1];
+
+      date = parseDate(dateNumbers);
+
+      //create an article object to put in request body
+      let article = {
+        title: title,
+        infoList: [tag, author, date],
+        blogImg: {
+          src: img,
+          alt: "alt",
+        },
+        quote: quote,
+        frontContent: frontContent,
+        fullContent: allContent,
+        linkReadMore: linkReadMore,
+      };
+
+      fetch(baseUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(article),
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          generateSnackbar(`New article with title ${data.title} created`);
+          modal.classList.toggle("show-modal");
+          setTimeout(function () {
+            const initialHash = window.location.hash;
+            window.location.hash = "#aa";
+            window.location.hash = initialHash;
+          }, 4000);
+        })
+        .catch((error) => {
+          console.log(error);
+          generateSnackbar(error);
+        });
+    }
   } else {
-    document.documentElement.setAttribute("data-theme", "light");
-    localStorage.setItem("theme", "light"); //add this
+    generateSnackbar("Please complete all fields");
   }
 }
 
-function saveArticle() {
-  console.log("article saved");
-  modal.classList.toggle("show-modal");
+function editArticle(articleId) {
+  toggleClass();
+
+  isEditMode = true;
+  setBtnVisibility();
+
+  let foundArticle = blogPosts.find((item) => item.id === articleId);
+
+  let foundDate = redoDate(foundArticle.infoList[2]);
+
+  let newTitle = modal.querySelector("#newTitle");
+  let newTag = modal.querySelector("#newTag");
+  let newAuthor = modal.querySelector("#newAuthor");
+  let newDate = modal.querySelector("#newDate");
+  let newImg = modal.querySelector("#newImg");
+  let newQuote = modal.querySelector("#newQuote");
+  let newContent = modal.querySelector("#newContent");
+
+  selectedArticleId = articleId;
+
+  newTitle.value = foundArticle.title;
+  newTag.value = foundArticle.infoList[0];
+  newAuthor.value = foundArticle.infoList[1];
+  newDate.value = foundDate;
+  newImg.value = foundArticle.blogImg.src;
+  newQuote.value = foundArticle.quote;
+  newContent.value = foundArticle.fullContent.join("\r\n");
 }
 
+function saveEditedArticle() {
+  let newTitle = modal.querySelector("#newTitle");
+  let newTag = modal.querySelector("#newTag");
+  let newAuthor = modal.querySelector("#newAuthor");
+  let newDate = modal.querySelector("#newDate");
+  let newImg = modal.querySelector("#newImg");
+  let newQuote = modal.querySelector("#newQuote");
+  let newContent = modal.querySelector("#newContent");
+
+  if (
+    newTitle.value &&
+    newTag.value &&
+    newAuthor.value &&
+    newDate.value &&
+    newImg.value &&
+    newQuote.value &&
+    newContent.value
+  ) {
+    title = newTitle.value;
+    tag = newTag.value;
+    author = newAuthor.value;
+    date = newDate.value;
+    img = newImg.value;
+    quote = newQuote.value;
+    content = newContent.value;
+    let allContent = content.split(/\r?\n/);
+    let frontContent = null;
+    if (allContent.length < 2) {
+      generateSnackbar("Content must have at least two sentences");
+      frontContent = fullContent;
+    } else {
+      frontContent = allContent.slice(0, 2);
+      let titleWords = title.split(" ");
+      let dateNumbers = date.split("/");
+      let linkText = "";
+      let linkReadMore = "";
+      if (titleWords.length < 4) {
+        let words = titleWords[0].split("");
+        linkText = (words[0] + words[1] + words[2] + words[3]).toLowerCase();
+      } else {
+        linkText = (
+          titleWords[0][0] +
+          titleWords[1][0] +
+          titleWords[2][0] +
+          titleWords[3][0]
+        ).toLowerCase();
+      }
+      //putting it all together
+      linkReadMore = "#articles/" + linkText + dateNumbers[0] + dateNumbers[1];
+
+      let article = {
+        title: title,
+        infoList: [tag, author, date],
+        blogImg: {
+          src: img,
+          alt: "alt",
+        },
+        quote: quote,
+        frontContent: frontContent,
+        fullContent: allContent,
+      };
+
+      fetch(baseUrl + selectedArticleId, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(article),
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          generateSnackbar(`Article with title ${data.title} created`);
+
+          setTimeout(function () {
+            modal.classList.toggle("show-modal");
+
+            isEditMode = false;
+            setBtnVisibility();
+
+            const initialHash = window.location.hash;
+            window.location.hash = "#aa";
+            window.location.hash = initialHash;
+          }, 3000);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+  } else {
+    generateSnackbar("please complete all fields");
+  }
+}
+
+function deleteArticle(articleId) {
+  //9
+  fetch(baseUrl + articleId, {
+    method: "DELETE",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      generateSnackbar(`Article deleted`);
+
+      setTimeout(function () {
+        const initialHash = window.location.hash;
+        window.location.hash = "#aa";
+        window.location.hash = initialHash;
+      }, 10000);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+function cancelArticle() {
+  let newTitle = modal.querySelector("#newTitle");
+  let newTag = modal.querySelector("#newTag");
+  let newAuthor = modal.querySelector("#newAuthor");
+  let newDate = modal.querySelector("#newDate");
+  let newImg = modal.querySelector("#newImg");
+  let newQuote = modal.querySelector("#newQuote");
+  let newContent = modal.querySelector("#newContent");
+
+  newTitle.value = "";
+  newTag.value = "";
+  newAuthor.value = "";
+  newDate.value = "";
+  newImg.value = "";
+  newQuote.value = "";
+  newContent.value = "";
+
+  isEditMode = false;
+  setBtnVisibility();
+
+  toggleClass();
+}
+
+//
+//----------utils----------
+//
+//loading
+function showLoading() {
+  let loading = document.createElement("div");
+  loading.classList.add("spinner");
+  loading.id = "loadingContainer";
+
+  let body = document.getElementsByTagName("body")[0];
+  body.appendChild(loading);
+}
+
+function hideLoading() {
+  let container = document.getElementById("loadingContainer");
+  if (container) container.remove();
+}
+//cleanup before each load
 function cleanup(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
 }
+//element to show messages to user
+function generateSnackbar(message) {
+  let snackbar = document.createElement("div");
+  snackbar.id = "snackbar";
 
-//modal control
-function toggleClass() {
-  console.log(modal);
-  if (modal) modal.classList.toggle("show-modal");
+  let text = document.createTextNode(message);
+  snackbar.appendChild(text);
+  snackbar.classList.add("show");
+  let app = document.getElementById("app");
+  app.appendChild(snackbar);
+  setTimeout(function () {
+    snackbar.classList.remove("show");
+  }, 3000);
 }
 
-function addModalControl() {
-  let actionBtn = document.querySelector("#addBtn");
-  let saveBtn = document.querySelector("#saveBtn");
-  let cancelBtn = document.querySelector("#cancelBtn");
-  modal = document.querySelector("#addModal");
+//get date from add new article modal and parse in
+//in the expected format
+function parseDate(dateNumbers) {
+  let date = "";
 
-  actionBtn.addEventListener("click", toggleClass);
-  cancelBtn.addEventListener("click", toggleClass);
-  saveBtn.addEventListener("click", saveArticle);
-}
+  let day = dateNumbers[0];
+  let month = dateNumbers[1];
+  let year = dateNumbers[2];
 
-function addThemeControl() {
-  const toggleSwitch = document.querySelector(
-    '.theme-switch input[type="checkbox"]'
-  );
-  toggleSwitch.addEventListener("change", switchTheme, false);
-  if (currentTheme) {
-    document.documentElement.setAttribute("data-theme", currentTheme);
-
-    if (currentTheme === "dark") {
-      toggleSwitch.checked = true;
-    }
+  switch (month) {
+    case "01":
+      month = "January";
+      break;
+    case "02":
+      month = "February";
+      break;
+    case "03":
+      month = "March";
+      break;
+    case "04":
+      month = "April";
+      break;
+    case "05":
+      month = "May";
+      break;
+    case "06":
+      month = "June";
+      break;
+    case "07":
+      month = "July";
+      break;
+    case "08":
+      month = "August";
+      break;
+    case "09":
+      month = "September";
+      break;
+    case "10":
+      month = "November";
+      break;
+    case "11":
+      month = "November";
+      break;
+    case "12":
+      month = "December";
+      break;
+    default:
+      month = "N/A";
+      break;
   }
+
+  date = `${month} ${day}, ${year}`;
+
+  return date;
+}
+
+//format date to match DD/MM/YYYY
+function redoDate(dateString) {
+  let newDate = new Date(dateString);
+  let day = newDate.getDate().toString().padStart(2, "0");
+  let month = (newDate.getMonth() + 1).toString().padStart(2, "0");
+  let year = newDate.getFullYear();
+
+  let finalDate = `${day}/${month}/${year}`;
+
+  return finalDate;
+}
+
+//mask input to match DD/MM/YYYY
+function dateInputMask(item) {
+  item.addEventListener("keypress", function (event) {
+    if (event.keyCode < 47 || event.keyCode > 57) {
+      event.preventDefault();
+    }
+
+    var len = item.value.length;
+
+    // If we're at a particular place, let the user type the slash
+    // i.e., 12/12/1212
+    if (len !== 1 || len !== 3) {
+      if (event.keyCode == 47) {
+        event.preventDefault();
+      }
+    }
+
+    // If they don't add the slash, do it for them...
+    if (len === 2) {
+      item.value += "/";
+    }
+
+    // If they don't add the slash, do it for them...
+    if (len === 5) {
+      item.value += "/";
+    }
+  });
 }
 
 const currentTheme = localStorage.getItem("theme")
@@ -672,7 +1086,8 @@ class MyHashRouter {
 
     cleanup(app);
 
-    let message = document.createElement("h1");
+    let message = document.createElement("h2");
+    message.classList.add("title");
 
     const regex = /articles\/[a-z]{4}[0-9]{4}/;
 
@@ -683,13 +1098,21 @@ class MyHashRouter {
         break;
       case "home":
         //generate homepage
-        generateIndexPage();
+        generateIndexPage(currentArticles);
+
+        //add mask for date input of modal
+        const inputDate = document.getElementById("newDate");
+        inputDate.maxLength = 10;
+        dateInputMask(inputDate);
 
         //switch for night mode
         addThemeControl();
 
         //modal control
         addModalControl();
+
+        //return to top after changing to next page
+        window.scrollTo(0, 0);
         break;
 
       //cgte0118
@@ -702,8 +1125,14 @@ class MyHashRouter {
         let foundArticleIndex = blogPosts.findIndex(
           (item) => item.linkReadMore === articleId
         );
-        generateDetailsPage(foundArticle, foundArticleIndex);
-        window.scrollTo(0, 0);
+        if (foundArticle) {
+          generateDetailsPage(foundArticle, foundArticleIndex);
+          window.scrollTo(0, 0);
+        } else {
+          message.innerText = "Not found";
+          app.appendChild(message);
+        }
+
         break;
       case "updates":
         message.innerText = "Updates page";
@@ -730,8 +1159,24 @@ class MyHashRouter {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  let myRouter = new MyHashRouter();
-  const initialHash = window.location.hash;
-  window.location.hash = "#aa";
-  window.location.hash = initialHash;
+  showLoading();
+  fetch(baseUrl, {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      blogPosts = data;
+      hideLoading();
+      currentArticles = blogPosts.slice(
+        pageNumber * pageSize,
+        pageNumber * pageSize + pageSize
+      );
+      let myRouter = new MyHashRouter();
+      const initialHash = window.location.hash;
+      window.location.hash = "#aa";
+      window.location.hash = initialHash;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 });
